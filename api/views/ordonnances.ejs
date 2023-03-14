@@ -1,0 +1,98 @@
+<%- include('header') %>
+    <title>Pharmacie - ORDONNANCES - <%= patient_numsecu %></title>
+
+    <div class="mainContainer">
+        <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+
+        <div class ="mainContainerBlue">
+            <h1>ORDONNANCES DE :</h1>
+            <div class ="childContainerWhite">
+                
+                <div>Nom&nbsp: <strong><%= infospatient[0].patient_nom.toUpperCase() %></strong></div>
+                <div>Prenom&nbsp: <strong><%= infospatient[0].patient_prenom %></strong></div>
+                <div>Date denaissance&nbsp: <strong><%= infospatient[0].patient_journaiss %>/<%= infospatient[0].patient_moisnaiss %>/<%=infospatient[0].patient_anneenaiss %></strong></div>
+                <div>Age&nbsp: <strong><%= new Date().getFullYear() - infospatient[0].patient_anneenaiss %>ans</strong></div>
+                <div>Numéro Sécu&nbsp: <strong><%=infospatient[0].patient_numsecu %></strong></div>
+
+            </div>
+        </div>
+
+        <% if (ordonnances.length > 0) { %>
+
+            <% ordonnances.forEach(function(user,i){ %>
+                <div class="itemContainer">
+
+                    <button class="btnOrdonnances" onClick="location.href='/patients/ordonnances/<%=infospatient[0].patient_numsecu %>/posologies/<%=user.ordonnance_id%>';"><i class="fa-solid fa-pills"></i></button>
+
+                    <button class="btnMutuelle" onClick="location.href='/medecins/modifier/<%=user.medecin_id%>';"><i class="fa-solid fa-user-doctor"></i></button>
+
+                    <button class="btnEdit" onClick="location.href='/patients/ordonnances/modifier/<%=user.ordonnance_id%>';"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                    <div id="sup<%=i+1%>"><button class="btnDelete"onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+
+                    <div class="attention" id="attention<%=i+1 %>"></div>
+
+                    <script>
+                        function popupAttentionOn<%= i+1 %> () {
+                            document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+                            document.getElementById("attention<%= i+1 %>").innerHTML = `Supprimer l'ordonnance&nbsp n°<%=user.ordonnance_id%> ? &nbsp&nbsp <button class="btnDelete" onClick="location.href='/patients/ordonnances/<%=user.patient_numsecu%>/supprimer/<%=user.ordonnance_id%>';"><i class="fa-regular fa-trash-can"></i></button>`
+                        }
+                        function popupAttentionOff<%= i+1 %> () {
+
+                            document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                            document.getElementById("attention<%=i+1%>").innerHTML = ``
+                        }
+                    </script>
+
+                    
+
+                    N°&nbsp: <strong><%= user.ordonnance_id %></strong>
+                    Médecin&nbsp: <strong><%= user.medecin_nom.toUpperCase() %> <%= user.medecin_prenom %></strong>
+                    <strong><a href="telto:<%= user.medecin_tel %>"><%= user.medecin_tel %></a></strong>
+                    <strong><a href="mailto:<%= user.medecin_email %>"><%= user.medecin_email %></a></strong>
+                    Pathologie&nbsp: <strong><%= user.pathologie_nom %></strong>
+                
+
+                </div>
+         <%})%>
+
+        <%}else{%>
+            <div class="itemContainer" style="display: flex;justify-content: center;">AUCUNE ORDONNANCE CRÉÉE</div>
+            <%}%>
+    </div>
+
+    <div class="fixedContainer">
+
+        <h2> AJOUTER UNE ORDONNANCE </h2>
+
+        <form action="/patients/ordonnances/ajouter" method="POST" enctype="application/x-www-formurlencoded">
+
+            <div class="align">
+
+                <input hidden type="number" name="numsecu" id="numsecu"
+                    value="<%= patient_numsecu %>" required>
+
+                <label for="medecin"> Médecin&nbsp: </label>
+                <select name="medecin" id="medecin" required>
+                    <option value="" selected disabled>Choisir un Médecin</option>
+                    <% medecins.forEach(function(user){ %>
+                        <option value="<%= user.medecin_id %>"> <%= user.medecin_prenom %> <%= user.medecin_nom.toUpperCase() %> </option>
+                    <% })%>
+                </select>
+
+                <label for="pathologie"> Pathologie&nbsp: </label>
+                <select name="pathologie" id="pathologie" required>
+
+                    <option value="" selected disabled>Choisir une pathologie</option>
+                    <% pathologies.forEach(function(user){ %>
+                        <option value="<%= user.pathologie_id %>"> <%= user.pathologie_nom %> </option>
+                    <% })%>
+                </select>
+
+            
+                <button type="submit">AJOUTER</button>
+            </div>
+        </form>
+    </div>
+    <script src="/scripts/controleSaisie.js"></script>
+<%- include('footer') %>

@@ -1,0 +1,53 @@
+<%- include('header') %>
+    <title>Pharmacie - PATHOLOGIES</title>
+
+    <div class="mainContainer">
+        <h1> LISTE DES PATHOLOGIES </h1>
+        <a id="attention"></a>
+        <% for(let i=0; i < pathologies.length; i++) {%>
+            <div class="itemContainer">
+                <button class="btnEdit" onClick="location.href='/pathologies/modifier/<%=pathologies[i].pathologie_id%>';"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                <script>
+                    function popupAttentionOn<%=i+1 %> () {
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+
+                        document.getElementById("attention<%=i+1 %>").innerHTML = `Les ordonnances contre le <%= pathologies[i].pathologie_nom.toUpperCase() %>&nbsp&nbsp</br> seront supprimées &nbsp&nbsp <button class="btnDelete" onClick="location.href='/pathologies/supprimer/<%=pathologies[i].pathologie_id%>';"><i class="fa-regular fa-trash-can"></button>`
+                    }
+                    function popupAttentionOff<%= i+1 %> () {
+
+                        document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                        document.getElementById("attention<%=i+1%>").innerHTML = ``
+                    }
+
+
+                </script>
+
+                <div id="sup<%=i+1%>"><button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+                <div class="attention" id="attention<%=i+1 %>"></div>
+
+
+                    N°&nbsp: <strong><%= pathologies[i].pathologie_id %></strong>
+                    Nom&nbsp: <strong><%= pathologies[i].pathologie_nom.toUpperCase() %></strong>
+            </div>
+
+
+            <% }%>
+    </div>
+    <div class="fixedContainer">
+
+        <h2> AJOUTER UNE PATHOLOGIE </h2>
+
+        <form action="/pathologies/ajouter" id="form" method="POST" enctype="application/x-www-formurlencoded">
+            <div class="align">
+
+                <label for="nom">Nom&nbsp: </label>
+                <input type="text" name="nom" id="inputNom" required>
+
+                <button id="btnAjouter" type="submit">AJOUTER</button>
+            </div>
+        </form>
+
+   </div>
+    <script src="/scripts/controleSaisie.js"></script>
+<%- include('footer') %>

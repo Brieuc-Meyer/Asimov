@@ -1,0 +1,99 @@
+<%- include('header') %>
+    <title>Pharmacie - POSOLOGIES - <%=idordo  %></title>
+
+    <div class="mainContainer">
+        <button class="btnBack" onClick="history.back()"><i class="fa-solid fa-rotate-left"></i></button>
+
+        <div class ="mainContainerBlue">
+
+            <h1>POSOLOGIES DE L'ORDONNANCE N° <%=idordo  %> POUR <%=infosordo[0].patient_nom.toUpperCase() %> <%= infosordo[0].patient_prenom.toUpperCase() %> </h1>
+            <div class ="childContainerWhite">
+                <div>Médecin&nbsp:<strong> <%= medecinpath[0].medecin_nom.toUpperCase() %> <%= medecinpath[0].medecin_prenom %> </strong></div>
+                <div>Mail&nbsp:<strong> <a href="mailto:<%= medecinpath[0].medecin_email %>"><%= medecinpath[0].medecin_email %></a></strong></div>
+                <div>Tel&nbsp: <strong><a href="telto:<%= medecinpath[0].medecin_tel %>"><%= medecinpath[0].medecin_tel %></a></strong></div>
+                <div>Pathologie&nbsp:<strong> <%= medecinpath[0].pathologie_nom %></strong></div>
+            </div>
+        </div>
+
+
+        <% if (posologies.length > 0) { %>
+
+
+
+            <% posologies.forEach(function(user,i){ %>
+                <div class="itemContainer">
+
+                    <button class="btnEdit" onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/modifier';"><i class="fa-regular fa-pen-to-square"></i></button>
+
+                    <div id="sup<%=i+1%>"><button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button></div>
+
+                    <div class="attention" id="attention<%=i+1 %>"></div>
+
+                    <script>
+                        function popupAttentionOn<%= i+1 %> () {
+                            document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnBack" onClick="popupAttentionOff<%= i+1 %>()"><i class="fa-solid fa-rotate-left"></i></button>`
+                            document.getElementById("attention<%= i+1 %>").innerHTML = `etes vous sûr?&nbsp&nbsp <button class="btnDelete" onClick="location.href='/patients/<%=user.patient_numsecu%>/ordonnances/<%=idordo  %>/posologies/<%=user.posologie_id%>/supprimer';"><i class="fa-regular fa-trash-can"></i></button>`
+                        }
+                        function popupAttentionOff<%= i+1 %> () {
+
+                            document.getElementById("sup<%=i+1%>").innerHTML = `<button class="btnDelete" onclick="popupAttentionOn<%=i+1%>()"><i class="fa-regular fa-trash-can"></i></button>`
+                            document.getElementById("attention<%=i+1%>").innerHTML = ``
+                        }
+                    </script>
+
+                        <div><strong><%= user.medicament_nom %></strong></div>
+
+                        <div><strong><%= user.posologie_nbboitesmois %></strong> Boites par mois</div>
+
+                        <!--traitemnt affichege ici car formatage de la date dans la requette sql donne un résultat undefined : DATE_FORMAT(posologie_debut,"%d-%m-%Y") as posologie_debutformatee-->
+                        <div>Début&nbsp: <strong><%=user.posologie_debut.toLocaleDateString()%></strong></div>
+                    
+                        <div>Fin&nbsp: <strong><%=user.posologie_fin.toLocaleDateString()%></strong></div>
+
+                        <div>Total&nbsp: <strong><%= user.posologie_nb_boites_debut_fin %></strong></div>
+
+                        <div>Boites restantes à déliverer&nbsp: <strong><%= user.posologie_nb_boites_maintenant_fin %></strong></div>
+
+                </div>
+                <a class="attention" id="attention<%=i+1 %>"></a>
+
+            <% })%>
+            <%}else{%>
+                <div class="itemContainer" style="display: flex;justify-content: center;">AUCUNE POSOLOGIE CRÉÉE</div>
+            <%}%>
+    </div>
+    <div class="fixedContainer">
+        <h2> AJOUTER UNE POSOLOGIE </h2>
+
+        <form action="/patients/ordonnances/posologies/ajouter" method="POST" id= "form" enctype="application/x-www-formurlencoded">
+
+            <div class="align">
+
+                <input hidden type="number" name="numsecu" id="numsecu" value="<%= infosordo[0].patient_numsecu %>" required>
+                
+
+                <input hidden type="number" name="idordo" id="idordo" value="<%= idordo %>" required>
+
+                <label for="medicament"> Médicament : </label>
+                <select name="medicament" id="medicament" required>
+
+                    <option value="" selected disabled>Choisir un Médicament</option>
+                    <% medicaments.forEach(function(user){ %>
+                        <option value="<%= user.medicament_id %>"> <%= user.medicament_nom.toUpperCase() %> </option>
+                    <% })%>
+                </select>
+
+                <label for="boites">Boites par mois : </label>
+                <input type="number" name="boites" id="boites" min="1" required>
+
+                <label for="duree">Durée en mois : </label>
+                <input type="number" name="duree" id="duree" min="1" max="1200" required>
+
+
+                <button type="submit">AJOUTER</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="/scripts/controleSaisie.js"></script>
+<%- include('footer') %>
