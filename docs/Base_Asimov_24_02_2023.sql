@@ -1,58 +1,90 @@
-CREATE TABLE [dbo].[classes](
-    [class_grade] BIGINT NOT NULL,
-    [class_nom] BIGINT NOT NULL,
-    PRIMARY KEY CLUSTERED ([class_grade] ASC)
-);
+CREATE TABLE `classes` (
+    `class_grade` BIGINT NOT NULL,
+    `class_nom` VARCHAR(30) NOT NULL,
+    PRIMARY KEY (`class_grade`)
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[eleves](
-    [eleve_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [eleve_nom] VARCHAR(255) NOT NULL,
-    [eleve_identifiant] VARCHAR(255) NOT NULL,
-    [eleve_mdp] VARCHAR(255) NOT NULL,
-    [eleve_class_grade] BIGINT NOT NULL,
-    CONSTRAINT [eleves_eleve_class_grade_foreign] FOREIGN KEY ([eleve_class_grade]) REFERENCES [dbo].[classes] ([class_grade]),
-    PRIMARY KEY CLUSTERED ([eleve_id] ASC)
-);
+CREATE TABLE `eleves` (
+    `eleve_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `eleve_nom` VARCHAR(50) NOT NULL,
+    `eleve_identifiant` VARCHAR(50) NOT NULL,
+    `eleve_mdp` VARCHAR(10) NOT NULL,
+    `eleve_class_grade` BIGINT NOT NULL,
+    CONSTRAINT `fk_eleve_class` FOREIGN KEY (`eleve_class_grade`) REFERENCES `classes` (`class_grade`)
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[personnels](
-    [perso_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [perso_mat_id] BIGINT NOT NULL,
-    [perso_nom] VARCHAR(255) NOT NULL,
-    [perso_identifiant] VARCHAR(255) NOT NULL,
-    [perso_mdp] VARCHAR(255) NOT NULL,
-    [perso_proviseur_on] TINYINT NOT NULL,
-    PRIMARY KEY CLUSTERED ([perso_id] ASC)
-);
+CREATE TABLE `personnels` (
+    `perso_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `perso_mat_id` BIGINT NOT NULL,
+    `perso_nom` VARCHAR(50) NOT NULL,
+    `perso_identifiant` VARCHAR(50) NOT NULL,
+    `perso_mdp` VARCHAR(10) NOT NULL,
+    `perso_proviseur_on` TINYINT NOT NULL
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[matieres](
-    [mat_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [mat_nom] VARCHAR(255) NOT NULL,
-    PRIMARY KEY CLUSTERED ([mat_id] ASC)
-);
+CREATE TABLE `matieres` (
+    `mat_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `mat_nom` VARCHAR(50) NOT NULL
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[notes](
-    [note_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [note_pourcent] FLOAT(8) NOT NULL,
-    [note_prof_id] BIGINT NOT NULL,
-    [note_mat_id] BIGINT NOT NULL,
-    [note_date_evaluation] DATE NOT NULL,
-    [note_intitule] VARCHAR(50) NOT NULL,
-    [note_description] VARCHAR(255) NOT NULL,
-    CONSTRAINT [notes_note_prof_id_foreign] FOREIGN KEY ([note_prof_id]) REFERENCES [dbo].[personnels] ([perso_id]),
-    CONSTRAINT [notes_note_mat_id_foreign] FOREIGN KEY ([note_mat_id]) REFERENCES [dbo].[matieres] ([mat_id]),
-    PRIMARY KEY CLUSTERED ([note_id] ASC)
-);
+CREATE TABLE `notes` (
+    `note_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `note_eleve_id` BIGINT NOT NULL,
+    `note_pourcent` FLOAT(8) NOT NULL,
+    `note_prof_id` BIGINT NOT NULL,
+    `note_mat_id` BIGINT NOT NULL,
+    `note_date_evaluation` DATE NOT NULL,
+    `note_intitule` VARCHAR(50) NOT NULL,
+    `note_description` VARCHAR(255) NOT NULL,
+    CONSTRAINT `fk_note_prof` FOREIGN KEY (`note_prof_id`) REFERENCES `personnels` (`perso_id`),
+    CONSTRAINT `fk_note_mat` FOREIGN KEY (`note_mat_id`) REFERENCES `matieres` (`mat_id`)
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[liaison_personnel_matieres](
-    [perso_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [mat_id] BIGINT NOT NULL,
-    CONSTRAINT [liaison_personnel_matieres_perso_id_foreign] FOREIGN KEY ([perso_id]) REFERENCES [dbo].[personnels] ([perso_id]),
-    CONSTRAINT [liaison_personnel_matieres_mat_id_foreign] FOREIGN KEY ([mat_id]) REFERENCES [dbo].[matieres] ([mat_id])
-);
+CREATE TABLE `liaison_personnel_matieres` (
+    `perso_id` BIGINT NOT NULL,
+    `mat_id` BIGINT NOT NULL,
+    CONSTRAINT `fk_liaison_personnel_matieres_perso` FOREIGN KEY (`perso_id`) REFERENCES `personnels` (`perso_id`),
+    CONSTRAINT `fk_liaison_personnel_matieres_mat` FOREIGN KEY (`mat_id`) REFERENCES `matieres` (`mat_id`)
+)ENGINE=InnoDB;
 
-CREATE TABLE [dbo].[liaision_personnel_classes](
-    [perso_id] BIGINT IDENTITY(1,1) NOT NULL,
-    [class_grade] BIGINT NOT NULL,
-    CONSTRAINT [liaision_personnel_classes_perso_id_primary] PRIMARY KEY CLUSTERED ([perso_id] ASC),
-    CONSTRAINT [liaision_personnel_classes_class_grade_foreign] FOREIGN KEY ([class_grade]) REFERENCES [dbo].[classes] ([class_grade])
-);
+CREATE TABLE `liaison_personnel_classes` (
+    `perso_id` BIGINT NOT NULL,
+    `class_grade` BIGINT NOT NULL,
+    CONSTRAINT `fk_liaison_personnel_classes_perso` FOREIGN KEY (`perso_id`) REFERENCES `personnels` (`perso_id`),
+    CONSTRAINT `fk_liaison_personnel_classes_class` FOREIGN KEY (`class_grade`) REFERENCES `classes` (`class_grade`)
+)ENGINE=InnoDB;
+
+
+INSERT INTO `classes` (`class_grade`, `class_nom`) VALUES
+    (6, 'Sixieme'),
+    (5, 'Cinquieme'),
+    (4, 'Quatrieme'),
+    (3, 'Troisieme');
+
+INSERT INTO `eleves` (`eleve_nom`, `eleve_identifiant`, `eleve_mdp`, `eleve_class_grade`) VALUES
+    ('Jean Dupont', 'jean.dupont', 'root', 6),
+    ('Sophie Martin', 'sophie.martin', 'root', 5),
+    ('Pierre Durand', 'pierre.durand', 'root', 4);
+
+INSERT INTO `personnels` (`perso_mat_id`, `perso_nom`, `perso_identifiant`, `perso_mdp`, `perso_proviseur_on`) VALUES
+    (1, 'Jeanne Dupuis', 'jeanne.dupuis', 'root', 1),
+    (2, 'Marc Leroy', 'marc.leroy', 'root', 0),
+    (3, 'Sophie Dupont', 'sophie.dupont', 'root', 0);
+
+INSERT INTO `matieres` (`mat_nom`) VALUES
+    ('Mathematiques'),
+    ('Francais'),
+    ('Anglais'),
+    ('Histoire-Geographie');
+
+INSERT INTO `liaison_personnel_matieres` (`perso_id`,`mat_id`) VALUES
+    (2,1),
+    (2,2),
+    (3,3),
+    (3,1);
+
+INSERT INTO `liaison_personnel_classes` (`perso_id`,`class_grade`) VALUES
+    (2,6),
+    (2,5),
+    (3,4),
+    (3,3);
