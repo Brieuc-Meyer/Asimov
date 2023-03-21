@@ -11,15 +11,14 @@ module.exports = {
     * méthodes qui envoient la @req au @modelProfesseurs () , sans bloquer le thread principal.
     * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
-    async afficherEleves(req, res) {
+    async afficherElevesUnProf(req, res) {
 
         try {
-            let data = await modelProfesseurs.modelAfficherMedicaments()
-            let data2 = await modelProfesseurs.modelbesoinsTotauxMedicaments()
-
+            let data = await modelProfesseurs.modelAfficherElevesUnProf(req)
+           
             if (data) {
                 //console.log(data)
-                res.status(200).json(data,data2)
+                res.status(200).json(data)
             }
         } catch (error) {
             console.log(error)
@@ -32,11 +31,11 @@ module.exports = {
 
         try {
             /**
-             * @param req contient les data du body du dom
+             * @param req contient les data du params du dom
              */
-            let data = await modelProfesseurs.modelAjouterMedicament(req)
+            let data = await modelProfesseurs.modelAjouterEleve(req)
             if (data) {
-                res.redirect("/medicaments")
+                res.status(200)
             }
         } catch (error) {
             console.log(error)
@@ -46,15 +45,15 @@ module.exports = {
     },
 
 
-    async supprimerMedicament(req, res) {
+    async supprimerEleve(req, res) {
 
         try {
             /**
              * @param req contient le param id a suprimmer
              */
-            let data = await modelProfesseurs.modelSupprimerMedicament(req)
+            let data = await modelProfesseurs.modelSupprimerEleve(req)
             if (data) {
-                res.redirect("/medicaments")
+                res.status(200)
             }
         } catch (error) {
             console.log(error)
@@ -62,16 +61,16 @@ module.exports = {
 
 
     },
-    async afficherModifMedicament(req, res) {
+    async afficherModifEleve(req, res) {
 
         try {
             /**
              * @param req contient les data du medicament a modifier
              */
-            let data = await modelProfesseurs.modelafficherModifMedicament(req)
+            let data = await modelProfesseurs.modelafficherModifEleve(req)
             if (data) {
                 //console.log(data)
-                res.render("./modifMedicament", { medicament: data })
+                res.status(200).json(data)
             }
         } catch (error) {
             console.log(error)
@@ -81,16 +80,16 @@ module.exports = {
     },
 
 
-    async modifMedicament(req, res) {
+    async modifEleve(req, res) {
 
         try {
             /**
              * @param req envoie à la BDD les data du medicament a modifier
              */
-            let data = await modelProfesseurs.modelmodifMedicament(req)
+            let data = await modelProfesseurs.modelmodifEleve(req)
             if (data) {
                 //console.log(data)
-                res.redirect("/medicaments")
+                res.status(200)
             }
 
         } catch (error) {
@@ -98,7 +97,107 @@ module.exports = {
         }
 
 
-    }
+    },
+    async afficherMatieresProf(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAfficherMatieresProf(req)
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async ajouterNote(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAjouterNote(req)
+            if (data) {
+                //console.log(data)
+                res.status(200)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    
+    
+    async afficherModifNote(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAfficherModifNote(req)
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async modifNote(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelModifNote(req)
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    
+    
+    async supprimerNote(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelSupprimerNote(req)
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    
 
 }
 

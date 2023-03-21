@@ -30,7 +30,7 @@ const modelTestConnexion = (req, res) => {
 
     return new Promise((resolve, reject) => {
 
-        let identifiant = req.body.identifiant
+        let identifiant = req.params.identifiant
         //la serrure est l'identifiant, on vérifiera ctrlConnexion si l'utilisateur connait la clé
         let requeteSQL = 'SELECT * FROM eleves, personnels WHERE eleve_identifiant = ? OR perso_identifiant = ? '
         mysqlConnexion.query(requeteSQL, [identifiant], (err, data) => {

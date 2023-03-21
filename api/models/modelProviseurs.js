@@ -19,12 +19,27 @@ module.exports = {
      * !  on ne peut résolve q'une @data par promesse  !
     */
 
-    async modelAfficherProfesseurs() {
+    async modelAfficherTousLesEleves(req) {
 
         return new Promise((resolve, reject) => {
-            //ORDER BY afin que pas de mutuelle soit selected
+            let requeteSQL = `SELECT * FROM  eleves`
 
-            let requeteSQL = 'SELECT * FROM personnels ORDER BY perso_nom'
+            mysqlConnexion.query(requeteSQL, (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    async modelAfficherToutesLesMatieres(req) {
+
+        return new Promise((resolve, reject) => {
+            let requeteSQL = `SELECT * FROM  matieres`
+
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -37,18 +52,60 @@ module.exports = {
         )
     },
 
-    
 
-    async modelAjouterProfesseurs(req) {
+    async modelAjouterMatiere(req) {
+
 
         return new Promise((resolve, reject) => {
 
-            let nom = req.body.nom
-            let tel = req.body.tel
-            let email = req.body.email
+            let mat_nom = req.params.mat_nom
 
-            let requeteSQL = "INSERT INTO personnels (perso_nom, perso_identifiant, perso_mdp, perso_proviseur_on) VALUES (? ,?, ?, ?)"
-            mysqlConnexion.query(requeteSQL, [nom, tel, email], (err, data) => {
+            let requeteSQL = "INSERT INTO matieres (mat_nom) VALUES (?)"
+
+
+            mysqlConnexion.query(requeteSQL, [mat_nom], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelSupprimerMatiere(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let mat_id = req.params.mat_id
+
+            let requeteSQL = "DELETE FROM matieres WHERE mat_id = ?;"
+
+
+            mysqlConnexion.query(requeteSQL, [mat_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+
+    async modelAfficherModifMatiere(req) {
+
+        return new Promise((resolve, reject) => {
+
+            let mat_id = req.params.mat_id
+
+            let requeteSQL = 'SELECT * FROM matieres WHERE mat_id = ?'
+            mysqlConnexion.query(requeteSQL, [mat_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -62,15 +119,37 @@ module.exports = {
 
 
 
-    async modelAfficherModifMutuelle(req) {
+
+    async modelModifMatiere(req) {
+
 
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let mat_nom = req.params.mat_nom
+            let mat_id = req.params.mat_id
 
-            let requeteSQL = 'SELECT * FROM Mutuelles WHERE mutuelle_id = ?'
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+
+            let requeteSQL = 'UPDATE matieres SET mat_nom = ? WHERE mat_id = ?'
+            mysqlConnexion.query(requeteSQL, [mat_nom, mat_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    // pour connaitre la matière de la note que le prof assigne
+    async modelAfficherProfesseurs() {
+
+        return new Promise((resolve, reject) => {
+
+            let requeteSQL = `SELECT * FROM personnels WHERE perso_proviseur_on = 0 `
+
+            mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -82,21 +161,66 @@ module.exports = {
         )
     },
 
+    async modelAjouterPersonnel(req) {
 
 
+        return new Promise((resolve, reject) => {
+            let perso_nom = req.params.perso_nom
+            let perso_identifiant = req.params.perso_identifiant
+            let perso_mdp = req.params.perso_mdp
+            let perso_proviseur_on = req.params.perso_proviseur_on
 
-    async modelModifMutuelle(req) {
+            let requeteSQL = "INSERT INTO personnels (perso_nom, perso_identifiant, perso_mdp, perso_proviseur_on) VALUES (?, ?, ?, ?)"
+
+
+            mysqlConnexion.query(requeteSQL, [perso_nom, perso_identifiant, perso_mdp, perso_proviseur_on], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAfficherModifPersonnel(req) {
 
         return new Promise((resolve, reject) => {
 
+            let perso_id = req.params.perso_id
+
+            let requeteSQL = 'SELECT * FROM personnels WHERE perso_id = ?'
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelModifPersonnel(req) {
+
+
+
+        return new Promise((resolve, reject) => {
             
-            let nom = req.body.nom
-            let tel = req.body.tel
-            let email = req.body.email
-            let id = req.body.id
 
-            let requeteSQL = 'UPDATE Mutuelles SET mutuelle_nom = ?, mutuelle_tel = ?, mutuelle_email = ? WHERE mutuelle_id = ?'
-            mysqlConnexion.query(requeteSQL, [ nom, tel, email, id], (err, data) => {
+            let perso_nom = req.params.perso_nom
+            let perso_identifiant = req.params.perso_identifiant
+            let perso_mdp = req.params.perso_mdp
+            let perso_proviseur_on = req.params.perso_proviseur_on
+            let perso_id = req.params.perso_nom
+
+
+
+            let requeteSQL = 'UPDATE personnels SET perso_nom = ?, perso_identifiant = ?, perso_mdp = ?, perso_proviseur_on = ?  WHERE perso_id = ?'
+            mysqlConnexion.query(requeteSQL, [perso_nom, perso_identifiant, perso_mdp, perso_proviseur_on, perso_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -108,16 +232,17 @@ module.exports = {
         )
     },
 
-    async modelSupprimerMutuelle(req) {
+    async modelSupprimerPersonnel(req) {
+
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let perso_id = req.params.perso_id
 
-            let requeteSQL = "DELETE FROM Mutuelles WHERE mutuelle_id = ?;"
+            let requeteSQL = "DELETE FROM personnels WHERE perso_id = ?;"
 
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -127,10 +252,6 @@ module.exports = {
             })
         }
         )
-    }
-
-
-
-
-
+    },
 }
+

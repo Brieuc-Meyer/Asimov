@@ -28,8 +28,8 @@ module.exports = {
     async testConnexion(req, res) {
 
 
-        let identifiant = req.body.identifiant
-        let mdp = req.body.mdp
+        let identifiant = req.params.identifiant
+        let mdp = req.params.mdp
 
         try {
             let data = await modelConnexion.modelTestConnexion(req, res)

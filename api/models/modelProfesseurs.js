@@ -22,8 +22,8 @@ module.exports = {
     async modelAfficherElevesUnProf(req) {
 
         return new Promise((resolve, reject) => {
-            let id = req.body.id
-
+            let perso_id = req.params.perso_id
+            //obligé de trier par classe car GROUP BY ne récupére pas certanis eleves
             let requeteSQL = `SELECT * 
             FROM  eleves, liaison_personnel_classes, classes 
             WHERE liaison_personnel_classes.perso_id = ? 
@@ -32,7 +32,7 @@ module.exports = {
             ORDER BY classes 
             ORDER BY eleves_nom;`
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -50,15 +50,15 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let nom = req.body.nom
-            let identifiant = req.body.identifiant
-            let mdp = req.body.mdp
-            let classe = req.body.classe
+            let eleve_nom = req.params.eleve_nom
+            let eleve_identifiant = req.params.eleve_identifiant
+            let eleve_mdp = req.params.mdp
+            let eleve_class_grade = req.params.eleve_class_grade
 
-            let requeteSQL = "INSERT INTO eleves (eleve_nom, eleve_identigfiant, eleve_mdp, eleve_class_grade) VALUES (?, ?, ?, ?)"
+            let requeteSQL = "INSERT INTO eleves (eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade) VALUES (?, ?, ?, ?)"
 
 
-            mysqlConnexion.query(requeteSQL, [nom, identifiant, mdp, classe], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -75,12 +75,12 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let eleve_id = req.params.eleve_id
 
             let requeteSQL = "DELETE FROM eleves WHERE eleve_id = ?;"
 
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [eleve_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -97,10 +97,10 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.params.id
+            let eleve_id = req.params.eleve_id
 
             let requeteSQL = 'SELECT * FROM eleves WHERE eleve_id = ?'
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [eleve_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -121,14 +121,15 @@ module.exports = {
 
         return new Promise((resolve, reject) => {
 
-            let id = req.body.id
-            let nom = req.body.nom
-            let identifiant = req.body.identifiant
-            let mdp = req.body.mdp
-            let classe = req.body.classe
+            let eleve_nom = req.params.eleve_nom
+            let eleve_identifiant = req.params.eleve_identifiant
+            let eleve_mdp = req.params.eleve_mdp
+            let eleve_class_grade = req.params.eleve_class_grade
+            let eleve_id = req.params.eleve_id
+
 
             let requeteSQL = 'UPDATE eleves SET eleve_nom = ?, eleve_identifiant = ?, eleve_mdp = ?, eleve_class_grade = ?  WHERE eleve_id = ?'
-            mysqlConnexion.query(requeteSQL, [nom, identifiant, mdp, classe, id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade, eleve_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -139,12 +140,12 @@ module.exports = {
         }
         )
     },
-
-    async modelAfficherMatieresUnProf(req) {
+    // pour connaitre la matière de la note que le prof assigne
+    async modelAfficherMatieresProf(req) {
 
 
         return new Promise((resolve, reject) => {
-            let id = req.params.id
+            let perso_id = req.params.perso_id
 
             let requeteSQL = `SELECT * 
             FROM  matieres, liaison_personnel_matieres, personnels 
@@ -152,7 +153,7 @@ module.exports = {
             AND matieres.mat_id = personnels.perso_id 
             AND liaison_personnel_matieres.mat_id = matieres.mat_id;`
 
-            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -164,5 +165,102 @@ module.exports = {
         )
     },
 
+    async modelAjouterNote(req) {
+
+
+        return new Promise((resolve, reject) => {
+            let note_eleve_id = req.params.note_eleve_id
+            let note_pourcent = req.params.note_pourcent
+            let note_prof_id = req.params.note_prof_id
+            let note_mat_id = req.params.note_mat_id
+            let note_date_evaluation = req.params.note_date_evaluation
+            let note_intitule = req.params.note_intitule
+            let note_description = req.params.note_description
+
+            let requeteSQL = "INSERT INTO notes (note_eleve_id, note_pourcent, note_prof_id, note_mat_id, note_date_evaluation, note_intitule, note_description) VALUES (?, ?, ?, ?, ?, ?, ?)"
+
+
+            mysqlConnexion.query(requeteSQL, [note_eleve_id, note_pourcent, note_prof_id, note_mat_id, note_date_evaluation, note_intitule, note_description], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAfficherModifNote(req) {
+
+        return new Promise((resolve, reject) => {
+
+            let note_id = req.params.note_id
+
+            let requeteSQL = 'SELECT * FROM eleves WHERE note_id = ?'
+            mysqlConnexion.query(requeteSQL, [note_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelModifNote(req) {
+
+
+
+        return new Promise((resolve, reject) => {
+            
+
+            let note_eleve_id = req.params.note_eleve_id
+            let note_pourcent = req.params.note_pourcent
+            let note_prof_id = req.params.note_prof_id
+            let note_mat_id = req.params.note_mat_id
+            let note_date_evaluation = req.params.note_date_evaluation
+            let note_intitule = req.params.note_intitule
+            let note_description = req.params.note_description
+            let note_id = req.params.note_id
+
+
+            let requeteSQL = 'UPDATE eleves SET note_eleve_id = ?, note_pourcent = ?, note_prof_id = ?, note_mat_id = ?, note_date_evaluation = ?, note_intitule = ?, note_description = ?  WHERE note_id = ?'
+            mysqlConnexion.query(requeteSQL, [note_eleve_id, note_pourcent, note_prof_id, note_mat_id, note_date_evaluation, note_intitule, note_description, note_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelSupprimerNote(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let note_id = req.params.note_id
+
+            let requeteSQL = "DELETE FROM notes WHERE note_id = ?;"
+
+
+            mysqlConnexion.query(requeteSQL, [note_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
 }
 
