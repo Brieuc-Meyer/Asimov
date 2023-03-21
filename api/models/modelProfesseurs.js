@@ -19,10 +19,10 @@ module.exports = {
      * !  on ne peut résolve q'une @data par promesse  !
     */
 
-    async modelAfficherElevesUnProf() {
-
+    async modelAfficherElevesUnProf(req) {
 
         return new Promise((resolve, reject) => {
+            let id = req.body.id
 
             let requeteSQL = `SELECT * 
             FROM  eleves, liaison_personnel_classes, classes 
@@ -32,7 +32,7 @@ module.exports = {
             ORDER BY classes 
             ORDER BY eleves_nom;`
 
-            mysqlConnexion.query(requeteSQL, (err, data) => {
+            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -93,7 +93,7 @@ module.exports = {
     },
 
 
-    async modelafficherModifMedicament(req) {
+    async modelafficherModifEleve(req) {
 
         return new Promise((resolve, reject) => {
 
@@ -115,7 +115,7 @@ module.exports = {
 
 
 
-    async modelmodifMedicament(req) {
+    async modelmodifEleve(req) {
 
 
 
@@ -140,7 +140,29 @@ module.exports = {
         )
     },
 
+    async modelAfficherMatieresUnProf(req) {
 
+
+        return new Promise((resolve, reject) => {
+            let id = req.params.id
+
+            let requeteSQL = `SELECT * 
+            FROM  matieres, liaison_personnel_matieres, personnels 
+            WHERE liaison_personnel_matieres.perso_id = ?
+            AND matieres.mat_id = personnels.perso_id 
+            AND liaison_personnel_matieres.mat_id = matieres.mat_id;`
+
+            mysqlConnexion.query(requeteSQL, [id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
 
 }
 

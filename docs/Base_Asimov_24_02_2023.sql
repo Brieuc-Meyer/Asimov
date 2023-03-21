@@ -15,7 +15,6 @@ CREATE TABLE `eleves` (
 
 CREATE TABLE `personnels` (
     `perso_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
-    `perso_mat_id` BIGINT NOT NULL,
     `perso_nom` VARCHAR(50) NOT NULL,
     `perso_identifiant` VARCHAR(50) NOT NULL,
     `perso_mdp` VARCHAR(10) NOT NULL,
@@ -66,10 +65,10 @@ INSERT INTO `eleves` (`eleve_nom`, `eleve_identifiant`, `eleve_mdp`, `eleve_clas
     ('Sophie Martin', 'sophie.martin', 'root', 5),
     ('Pierre Durand', 'pierre.durand', 'root', 4);
 
-INSERT INTO `personnels` (`perso_mat_id`, `perso_nom`, `perso_identifiant`, `perso_mdp`, `perso_proviseur_on`) VALUES
-    (1, 'Jeanne Dupuis', 'jeanne.dupuis', 'root', 1),
-    (2, 'Marc Leroy', 'marc.leroy', 'root', 0),
-    (3, 'Sophie Dupont', 'sophie.dupont', 'root', 0);
+INSERT INTO `personnels` (`perso_nom`, `perso_identifiant`, `perso_mdp`, `perso_proviseur_on`) VALUES
+    ('Jeanne Dupuis', 'jeanne.dupuis', 'root', 1),
+    ('Marc Leroy', 'marc.leroy', 'root', 0),
+    ('Sophie Dupont', 'sophie.dupont', 'root', 0);
 
 INSERT INTO `matieres` (`mat_nom`) VALUES
     ('Mathematiques'),

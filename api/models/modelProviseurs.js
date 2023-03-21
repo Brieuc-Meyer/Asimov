@@ -19,12 +19,12 @@ module.exports = {
      * !  on ne peut résolve q'une @data par promesse  !
     */
 
-    async modelAfficherEleves() {
+    async modelAfficherProfesseurs() {
 
         return new Promise((resolve, reject) => {
             //ORDER BY afin que pas de mutuelle soit selected
 
-            let requeteSQL = 'SELECT * FROM Mutuelles ORDER BY mutuelle_id'
+            let requeteSQL = 'SELECT * FROM personnels ORDER BY perso_nom'
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
                 if (err) {
@@ -39,7 +39,7 @@ module.exports = {
 
     
 
-    async modelAjouterMutuelle(req) {
+    async modelAjouterProfesseurs(req) {
 
         return new Promise((resolve, reject) => {
 
@@ -47,7 +47,7 @@ module.exports = {
             let tel = req.body.tel
             let email = req.body.email
 
-            let requeteSQL = "INSERT INTO Mutuelles (mutuelle_nom, mutuelle_tel,mutuelle_email) VALUES (?, ?, ?)"
+            let requeteSQL = "INSERT INTO personnels (perso_nom, perso_identifiant, perso_mdp, perso_proviseur_on) VALUES (? ,?, ?, ?)"
             mysqlConnexion.query(requeteSQL, [nom, tel, email], (err, data) => {
 
                 if (err) {
