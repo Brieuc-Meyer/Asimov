@@ -62,6 +62,16 @@ module.exports = {
     //middleware qui test la présence d'un cookie de session
     async testAuthentification(req, res, next) {
 
+
+
+
+        // XXX à enelever pour reelement tester l'authentification
+        return next()
+        
+
+
+
+
         //console.log(sessions)
         //console.log(req.headers.cookie?.split('session=')[1])
         

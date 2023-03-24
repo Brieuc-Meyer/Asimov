@@ -46,9 +46,9 @@ app.get('/', (req, res) => {
 })
 
 //gerer 404
-Routeur.use((req, res) => {
-    res.status(404).redirect('accueil')
-});
+// Routeur.use((req, res) => {
+//     res.status(404).redirect('accueil')
+// });
 
 //commande pour lancer :
 //npx nodemon index.js

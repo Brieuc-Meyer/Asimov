@@ -26,6 +26,21 @@ module.exports = {
 
 
     },
+    async afficherNotesUnEleve(req, res) {
+
+        try {
+            let data = await modelProfesseurs.modelAfficherNotesUnEleve(req)
+           
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
     async ajouterEleve(req, res) {
 

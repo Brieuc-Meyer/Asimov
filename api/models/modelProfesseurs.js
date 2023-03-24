@@ -29,8 +29,7 @@ module.exports = {
             WHERE liaison_personnel_classes.perso_id = ? 
             AND eleves.eleve_class_grade = classes.class_grade 
             AND liaison_personnel_classes.class_grade = eleves.eleve_class_grade 
-            ORDER BY classes 
-            ORDER BY eleves_nom;`
+            ORDER BY eleve_class_grade;`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
@@ -154,6 +153,24 @@ module.exports = {
             AND liaison_personnel_matieres.mat_id = matieres.mat_id;`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAfficherNotesUnEleve(req) {
+
+        return new Promise((resolve, reject) => {
+            let eleve_id = req.params.eleve_id
+            //obligé de trier par classe car GROUP BY ne récupére pas certanis eleves
+            let requeteSQL = `SELECT * FROM notes WHERE note_eleve_id = ?`
+            mysqlConnexion.query(requeteSQL, [eleve_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
