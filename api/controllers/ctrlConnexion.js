@@ -7,50 +7,30 @@
 
 const modelConnexion = require('../models/modelConnexion.js')
 //middleware pour créer des uuids de sessions sous ce format : 'da8d572d-411e-4f62-b267-d6b122582637'
-const uuidv4 = require('uuid').v4;
 const sessions = require('express-session');
 
 module.exports = {
 
 
-    async afficherConnexion(req, res) {
-        const sessionId = req.headers.cookie?.split('session=')[1]
-        delete sessions[sessionId]
-        //nettoyer session avant d'en créer un nouveau
-        res.set('Set-Cookie' , `session=null`)
-
-        res.render('connexion')
-    
+    async testConnexionEleves(req, res) {
 
 
-    },
-
-    async testConnexion(req, res) {
-
-
-        let identifiant = req.params.identifiant
-        let mdp = req.params.mdp
+        let eleve_identifiant = req.params.eleve_identifiant
+        let eleve_mdp = req.params.eleve_mdp
 
         try {
-            let data = await modelConnexion.modelTestConnexion(req, res)
+            let data = await modelConnexion.modeltestConnexionEleves(req, res)
             //console.log(typeof data[0])
+            console.log(data)
 
             if (typeof data[0] === "object") {
                 //console.log(data)
-                if (data[0].identifiant == identifiant && data[0].mdp == mdp) {
-                    //console.log(data[0].identifiant, data[0].mdp)
-                    const sessionId = uuidv4();
-                    //stocker identifiant pour perspectives d'évolution (rôles, vues...)
-                    sessions[sessionId] = { identifiant };
-                    res.set('Set-Cookie', `session=${sessionId}`)
+                if (data[0].eleve_identifiant == eleve_identifiant && data[0].eleve_mdp == eleve_mdp) {
 
-                    //console.log(sessions)
-                    
-                    //faire .render affiche /conenxion dans l'url et ne declenche pas l'appel des données par la route /accueil => .ctrlAccueil.afficherAcceuil
-                    res.redirect('accueil')
+                    res.json("bonjour" + data)
                 }
               //sinon type undefined  
-            }else{res.redirect('connexion')}
+            }else{res.json("refusé")}
 
 
         } catch (error) {
@@ -58,6 +38,38 @@ module.exports = {
         }
 
     },
+    
+    async testConnexionPersonnels(req, res) {
+
+
+        let perso_identifiant = req.params.perso_identifiant
+        let perso_mdp = req.params.perso_mdp
+
+        try {
+            let data = await modelConnexion.modeltestConnexionPersonnels(req, res)
+            //console.log(typeof data[0])
+            console.log(data)
+
+            if (typeof data[0] === "object") {
+                //console.log(data)
+                if (data[0].perso_identifiant == perso_identifiant && data[0].perso_mdp == perso_mdp) {
+
+                    res.json("bonjour" + data)
+                }
+              //sinon type undefined  
+            }else{res.json("refusé")}
+
+
+        } catch (error) {
+            console.log(error)
+        }
+
+    },
+
+
+
+
+
 
     //middleware qui test la présence d'un cookie de session
     async testAuthentification(req, res, next) {

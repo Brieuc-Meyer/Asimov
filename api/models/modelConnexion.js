@@ -26,14 +26,31 @@ mysqlConnexion.connect((err) => {
 
 
 
-const modelTestConnexion = (req, res) => {
+const modeltestConnexionEleves = (req, res) => {
 
     return new Promise((resolve, reject) => {
 
         let identifiant = req.params.identifiant
         //la serrure est l'identifiant, on vérifiera ctrlConnexion si l'utilisateur connait la clé
-        let requeteSQL = 'SELECT * FROM eleves, personnels WHERE eleve_identifiant = ? OR perso_identifiant = ? '
-        mysqlConnexion.query(requeteSQL, [identifiant], (err, data) => {
+        let requeteSQL = 'SELECT * FROM eleves WHERE eleve_identifiant = ?'
+        mysqlConnexion.query(requeteSQL, [identifiant, identifiant], (err, data) => {
+
+            if (err) {
+                return reject()
+            }
+            return resolve(data)
+        })
+    }
+    )
+}
+const modeltestConnexionPersonnels = (req, res) => {
+
+    return new Promise((resolve, reject) => {
+
+        let identifiant = req.params.identifiant
+        //la serrure est l'identifiant, on vérifiera ctrlConnexion si l'utilisateur connait la clé
+        let requeteSQL = 'SELECT * FROM  personnels WHERE perso_identifiant = ?'
+        mysqlConnexion.query(requeteSQL, [identifiant, identifiant], (err, data) => {
 
             if (err) {
                 return reject()
@@ -47,6 +64,7 @@ const modelTestConnexion = (req, res) => {
 
 module.exports = {
     mysqlConnexion,
-    modelTestConnexion,
+    modeltestConnexionEleves,
+    modeltestConnexionPersonnels
     
 } 
