@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asimov Student Manager", "Asimov Student Manager\Asimov Student Manager.csproj", "{DEE0D80B-BAF3-4A1C-90B8-D71FA9772151}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AsimovStudentManager", "AsimovStudentManager\AsimovStudentManager.csproj", "{9EEB243D-10C5-4867-A42E-B3143DB6F623}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DEE0D80B-BAF3-4A1C-90B8-D71FA9772151}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DEE0D80B-BAF3-4A1C-90B8-D71FA9772151}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DEE0D80B-BAF3-4A1C-90B8-D71FA9772151}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DEE0D80B-BAF3-4A1C-90B8-D71FA9772151}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EEB243D-10C5-4867-A42E-B3143DB6F623}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EEB243D-10C5-4867-A42E-B3143DB6F623}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EEB243D-10C5-4867-A42E-B3143DB6F623}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EEB243D-10C5-4867-A42E-B3143DB6F623}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {009E8746-D8B9-47D3-BE12-D4F5E5CF55EB}
+		SolutionGuid = {C0F06924-4448-4795-9B8A-CAD762CDBAF4}
 	EndGlobalSection
 EndGlobal

@@ -1,12 +1,16 @@
-namespace Asimov_Student_Manager
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
+namespace AsimovStudentManager
 {
-    using System;
-    using System.Net.Http;
-    using System.Security.Cryptography.X509Certificates;
-    using System.Net.Security;
-    using System.Windows.Forms;
-
     public partial class Form1 : Form
     {
         public Form1()
@@ -35,8 +39,9 @@ namespace Asimov_Student_Manager
 
         async void Connect(Object sender, EventArgs e)
         {
+            string ID = "";
             //verification que il y à bien des valeurs d'entrées
-            if (tb_identifiant.Text != "" && tb_mdp.Text != "")
+            if (tb_identifiant.Text != "" && label2.Text != "")
             {
                 //si il a séléctionné la connexion de type éleve
                 if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
@@ -44,40 +49,45 @@ namespace Asimov_Student_Manager
                     string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
-                    if (response.Split(" ")[0].Trim() == keyWord)
+                    if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                     {
                         tc_Main.SelectTab(1);
-                        MessageBox.Show(response);
+                        MessageBox.Show(response.Split(new[] { ';' })[0]);
+                        ID = response.Split(new[] { ';' })[1];
                     }
                     else
                     {
                         MessageBox.Show(response);
                     }
 
-                //si il a séléctionné la connexion de type professeur
-                } else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
+                    //si il a séléctionné la connexion de type professeur
+                }
+                else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
                 {
-                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + tb_mdp.Text);
+                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + label2.Text);
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
-                    if (response.Split(" ")[0].Trim() == keyWord)
+                    if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                     {
                         tc_Main.SelectTab(1);
-                        MessageBox.Show(response);
+                        MessageBox.Show(response.Split(new[] { ';' })[0]);
+                        ID = response.Split(new[] { ';' })[1];
                     }
                     else
                     {
                         MessageBox.Show(response);
                     }
 
-                //si il a séléctionné auncun type de connexion
-                } else
+                    //si il a séléctionné auncun type de connexion
+                }
+                else
                 {
                     MessageBox.Show("Veuillez séléctionner un mode de connexion");
                 }
 
-            //si il n'a pas rempli les informations de connexion
-            } else
+                //si il n'a pas rempli les informations de connexion
+            }
+            else
             {
                 MessageBox.Show("Veuillez rentrer un identifiant et un mot de passe");
             }

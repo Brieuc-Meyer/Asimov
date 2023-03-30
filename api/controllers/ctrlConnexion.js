@@ -24,7 +24,7 @@ module.exports = {
 
             if (typeof data[0] === "object") {
 
-                res.json("Bonjour " + data[0].eleve_nom)
+                res.json("Bonjour " + data[0].eleve_nom + ";" + data[0].eleve_id)
 
             } else{
                 res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
@@ -48,7 +48,7 @@ module.exports = {
             console.log(data)
             if (typeof data[0] === "object") {
 
-                res.json("Bonjour " + data[0].perso_nom)
+                res.json("Bonjour " + data[0].perso_nom + ";" + data[0].perso_id)
 
             } else{
                 res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
