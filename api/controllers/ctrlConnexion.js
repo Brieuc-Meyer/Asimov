@@ -24,10 +24,10 @@ module.exports = {
 
             if (typeof data[0] === "object") {
 
-                res.json("bonjour " + data[0].eleve_nom)
+                res.json("Bonjour " + data[0].eleve_nom)
 
             } else{
-                res.json("Connexion refusé : Identifiant ou Mot de pass incorrecte")
+                res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
             }
 
 
@@ -45,19 +45,14 @@ module.exports = {
 
         try {
             let data = await modelConnexion.modeltestConnexionPersonnels(req, res)
-            //console.log(typeof data[0])
             console.log(data)
-
             if (typeof data[0] === "object") {
-                //console.log(data)
-                if (data[0].perso_identifiant == perso_identifiant && data[0].perso_mdp == perso_mdp) {
 
-                    res.json("bonjour" + data)
-                }
-              //sinon type undefined  
-            }else{res.json("refusé")}
+                res.json("Bonjour " + data[0].perso_nom)
 
-
+            } else{
+                res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
+            }
         } catch (error) {
             console.log(error)
         }
