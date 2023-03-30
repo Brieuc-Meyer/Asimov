@@ -20,17 +20,15 @@ module.exports = {
 
         try {
             let data = await modelConnexion.modeltestConnexionEleves(req, res)
-            //console.log(typeof data[0])
             console.log(data)
 
             if (typeof data[0] === "object") {
-                //console.log(data)
-                if (data[0].eleve_identifiant == eleve_identifiant && data[0].eleve_mdp == eleve_mdp) {
 
-                    res.json("bonjour" + data)
-                }
-              //sinon type undefined  
-            }else{res.json("refusé")}
+                res.json("bonjour " + data[0].eleve_nom)
+
+            } else{
+                res.json("Connexion refusé : Identifiant ou Mot de pass incorrecte")
+            }
 
 
         } catch (error) {

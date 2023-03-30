@@ -30,10 +30,11 @@ const modeltestConnexionEleves = (req, res) => {
 
     return new Promise((resolve, reject) => {
 
-        let identifiant = req.params.identifiant
+        let identifiant = req.params.eleve_identifiant
+        let mdp = req.params.eleve_mdp
         //la serrure est l'identifiant, on vérifiera ctrlConnexion si l'utilisateur connait la clé
-        let requeteSQL = 'SELECT * FROM eleves WHERE eleve_identifiant = ?'
-        mysqlConnexion.query(requeteSQL, [identifiant, identifiant], (err, data) => {
+        let requeteSQL = 'SELECT * FROM eleves WHERE eleve_identifiant = ? AND eleve_mdp = ?'
+        mysqlConnexion.query(requeteSQL, [identifiant, mdp], (err, data) => {
 
             if (err) {
                 return reject()
