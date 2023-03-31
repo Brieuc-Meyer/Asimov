@@ -14,13 +14,13 @@ module.exports = {
     * le resultat @res , est d'afficher les données contenues dans @data et/ou de rediriger après une opération réussi vers la BDD .
     */
 
-    async afficherNotesUnEleve(res, req) {
+    async afficherNotesUnEleve(req, res) {
 
         try {
-            let data = await modelEleves.modelAfficherNotesUnEleve(req)
+            let data = await modelEleves.modelAfficherNotesUnEleve(req, res)
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json(data)
             }
         } catch (error) {
             console.log(error)

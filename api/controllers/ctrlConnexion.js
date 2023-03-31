@@ -20,17 +20,15 @@ module.exports = {
 
         try {
             let data = await modelConnexion.modeltestConnexionEleves(req, res)
-            //console.log(typeof data[0])
             console.log(data)
 
             if (typeof data[0] === "object") {
-                //console.log(data)
-                if (data[0].eleve_identifiant == eleve_identifiant && data[0].eleve_mdp == eleve_mdp) {
 
-                    res.json("bonjour" + data)
-                }
-              //sinon type undefined  
-            }else{res.json("refusé")}
+                res.json("Bonjour " + data[0].eleve_nom + ";" + data[0].eleve_id)
+
+            } else{
+                res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
+            }
 
 
         } catch (error) {
@@ -47,19 +45,14 @@ module.exports = {
 
         try {
             let data = await modelConnexion.modeltestConnexionPersonnels(req, res)
-            //console.log(typeof data[0])
             console.log(data)
-
             if (typeof data[0] === "object") {
-                //console.log(data)
-                if (data[0].perso_identifiant == perso_identifiant && data[0].perso_mdp == perso_mdp) {
 
-                    res.json("bonjour" + data)
-                }
-              //sinon type undefined  
-            }else{res.json("refusé")}
+                res.json("Bonjour " + data[0].perso_nom + ";" + data[0].perso_id)
 
-
+            } else{
+                res.json("Connexion refusé : identifiant ou mot de pass incorrecte")
+            }
         } catch (error) {
             console.log(error)
         }
