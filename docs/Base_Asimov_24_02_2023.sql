@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS asimov;
+CREATE DATABASE asimov;
+USE  asimov;
+
 CREATE TABLE `classes` (
     `class_grade` BIGINT NOT NULL,
     `class_nom` VARCHAR(30) NOT NULL,
@@ -35,6 +39,7 @@ CREATE TABLE `notes` (
     `note_date_evaluation` DATE NOT NULL,
     `note_intitule` VARCHAR(50) NOT NULL,
     `note_description` VARCHAR(255) NOT NULL,
+    CONSTRAINT `fk_note_eleve` FOREIGN KEY (`note_eleve_id`) REFERENCES `eleves` (`eleve_id`),
     CONSTRAINT `fk_note_prof` FOREIGN KEY (`note_prof_id`) REFERENCES `personnels` (`perso_id`),
     CONSTRAINT `fk_note_mat` FOREIGN KEY (`note_mat_id`) REFERENCES `matieres` (`mat_id`)
 )ENGINE=InnoDB;
@@ -87,3 +92,11 @@ INSERT INTO `liaison_personnel_classes` (`perso_id`,`class_grade`) VALUES
     (2,5),
     (3,4),
     (3,3);
+
+INSERT INTO `notes` (`note_eleve_id`,`note_pourcent`,`note_prof_id`,`note_mat_id`,`note_date_evaluation`,`note_intitule`,`note_description`) VALUES
+    (1, 69, 1, 1, '2023-6-25', 'contôle maths juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" ),
+    (1, 7, 1, 1, '2023-6-7', 'contôle maths foiré juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" ),
+    (1, 75, 1, 2, '2023-6-1', 'contôle maths juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" ),
+    (1, 9, 1, 3, '2023-6-8', 'contôle maths juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" ),
+    (1, 35, 1, 4, '2023-6-15', 'contôle maths juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" );
+    
