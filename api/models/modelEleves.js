@@ -24,7 +24,7 @@ module.exports = {
             //ORDER BY afin que pas de mutuelle soit selected
             let eleve_id = req.params.eleve_id
 
-            let requeteSQL = 'SELECT * FROM notes WHERE note_eleve_id = ?'
+            let requeteSQL = 'SELECT notes.*, perso_nom, mat_nom FROM notes, matieres, personnels WHERE note_eleve_id = ? AND note_mat_id = mat_id AND note_prof_id = perso_id'
             mysqlConnexion.query(requeteSQL,[eleve_id], (err, data) => {
 
                 if (err) {

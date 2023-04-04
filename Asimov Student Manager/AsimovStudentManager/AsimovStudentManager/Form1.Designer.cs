@@ -33,24 +33,24 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.tc_Main = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tb_identifiant = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.tb_mdp = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.rb_ConnectEleve = new System.Windows.Forms.RadioButton();
-            this.rb_ConnectProf = new System.Windows.Forms.RadioButton();
             this.btn_Connexion = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.rb_ConnectProf = new System.Windows.Forms.RadioButton();
+            this.rb_ConnectEleve = new System.Windows.Forms.RadioButton();
+            this.tb_mdp = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tb_identifiant = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgv_NotesEleve = new System.Windows.Forms.DataGridView();
             this.chart_moyennesEleve = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.lb_pageEleveTitle = new System.Windows.Forms.Label();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabPage2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_NotesEleve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_moyennesEleve)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // tc_Main
@@ -79,54 +79,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Login";
             // 
-            // tabPage2
+            // btn_Connexion
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabPage2.Controls.Add(this.dataGridView1);
-            this.tabPage2.Controls.Add(this.chart_moyennesEleve);
-            this.tabPage2.Controls.Add(this.label3);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1171, 724);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Vue notes éleve";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(197, 254);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "identifiant :";
-            // 
-            // tb_identifiant
-            // 
-            this.tb_identifiant.Location = new System.Drawing.Point(270, 251);
-            this.tb_identifiant.Name = "tb_identifiant";
-            this.tb_identifiant.Size = new System.Drawing.Size(604, 20);
-            this.tb_identifiant.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(181, 358);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Mot de passe :";
-            // 
-            // tb_mdp
-            // 
-            this.tb_mdp.Location = new System.Drawing.Point(270, 356);
-            this.tb_mdp.Name = "tb_mdp";
-            this.tb_mdp.Size = new System.Drawing.Size(604, 20);
-            this.tb_mdp.TabIndex = 3;
+            this.btn_Connexion.Location = new System.Drawing.Point(503, 446);
+            this.btn_Connexion.Name = "btn_Connexion";
+            this.btn_Connexion.Size = new System.Drawing.Size(130, 23);
+            this.btn_Connexion.TabIndex = 5;
+            this.btn_Connexion.Text = "Connexion";
+            this.btn_Connexion.UseVisualStyleBackColor = true;
+            this.btn_Connexion.Click += new System.EventHandler(this.Connect);
             // 
             // panel1
             // 
@@ -136,19 +97,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(200, 28);
             this.panel1.TabIndex = 4;
-            // 
-            // rb_ConnectEleve
-            // 
-            this.rb_ConnectEleve.AutoSize = true;
-            this.rb_ConnectEleve.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.rb_ConnectEleve.ForeColor = System.Drawing.Color.White;
-            this.rb_ConnectEleve.Location = new System.Drawing.Point(0, 4);
-            this.rb_ConnectEleve.Name = "rb_ConnectEleve";
-            this.rb_ConnectEleve.Size = new System.Drawing.Size(52, 19);
-            this.rb_ConnectEleve.TabIndex = 0;
-            this.rb_ConnectEleve.TabStop = true;
-            this.rb_ConnectEleve.Text = "Elève";
-            this.rb_ConnectEleve.UseVisualStyleBackColor = true;
             // 
             // rb_ConnectProf
             // 
@@ -163,26 +111,81 @@
             this.rb_ConnectProf.Text = "Profésseur";
             this.rb_ConnectProf.UseVisualStyleBackColor = true;
             // 
-            // btn_Connexion
+            // rb_ConnectEleve
             // 
-            this.btn_Connexion.Location = new System.Drawing.Point(503, 446);
-            this.btn_Connexion.Name = "btn_Connexion";
-            this.btn_Connexion.Size = new System.Drawing.Size(130, 23);
-            this.btn_Connexion.TabIndex = 5;
-            this.btn_Connexion.Text = "Connexion";
-            this.btn_Connexion.UseVisualStyleBackColor = true;
-            this.btn_Connexion.Click += new System.EventHandler(this.Connect);
+            this.rb_ConnectEleve.AutoSize = true;
+            this.rb_ConnectEleve.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.rb_ConnectEleve.ForeColor = System.Drawing.Color.White;
+            this.rb_ConnectEleve.Location = new System.Drawing.Point(0, 4);
+            this.rb_ConnectEleve.Name = "rb_ConnectEleve";
+            this.rb_ConnectEleve.Size = new System.Drawing.Size(52, 19);
+            this.rb_ConnectEleve.TabIndex = 0;
+            this.rb_ConnectEleve.TabStop = true;
+            this.rb_ConnectEleve.Text = "Elève";
+            this.rb_ConnectEleve.UseVisualStyleBackColor = true;
             // 
-            // label3
+            // tb_mdp
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(6, 3);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(378, 42);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Bienvenue NomEleve";
+            this.tb_mdp.Location = new System.Drawing.Point(270, 356);
+            this.tb_mdp.Name = "tb_mdp";
+            this.tb_mdp.Size = new System.Drawing.Size(604, 20);
+            this.tb_mdp.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(181, 358);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(83, 15);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Mot de passe :";
+            // 
+            // tb_identifiant
+            // 
+            this.tb_identifiant.Location = new System.Drawing.Point(270, 251);
+            this.tb_identifiant.Name = "tb_identifiant";
+            this.tb_identifiant.Size = new System.Drawing.Size(604, 20);
+            this.tb_identifiant.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(197, 254);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(67, 15);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "identifiant :";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage2.Controls.Add(this.dgv_NotesEleve);
+            this.tabPage2.Controls.Add(this.chart_moyennesEleve);
+            this.tabPage2.Controls.Add(this.lb_pageEleveTitle);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1171, 724);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Vue notes éleve";
+            // 
+            // dgv_NotesEleve
+            // 
+            this.dgv_NotesEleve.AllowUserToAddRows = false;
+            this.dgv_NotesEleve.AllowUserToDeleteRows = false;
+            this.dgv_NotesEleve.AllowUserToResizeColumns = false;
+            this.dgv_NotesEleve.AllowUserToResizeRows = false;
+            this.dgv_NotesEleve.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.dgv_NotesEleve.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_NotesEleve.Location = new System.Drawing.Point(631, 60);
+            this.dgv_NotesEleve.Name = "dgv_NotesEleve";
+            this.dgv_NotesEleve.ReadOnly = true;
+            this.dgv_NotesEleve.Size = new System.Drawing.Size(522, 636);
+            this.dgv_NotesEleve.TabIndex = 3;
             // 
             // chart_moyennesEleve
             // 
@@ -206,14 +209,16 @@
             this.chart_moyennesEleve.TabIndex = 1;
             this.chart_moyennesEleve.Text = "chart1";
             // 
-            // dataGridView1
+            // lb_pageEleveTitle
             // 
-            this.dataGridView1.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(631, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(522, 636);
-            this.dataGridView1.TabIndex = 3;
+            this.lb_pageEleveTitle.AutoSize = true;
+            this.lb_pageEleveTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_pageEleveTitle.ForeColor = System.Drawing.Color.White;
+            this.lb_pageEleveTitle.Location = new System.Drawing.Point(6, 3);
+            this.lb_pageEleveTitle.Name = "lb_pageEleveTitle";
+            this.lb_pageEleveTitle.Size = new System.Drawing.Size(378, 42);
+            this.lb_pageEleveTitle.TabIndex = 0;
+            this.lb_pageEleveTitle.Text = "Bienvenue NomEleve";
             // 
             // Form1
             // 
@@ -227,12 +232,12 @@
             this.tc_Main.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
-            this.tabPage2.ResumeLayout(false);
-            this.tabPage2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_NotesEleve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_moyennesEleve)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -250,9 +255,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_identifiant;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_NotesEleve;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_moyennesEleve;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lb_pageEleveTitle;
     }
 }
 
