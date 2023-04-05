@@ -68,7 +68,7 @@ module.exports = {
              */
             let data = await modelProfesseurs.modelSupprimerEleve(req)
             if (data) {
-                res.status(200)
+                res.json("Elève supprimé avec succés")
             }
         } catch (error) {
             console.log(error)

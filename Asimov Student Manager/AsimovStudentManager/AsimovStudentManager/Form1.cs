@@ -28,7 +28,7 @@ namespace AsimovStudentManager
             tc_Main.Appearance = TabAppearance.FlatButtons;
             tc_Main.ItemSize = new Size(0, 1);
             tc_Main.SizeMode = TabSizeMode.Fixed;
-            tb_identifiant.Text = "jean.dupont";
+            tb_identifiant.Text = "marc.leroy";
             tb_mdp.Text = "root";
 
             #region chart style
@@ -156,6 +156,29 @@ namespace AsimovStudentManager
                         ID = response.Split(new[] { ';' })[1];
                         lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
 
+                        string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+                        JArray jsonArray = JArray.Parse(profEleves);
+
+                        #region style datagridview eleves du prof
+                        dgv_ProfEleves.Columns.Add("eleve_id", "eleve_id");
+                        dgv_ProfEleves.Columns[0].Visible = false;
+                        dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
+                        dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
+                        foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
+                        {
+                            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                        }
+                        #endregion
+
+                        foreach (JObject jsonObject in jsonArray)
+                        {
+                            int rowIndex = dgv_ProfEleves.Rows.Add();
+                            dgv_ProfEleves.Rows[rowIndex].Cells[0].Value = jsonObject["eleve_id"];
+                            dgv_ProfEleves.Rows[rowIndex].Cells[1].Value = jsonObject["eleve_nom"];
+                            dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["class_nom"];
+                        }
+
+
                         tc_Main.SelectTab(2);
                     }
                     else
@@ -201,7 +224,7 @@ namespace AsimovStudentManager
             }
         }
 
-        private void btn_Disconnect_Click(object sender, EventArgs e)
+        private void btn_DisconnectEleve_Click(object sender, EventArgs e)
         {
             tb_identifiant.Text = "";
             tb_mdp.Text = "";
@@ -231,6 +254,14 @@ namespace AsimovStudentManager
                 form.Close();
             }
             formsToClose.Clear();
+        }
+
+        async void btn_DelEleve_Click(object sender, EventArgs e)
+        {
+            if (dgv_ProfEleves.SelectedRows.Count != 0)
+            {
+                MessageBox.Show(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
+            }
         }
     }
 }

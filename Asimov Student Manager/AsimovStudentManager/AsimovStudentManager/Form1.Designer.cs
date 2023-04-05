@@ -39,13 +39,19 @@
             this.tb_identifiant = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btn_Disconnect = new System.Windows.Forms.Button();
+            this.btn_DisconnectEleve = new System.Windows.Forms.Button();
             this.dgv_NotesEleve = new System.Windows.Forms.DataGridView();
             this.chart_moyennesEleve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lb_pageEleveTitle = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_DisconnectProf = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btn_DelEleve = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.dgv_ProfEleves = new System.Windows.Forms.DataGridView();
             this.lb_pageProfTitle = new System.Windows.Forms.Label();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -56,6 +62,7 @@
             this.tabPage3.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProfEleves)).BeginInit();
             this.SuspendLayout();
             // 
             // tc_Main
@@ -170,7 +177,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.tabPage2.Controls.Add(this.btn_Disconnect);
+            this.tabPage2.Controls.Add(this.btn_DisconnectEleve);
             this.tabPage2.Controls.Add(this.dgv_NotesEleve);
             this.tabPage2.Controls.Add(this.chart_moyennesEleve);
             this.tabPage2.Controls.Add(this.lb_pageEleveTitle);
@@ -181,17 +188,17 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Vue notes éleve";
             // 
-            // btn_Disconnect
+            // btn_DisconnectEleve
             // 
-            this.btn_Disconnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btn_Disconnect.ForeColor = System.Drawing.Color.White;
-            this.btn_Disconnect.Location = new System.Drawing.Point(982, 14);
-            this.btn_Disconnect.Name = "btn_Disconnect";
-            this.btn_Disconnect.Size = new System.Drawing.Size(171, 29);
-            this.btn_Disconnect.TabIndex = 4;
-            this.btn_Disconnect.Text = "Se déconnecter";
-            this.btn_Disconnect.UseVisualStyleBackColor = false;
-            this.btn_Disconnect.Click += new System.EventHandler(this.btn_Disconnect_Click);
+            this.btn_DisconnectEleve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btn_DisconnectEleve.ForeColor = System.Drawing.Color.White;
+            this.btn_DisconnectEleve.Location = new System.Drawing.Point(982, 14);
+            this.btn_DisconnectEleve.Name = "btn_DisconnectEleve";
+            this.btn_DisconnectEleve.Size = new System.Drawing.Size(171, 29);
+            this.btn_DisconnectEleve.TabIndex = 4;
+            this.btn_DisconnectEleve.Text = "Se déconnecter";
+            this.btn_DisconnectEleve.UseVisualStyleBackColor = false;
+            this.btn_DisconnectEleve.Click += new System.EventHandler(this.btn_DisconnectEleve_Click);
             // 
             // dgv_NotesEleve
             // 
@@ -239,6 +246,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage3.Controls.Add(this.btn_DisconnectProf);
             this.tabPage3.Controls.Add(this.tabControl1);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
@@ -246,25 +254,107 @@
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MainProf";
             // 
+            // btn_DisconnectProf
+            // 
+            this.btn_DisconnectProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btn_DisconnectProf.ForeColor = System.Drawing.Color.White;
+            this.btn_DisconnectProf.Location = new System.Drawing.Point(993, 8);
+            this.btn_DisconnectProf.Name = "btn_DisconnectProf";
+            this.btn_DisconnectProf.Size = new System.Drawing.Size(171, 29);
+            this.btn_DisconnectProf.TabIndex = 5;
+            this.btn_DisconnectProf.Text = "Se déconnecter";
+            this.btn_DisconnectProf.UseVisualStyleBackColor = false;
+            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage4);
-            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Location = new System.Drawing.Point(3, 28);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1165, 718);
+            this.tabControl1.Size = new System.Drawing.Size(1165, 693);
             this.tabControl1.TabIndex = 2;
             // 
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage4.Controls.Add(this.button4);
+            this.tabPage4.Controls.Add(this.btn_DelEleve);
+            this.tabPage4.Controls.Add(this.button2);
+            this.tabPage4.Controls.Add(this.button1);
+            this.tabPage4.Controls.Add(this.dgv_ProfEleves);
             this.tabPage4.Controls.Add(this.lb_pageProfTitle);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1157, 692);
+            this.tabPage4.Size = new System.Drawing.Size(1157, 667);
             this.tabPage4.TabIndex = 0;
             this.tabPage4.Text = "Vue élèves du prof";
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(70)))), ((int)(((byte)(0)))));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(869, 609);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(272, 52);
+            this.button4.TabIndex = 7;
+            this.button4.Text = "Voir notes de l\'élève";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // btn_DelEleve
+            // 
+            this.btn_DelEleve.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(0)))), ((int)(((byte)(11)))));
+            this.btn_DelEleve.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_DelEleve.ForeColor = System.Drawing.Color.White;
+            this.btn_DelEleve.Location = new System.Drawing.Point(584, 609);
+            this.btn_DelEleve.Name = "btn_DelEleve";
+            this.btn_DelEleve.Size = new System.Drawing.Size(272, 52);
+            this.btn_DelEleve.TabIndex = 6;
+            this.btn_DelEleve.Text = "Supprimer élève";
+            this.btn_DelEleve.UseVisualStyleBackColor = false;
+            this.btn_DelEleve.Click += new System.EventHandler(this.btn_DelEleve_Click);
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(38)))), ((int)(((byte)(115)))));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(298, 609);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(272, 52);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Modifier élève";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(13, 609);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(272, 52);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Ajouter élève";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // dgv_ProfEleves
+            // 
+            this.dgv_ProfEleves.AllowUserToAddRows = false;
+            this.dgv_ProfEleves.AllowUserToDeleteRows = false;
+            this.dgv_ProfEleves.AllowUserToOrderColumns = true;
+            this.dgv_ProfEleves.AllowUserToResizeColumns = false;
+            this.dgv_ProfEleves.AllowUserToResizeRows = false;
+            this.dgv_ProfEleves.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProfEleves.Location = new System.Drawing.Point(13, 48);
+            this.dgv_ProfEleves.MultiSelect = false;
+            this.dgv_ProfEleves.Name = "dgv_ProfEleves";
+            this.dgv_ProfEleves.ReadOnly = true;
+            this.dgv_ProfEleves.RowHeadersVisible = false;
+            this.dgv_ProfEleves.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProfEleves.Size = new System.Drawing.Size(1128, 555);
+            this.dgv_ProfEleves.TabIndex = 3;
             // 
             // lb_pageProfTitle
             // 
@@ -299,6 +389,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage4.ResumeLayout(false);
             this.tabPage4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProfEleves)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -319,11 +410,17 @@
         private System.Windows.Forms.DataGridView dgv_NotesEleve;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_moyennesEleve;
         private System.Windows.Forms.Label lb_pageEleveTitle;
-        private System.Windows.Forms.Button btn_Disconnect;
+        private System.Windows.Forms.Button btn_DisconnectEleve;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Label lb_pageProfTitle;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btn_DelEleve;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridView dgv_ProfEleves;
+        private System.Windows.Forms.Button btn_DisconnectProf;
     }
 }
 
