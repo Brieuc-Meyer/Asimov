@@ -39,7 +39,7 @@ CREATE TABLE `notes` (
     `note_date_evaluation` DATE NOT NULL,
     `note_intitule` VARCHAR(50) NOT NULL,
     `note_description` VARCHAR(255) NOT NULL,
-    CONSTRAINT `fk_note_eleve` FOREIGN KEY (`note_eleve_id`) REFERENCES `eleves` (`eleve_id`),
+    CONSTRAINT `fk_note_eleve` FOREIGN KEY (`note_eleve_id`) REFERENCES `eleves` (`eleve_id`) ON DELETE CASCADE,
     CONSTRAINT `fk_note_prof` FOREIGN KEY (`note_prof_id`) REFERENCES `personnels` (`perso_id`),
     CONSTRAINT `fk_note_mat` FOREIGN KEY (`note_mat_id`) REFERENCES `matieres` (`mat_id`)
 )ENGINE=InnoDB;

@@ -156,28 +156,7 @@ namespace AsimovStudentManager
                         ID = response.Split(new[] { ';' })[1];
                         lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
 
-                        string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
-                        JArray jsonArray = JArray.Parse(profEleves);
-
-                        #region style datagridview eleves du prof
-                        dgv_ProfEleves.Columns.Add("eleve_id", "eleve_id");
-                        dgv_ProfEleves.Columns[0].Visible = false;
-                        dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
-                        dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
-                        foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
-                        {
-                            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-                        }
-                        #endregion
-
-                        foreach (JObject jsonObject in jsonArray)
-                        {
-                            int rowIndex = dgv_ProfEleves.Rows.Add();
-                            dgv_ProfEleves.Rows[rowIndex].Cells[0].Value = jsonObject["eleve_id"];
-                            dgv_ProfEleves.Rows[rowIndex].Cells[1].Value = jsonObject["eleve_nom"];
-                            dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["class_nom"];
-                        }
-
+                        fill_dgv_ProfEleves();
 
                         tc_Main.SelectTab(2);
                     }
@@ -260,7 +239,47 @@ namespace AsimovStudentManager
         {
             if (dgv_ProfEleves.SelectedRows.Count != 0)
             {
-                MessageBox.Show(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
+                string eleveID = dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString();
+                DialogResult result = MessageBox.Show("Voulez vous vraiment supprimer l'élève : " + dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString(), "Supprimer élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string delResult = await GetUrlBody("https://localhost:3000/professeur/supprimerEleve/" + eleveID);
+                    string res = delResult.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_ProfEleves();
+                }
+                else
+                {
+                }
+            }
+        }
+
+        //Remet a 0 et re remplie le dgv_ProfEleves
+        async void fill_dgv_ProfEleves()
+        {
+            dgv_ProfEleves.Rows.Clear();
+            dgv_ProfEleves.Columns.Clear();
+            string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+            JArray jsonArray = JArray.Parse(profEleves);
+
+            #region style datagridview eleves du prof
+            dgv_ProfEleves.Columns.Add("eleve_id", "eleve_id");
+            dgv_ProfEleves.Columns[0].Visible = false;
+            dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
+            dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
+            foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ProfEleves.Rows.Add();
+                dgv_ProfEleves.Rows[rowIndex].Cells[0].Value = jsonObject["eleve_id"];
+                dgv_ProfEleves.Rows[rowIndex].Cells[1].Value = jsonObject["eleve_nom"];
+                dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["class_nom"];
             }
         }
     }
