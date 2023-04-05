@@ -118,10 +118,10 @@
             this.rb_ConnectProf.ForeColor = System.Drawing.Color.White;
             this.rb_ConnectProf.Location = new System.Drawing.Point(120, 3);
             this.rb_ConnectProf.Name = "rb_ConnectProf";
-            this.rb_ConnectProf.Size = new System.Drawing.Size(80, 19);
+            this.rb_ConnectProf.Size = new System.Drawing.Size(77, 19);
             this.rb_ConnectProf.TabIndex = 1;
             this.rb_ConnectProf.TabStop = true;
-            this.rb_ConnectProf.Text = "Professeur";
+            this.rb_ConnectProf.Text = "Personnel";
             this.rb_ConnectProf.UseVisualStyleBackColor = true;
             // 
             // rb_ConnectEleve

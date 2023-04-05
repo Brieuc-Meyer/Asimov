@@ -91,7 +91,6 @@ namespace AsimovStudentManager
                 }
             }
         }
-
         async void Connect(Object sender, EventArgs e)
         {
             //verification que il y à bien des valeurs d'entrées
@@ -180,6 +179,8 @@ namespace AsimovStudentManager
             }
         }
 
+
+        //Partie élève
         async void setGraphMoyennes()
         {
             string Moyennes = await GetUrlBody("https://localhost:3000/eleve/"+ this.ID +"/moyennes");
@@ -190,7 +191,6 @@ namespace AsimovStudentManager
                 chart_moyennesEleve.Series["Moyenne"].Points.AddXY(jsonObject["mat_nom"].ToString(), jsonObject["Moyenne"].ToString());
             }
         }
-
         private void dgv_NotesEleve_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             foreach (Note note in NotesEleve)
@@ -202,7 +202,6 @@ namespace AsimovStudentManager
                 }
             }
         }
-
         private void btn_DisconnectEleve_Click(object sender, EventArgs e)
         {
             tb_identifiant.Text = "";
@@ -235,6 +234,9 @@ namespace AsimovStudentManager
             formsToClose.Clear();
         }
 
+
+
+        //Partie prof
         async void btn_DelEleve_Click(object sender, EventArgs e)
         {
             if (dgv_ProfEleves.SelectedRows.Count != 0)
@@ -254,8 +256,6 @@ namespace AsimovStudentManager
                 }
             }
         }
-
-        //Remet a 0 et re remplie le dgv_ProfEleves
         async void fill_dgv_ProfEleves()
         {
             dgv_ProfEleves.Rows.Clear();
