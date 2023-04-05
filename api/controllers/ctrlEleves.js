@@ -27,6 +27,19 @@ module.exports = {
         }
 
 
+    },
+
+    async afficherMoyennesEleveParMatiere(req, res) {
+
+        try {
+            let data = await modelEleves.modelAfficherMoyenneParMatiere(req, res)
+            if (data) {
+                //console.log(data)
+                res.json(data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 }

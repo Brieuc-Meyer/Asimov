@@ -18,6 +18,7 @@ routeur.get('/connexionProfesseur/:perso_identifiant/:perso_mdp', ctrlConnexion.
 
 //Routes pour la page mutuelles
 routeur.get('/eleve/:eleve_id/notes', ctrlConnexion.testAuthentification, ctrlEleves.afficherNotesUnEleve)
+routeur.get('/eleve/:eleve_id/moyennes', ctrlConnexion.testAuthentification, ctrlEleves.afficherMoyennesEleveParMatiere)
 
 routeur.get('/professeur/:perso_id/voirEleves',ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherElevesUnProf)
 routeur.get('/professeur/ajouterEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlConnexion.testAuthentification, ctrlProfesseurs.ajouterEleve)

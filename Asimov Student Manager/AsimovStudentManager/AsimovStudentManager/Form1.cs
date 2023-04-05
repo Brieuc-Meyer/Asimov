@@ -12,11 +12,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Text.Json.Nodes;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AsimovStudentManager
 {
     public partial class Form1 : Form
     {
+        public string ID;
+        public List<Note> NotesEleve = new List<Note>();
+
         public Form1()
         {
             InitializeComponent();
@@ -25,6 +30,50 @@ namespace AsimovStudentManager
             tc_Main.SizeMode = TabSizeMode.Fixed;
             tb_identifiant.Text = "jean.dupont";
             tb_mdp.Text = "root";
+
+            #region chart style
+            // Rajout du "ChartArea"
+            chart_moyennesEleve.ChartAreas.Clear();
+            chart_moyennesEleve.ChartAreas.Add(new ChartArea("MyChartArea"));
+
+            // Ajout de la série du chart
+            chart_moyennesEleve.Series.Clear();
+            Series series = new Series("Moyenne");
+            chart_moyennesEleve.Series.Add(series);
+
+            // Propriétés du chart
+            chart_moyennesEleve.Titles.Add("Moyenne par sujet");
+            chart_moyennesEleve.ChartAreas["MyChartArea"].AxisX.Title = "Matière";
+            chart_moyennesEleve.ChartAreas["MyChartArea"].AxisY.Title = "Pourcentage";
+
+            // Rajout d'une légende
+            chart_moyennesEleve.Legends.Clear();
+            chart_moyennesEleve.Legends.Add("Moyenne");
+            #endregion
+
+            #region Ajout et style des colonnes
+            dgv_NotesEleve.Columns.Add("note_id", "note_id");
+            dgv_NotesEleve.Columns.Add("note_eleve_id", "note_eleve_id");
+            dgv_NotesEleve.Columns.Add("Résultat", "Résultat");
+            dgv_NotesEleve.Columns.Add("Professeur", "Professeur");
+            dgv_NotesEleve.Columns.Add("Matière", "Matière");
+            dgv_NotesEleve.Columns.Add("Date", "Date");
+            dgv_NotesEleve.Columns.Add("Intitulé", "Intitulé");
+            dgv_NotesEleve.Columns.Add("Déscription", "Déscription");
+
+            dgv_NotesEleve.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_NotesEleve.Columns[2].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgv_NotesEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+            dgv_NotesEleve.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dgv_NotesEleve.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            dgv_NotesEleve.Columns[0].Visible = false;
+            dgv_NotesEleve.Columns[1].Visible = false;
+            dgv_NotesEleve.Columns[5].Visible = false;
+            dgv_NotesEleve.Columns[6].Visible = false;
+            dgv_NotesEleve.Columns[7].Visible = false;
+            #endregion
+
         }
 
         //recupere le body d'une url
@@ -45,14 +94,12 @@ namespace AsimovStudentManager
 
         async void Connect(Object sender, EventArgs e)
         {
-            string ID = "";
             //verification que il y à bien des valeurs d'entrées
-            if (tb_identifiant.Text != "" && label2.Text != "")
+            if (tb_identifiant.Text != "" && tb_mdp.Text != "")
             {
                 //si il a séléctionné la connexion de type éleve
                 if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
                 {
-                    List<Note> NotesEleve = new List<Note>();
                     string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
@@ -60,9 +107,8 @@ namespace AsimovStudentManager
                     if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                     {
                         lb_pageEleveTitle.Text = response.Split(new[] { ';' })[0];
-                        tc_Main.SelectTab(1);
-                        ID = response.Split(new[] { ';' })[1];
-                        string notes = await GetUrlBody("https://localhost:3000/eleve/" + ID + "/notes");
+                        this.ID = response.Split(new[] { ';' })[1];
+                        string notes = await GetUrlBody("https://localhost:3000/eleve/" + this.ID + "/notes");
                         JArray jsonArray = JArray.Parse(notes);
 
                         foreach (JObject jsonObject in jsonArray)
@@ -70,26 +116,6 @@ namespace AsimovStudentManager
                             Note newnote = new Note(Int32.Parse(jsonObject["note_id"].ToString()), Int32.Parse(jsonObject["note_eleve_id"].ToString()), Int32.Parse(jsonObject["note_pourcent"].ToString()), Int32.Parse(jsonObject["note_prof_id"].ToString()), Int32.Parse(jsonObject["note_mat_id"].ToString()), Convert.ToDateTime(jsonObject["note_date_evaluation"].ToString()), jsonObject["note_intitule"].ToString(), jsonObject["note_description"].ToString(), jsonObject["mat_nom"].ToString(), jsonObject["perso_nom"].ToString());
                             NotesEleve.Add(newnote);
                         }
-
-                        #region Ajout et style des colonnes
-                        dgv_NotesEleve.Columns.Add("note_id", "note_id");
-                        dgv_NotesEleve.Columns.Add("note_eleve_id", "note_eleve_id");
-                        dgv_NotesEleve.Columns.Add("Résultat", "Résultat");
-                        dgv_NotesEleve.Columns.Add("Profésseur", "Profésseur");
-                        dgv_NotesEleve.Columns.Add("Matière", "Matière");
-                        dgv_NotesEleve.Columns.Add("Date", "Date");
-                        dgv_NotesEleve.Columns.Add("Intitulé", "Intitulé");
-                        dgv_NotesEleve.Columns.Add("Déscription", "Déscription");
-
-                        foreach(DataGridViewColumn col in dgv_NotesEleve.Columns)
-                        {
-                            col.AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
-                            col.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-                        }
-
-                        dgv_NotesEleve.Columns[0].Visible = false;
-                        dgv_NotesEleve.Columns[1].Visible = false;
-                        #endregion
 
                         #region Population du dgv des notes
                         foreach (Note note in NotesEleve)
@@ -105,6 +131,10 @@ namespace AsimovStudentManager
                             dgv_NotesEleve.Rows[rowIndex].Cells[7].Value = note.note_description;
                         }
                         #endregion
+
+                        setGraphMoyennes();
+
+                        tc_Main.SelectTab(1);
                     }
                     else
                     {
@@ -141,6 +171,60 @@ namespace AsimovStudentManager
             else
             {
                 MessageBox.Show("Veuillez rentrer un identifiant et un mot de passe");
+            }
+        }
+
+        async void setGraphMoyennes()
+        {
+            string Moyennes = await GetUrlBody("https://localhost:3000/eleve/"+ this.ID +"/moyennes");
+            JArray jsonArray = JArray.Parse(Moyennes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                chart_moyennesEleve.Series["Moyenne"].Points.AddXY(jsonObject["mat_nom"].ToString(), jsonObject["Moyenne"].ToString());
+            }
+        }
+
+        private void dgv_NotesEleve_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Note note in NotesEleve)
+            {
+                if (note.note_id == (int)dgv_NotesEleve.Rows[e.RowIndex].Cells[0].Value)
+                {
+                    Form form_note = new Form_Note(note);
+                    form_note.Show();
+                }
+            }
+        }
+
+        private void btn_Disconnect_Click(object sender, EventArgs e)
+        {
+            tb_identifiant.Text = "";
+            tb_mdp.Text = "";
+
+            tc_Main.SelectedIndex = 0;
+
+            dgv_NotesEleve.Rows.Clear();
+            foreach (Series series in chart_moyennesEleve.Series)
+            {
+                series.Points.Clear();
+            }
+            rb_ConnectEleve.Checked = false;
+            rb_ConnectProf.Checked = false;
+            NotesEleve.Clear();
+
+            List<Form_Note> formsToClose = new List<Form_Note>();
+            foreach (Form form in Application.OpenForms)
+            {
+                if (form is Form_Note)
+                {
+                    formsToClose.Add((Form_Note)form);
+                }
+            }
+
+            foreach (Form_Note form in formsToClose)
+            {
+                form.Close();
             }
         }
     }
