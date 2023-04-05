@@ -97,7 +97,7 @@ namespace AsimovStudentManager
             //verification que il y à bien des valeurs d'entrées
             if (tb_identifiant.Text != "" && tb_mdp.Text != "")
             {
-                //si il a séléctionné la connexion de type éleve
+                #region si il a séléctionné la connexion de type éleve
                 if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
                 {
                     string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
@@ -143,32 +143,36 @@ namespace AsimovStudentManager
 
                     //si il a séléctionné la connexion de type professeur
                 }
+                #endregion
+
+                #region si il a séléctioné la connexion de type prof
                 else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
                 {
-                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + label2.Text);
+                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + tb_mdp.Text);
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
                     if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                     {
-                        tc_Main.SelectTab(1);
-                        MessageBox.Show(response.Split(new[] { ';' })[0]);
                         ID = response.Split(new[] { ';' })[1];
+                        lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
+
+                        tc_Main.SelectTab(2);
                     }
                     else
                     {
                         MessageBox.Show(response);
                     }
-
-                    //si il a séléctionné auncun type de connexion
                 }
+                #endregion
+
+                #region si aucun mode de connexion choisi
                 else
                 {
                     MessageBox.Show("Veuillez séléctionner un mode de connexion");
                 }
-
-                //si il n'a pas rempli les informations de connexion
+                #endregion
             }
-            else
+            else //Si auncun mdp ou aucun identifiant rempli
             {
                 MessageBox.Show("Veuillez rentrer un identifiant et un mot de passe");
             }
@@ -226,6 +230,7 @@ namespace AsimovStudentManager
             {
                 form.Close();
             }
+            formsToClose.Clear();
         }
     }
 }

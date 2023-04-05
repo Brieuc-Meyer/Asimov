@@ -39,22 +39,30 @@
             this.tb_identifiant = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.btn_Disconnect = new System.Windows.Forms.Button();
             this.dgv_NotesEleve = new System.Windows.Forms.DataGridView();
             this.chart_moyennesEleve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lb_pageEleveTitle = new System.Windows.Forms.Label();
-            this.btn_Disconnect = new System.Windows.Forms.Button();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.lb_pageProfTitle = new System.Windows.Forms.Label();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NotesEleve)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_moyennesEleve)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tc_Main
             // 
             this.tc_Main.Controls.Add(this.tabPage1);
             this.tc_Main.Controls.Add(this.tabPage2);
+            this.tc_Main.Controls.Add(this.tabPage3);
             this.tc_Main.Location = new System.Drawing.Point(12, 12);
             this.tc_Main.Name = "tc_Main";
             this.tc_Main.SelectedIndex = 0;
@@ -173,6 +181,18 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Vue notes éleve";
             // 
+            // btn_Disconnect
+            // 
+            this.btn_Disconnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btn_Disconnect.ForeColor = System.Drawing.Color.White;
+            this.btn_Disconnect.Location = new System.Drawing.Point(982, 14);
+            this.btn_Disconnect.Name = "btn_Disconnect";
+            this.btn_Disconnect.Size = new System.Drawing.Size(171, 29);
+            this.btn_Disconnect.TabIndex = 4;
+            this.btn_Disconnect.Text = "Se déconnecter";
+            this.btn_Disconnect.UseVisualStyleBackColor = false;
+            this.btn_Disconnect.Click += new System.EventHandler(this.btn_Disconnect_Click);
+            // 
             // dgv_NotesEleve
             // 
             this.dgv_NotesEleve.AllowUserToAddRows = false;
@@ -212,21 +232,50 @@
             this.lb_pageEleveTitle.ForeColor = System.Drawing.Color.White;
             this.lb_pageEleveTitle.Location = new System.Drawing.Point(6, 3);
             this.lb_pageEleveTitle.Name = "lb_pageEleveTitle";
-            this.lb_pageEleveTitle.Size = new System.Drawing.Size(378, 42);
+            this.lb_pageEleveTitle.Size = new System.Drawing.Size(329, 42);
             this.lb_pageEleveTitle.TabIndex = 0;
-            this.lb_pageEleveTitle.Text = "Bienvenue NomEleve";
+            this.lb_pageEleveTitle.Text = "Bonjour NomEleve";
             // 
-            // btn_Disconnect
+            // tabPage3
             // 
-            this.btn_Disconnect.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btn_Disconnect.ForeColor = System.Drawing.Color.White;
-            this.btn_Disconnect.Location = new System.Drawing.Point(982, 14);
-            this.btn_Disconnect.Name = "btn_Disconnect";
-            this.btn_Disconnect.Size = new System.Drawing.Size(171, 29);
-            this.btn_Disconnect.TabIndex = 4;
-            this.btn_Disconnect.Text = "Se déconnecter";
-            this.btn_Disconnect.UseVisualStyleBackColor = false;
-            this.btn_Disconnect.Click += new System.EventHandler(this.btn_Disconnect_Click);
+            this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage3.Controls.Add(this.tabControl1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Size = new System.Drawing.Size(1171, 724);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "MainProf";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(1165, 718);
+            this.tabControl1.TabIndex = 2;
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage4.Controls.Add(this.lb_pageProfTitle);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1157, 692);
+            this.tabPage4.TabIndex = 0;
+            this.tabPage4.Text = "Vue élèves du prof";
+            // 
+            // lb_pageProfTitle
+            // 
+            this.lb_pageProfTitle.AutoSize = true;
+            this.lb_pageProfTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_pageProfTitle.ForeColor = System.Drawing.Color.White;
+            this.lb_pageProfTitle.Location = new System.Drawing.Point(6, 3);
+            this.lb_pageProfTitle.Name = "lb_pageProfTitle";
+            this.lb_pageProfTitle.Size = new System.Drawing.Size(303, 42);
+            this.lb_pageProfTitle.TabIndex = 2;
+            this.lb_pageProfTitle.Text = "Bonjour NomProf";
             // 
             // Form1
             // 
@@ -246,6 +295,10 @@
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_NotesEleve)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chart_moyennesEleve)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -267,6 +320,10 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_moyennesEleve;
         private System.Windows.Forms.Label lb_pageEleveTitle;
         private System.Windows.Forms.Button btn_Disconnect;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Label lb_pageProfTitle;
     }
 }
 
