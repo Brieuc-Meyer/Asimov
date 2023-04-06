@@ -258,6 +258,9 @@ namespace AsimovStudentManager
             dgv_ProfEleves.Columns[2].Visible = false;
             dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
             dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
+            dgv_ProfEleves.Columns.Add("class_grade", "class_grade");
+            dgv_ProfEleves.Columns[5].Visible = false;
+
             foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -272,6 +275,7 @@ namespace AsimovStudentManager
                 dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["eleve_mdp"];
                 dgv_ProfEleves.Rows[rowIndex].Cells[3].Value = jsonObject["eleve_nom"];
                 dgv_ProfEleves.Rows[rowIndex].Cells[4].Value = jsonObject["class_nom"];
+                dgv_ProfEleves.Rows[rowIndex].Cells[5].Value = jsonObject["class_grade"];
             }
         }
         async void fill_dgv_addEleveClasses()
@@ -360,14 +364,30 @@ namespace AsimovStudentManager
         {
             if (dgv_ProfEleves.SelectedRows.Count != 0)
             {
-                fill_dgv_modifEleveClasses();
+                
                 tb_modifEleveShowPrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
                 tb_modifEleveShowIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
                 tb_modifEleveShowMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
                 tb_modifEleveShowClass.Text = dgv_ProfEleves.SelectedRows[0].Cells[4].Value.ToString();
 
+                tb_modifElevePrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
+                tb_modifEleveIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
+                tb_modifEleveMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
+
                 tc_Prof.SelectedIndex = 2;
             }
+        }
+        private void btn_retourModifEleve_Click(object sender, EventArgs e)
+        {
+            tc_Prof.SelectedIndex = 0;
+            tb_modifEleveShowPrenom.Text = "";
+            tb_modifEleveShowIdentifiant.Text = "";
+            tb_modifEleveShowMdp.Text = "";
+            tb_modifEleveShowClass.Text = "";
+
+            tb_modifElevePrenom.Text = "";
+            tb_modifEleveIdentifiant.Text = "";
+            tb_modifEleveMdp.Text = "";
         }
 
 
@@ -395,19 +415,38 @@ namespace AsimovStudentManager
         {
             if(dgv_addEleveClasses.SelectedRows.Count != 0)
             {
-
-                DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter l'élève : " + tb_addElevePrenom.Text, "Ajouter élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if(tb_addElevePrenom.Text != "")
                 {
-                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterEleve/" + tb_addElevePrenom.Text.Trim() + "/" + tb_addEleveIdentifiant.Text.Trim() + "/" + tb_addEleveMdp.Text.Trim() + "/" + dgv_addEleveClasses.SelectedRows[0].Cells[0].Value.ToString());
-                    string res = addRes.Replace("\"", "");
-                    MessageBox.Show(res);
-                    fill_dgv_ProfEleves();
-                    tc_Prof.SelectedIndex = 0;
-                    tb_addElevePrenom.Text = "";
-                    tb_addEleveIdentifiant.Text = "";
-                    tb_addEleveMdp.Text = "";
+                    if (tb_addEleveIdentifiant.Text != "")
+                    {
+                        if (tb_addEleveMdp.Text != "")
+                        {
+                            DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter l'élève : " + tb_addElevePrenom.Text, "Ajouter élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterEleve/" + tb_addElevePrenom.Text.Trim() + "/" + tb_addEleveIdentifiant.Text.Trim() + "/" + tb_addEleveMdp.Text.Trim() + "/" + dgv_addEleveClasses.SelectedRows[0].Cells[0].Value.ToString());
+                                string res = addRes.Replace("\"", "");
+                                MessageBox.Show(res);
+                                fill_dgv_ProfEleves();
+                                tc_Prof.SelectedIndex = 0;
+                                tb_addElevePrenom.Text = "";
+                                tb_addEleveIdentifiant.Text = "";
+                                tb_addEleveMdp.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez entrer un mot de passe pour l'élève");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entrer un identifiant pour l'élève");
+                    }
+                } else
+                {
+                    MessageBox.Show("Veuillez entrer un nom prénom pour l'élève");
                 }
             } else
             {
@@ -418,23 +457,43 @@ namespace AsimovStudentManager
         {
             if(dgv_modifEleveClass.SelectedRows.Count != 0)
             {
-                DialogResult result = MessageBox.Show("Voulez vous vraiment modifier l'élève : " + tb_modifEleveShowPrenom.Text, "Modifier élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
+                if(tb_modifElevePrenom.Text != "")
                 {
-                    string addRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
-                    string res = addRes.Replace("\"", "");
-                    MessageBox.Show(res);
-                    fill_dgv_ProfEleves();
-                    tc_Prof.SelectedIndex = 0;
-                    tb_modifEleveShowPrenom.Text = "";
-                    tb_modifEleveShowIdentifiant.Text = "";
-                    tb_modifEleveShowMdp.Text = "";
-                    tb_modifEleveShowClass.Text = "";
+                    if (tb_modifEleveIdentifiant.Text != "")
+                    {
+                        if (tb_modifEleveMdp.Text != "")
+                        {
+                            DialogResult result = MessageBox.Show("Voulez vous vraiment modifier l'élève : " + tb_modifEleveShowPrenom.Text, "Modifier élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    tb_modifElevePrenom.Text = "";
-                    tb_modifEleveIdentifiant.Text = "";
-                    tb_modifEleveMdp.Text = "";
+                            if (result == DialogResult.Yes)
+                            {
+                                string addRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
+                                string res = addRes.Replace("\"", "");
+                                MessageBox.Show(res);
+                                fill_dgv_ProfEleves();
+                                tc_Prof.SelectedIndex = 0;
+                                tb_modifEleveShowPrenom.Text = "";
+                                tb_modifEleveShowIdentifiant.Text = "";
+                                tb_modifEleveShowMdp.Text = "";
+                                tb_modifEleveShowClass.Text = "";
+
+                                tb_modifElevePrenom.Text = "";
+                                tb_modifEleveIdentifiant.Text = "";
+                                tb_modifEleveMdp.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez entré un nouveau mote de passe pour l'élève");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entré un nouveau identifiant pour l'élève");
+                    }
+                } else
+                {
+                    MessageBox.Show("Veuillez entré un nouveau nom prénom pour l'élève");
                 }
             } else
             {

@@ -311,7 +311,7 @@
             this.tc_Prof.Controls.Add(this.tabPage4);
             this.tc_Prof.Controls.Add(this.tabPage5);
             this.tc_Prof.Controls.Add(this.tabPage6);
-            this.tc_Prof.Location = new System.Drawing.Point(3, 28);
+            this.tc_Prof.Location = new System.Drawing.Point(3, 39);
             this.tc_Prof.Name = "tc_Prof";
             this.tc_Prof.SelectedIndex = 0;
             this.tc_Prof.Size = new System.Drawing.Size(1165, 693);
@@ -770,6 +770,7 @@
             this.btn_retourModifEleve.TabIndex = 22;
             this.btn_retourModifEleve.Text = "Retour";
             this.btn_retourModifEleve.UseVisualStyleBackColor = false;
+            this.btn_retourModifEleve.Click += new System.EventHandler(this.btn_retourModifEleve_Click);
             // 
             // btn_ModifEleveToDb
             // 

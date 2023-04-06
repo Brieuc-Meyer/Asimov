@@ -24,7 +24,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
             //obligé de trier par classe car GROUP BY ne récupére pas certanis eleves
-            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom
+            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_grade
             FROM  eleves, liaison_personnel_classes, classes 
             WHERE liaison_personnel_classes.perso_id = ?
             AND eleves.eleve_class_grade = classes.class_grade 
