@@ -374,6 +374,8 @@ namespace AsimovStudentManager
                 tb_modifEleveIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
                 tb_modifEleveMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
 
+                fill_dgv_modifEleveClasses();
+
                 tc_Prof.SelectedIndex = 2;
             }
         }
