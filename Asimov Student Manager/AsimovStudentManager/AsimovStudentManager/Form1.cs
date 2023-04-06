@@ -355,6 +355,8 @@ namespace AsimovStudentManager
         {
             tb_identifiant.Text = "";
             tb_mdp.Text = "";
+            rb_ConnectEleve.Checked = false;
+            rb_ConnectProf.Checked = false;
             tc_Main.SelectedIndex = 0;
 
             dgv_ProfEleves.Rows.Clear();
