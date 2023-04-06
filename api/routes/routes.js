@@ -23,8 +23,9 @@ routeur.get('/eleve/:eleve_id/moyennes', ctrlEleves.afficherMoyennesEleveParMati
 routeur.get('/professeur/:perso_id/voirEleves', ctrlProfesseurs.afficherElevesUnProf)
 routeur.get('/professeur/ajouterEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlProfesseurs.ajouterEleve)
 routeur.get('/professeur/voirModifEleve/:eleve_id', ctrlProfesseurs.afficherModifEleve)
-routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlProfesseurs.modifEleve)
+routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade/:eleve_id', ctrlProfesseurs.modifEleve)
 routeur.get('/professeur/supprimerEleve/:eleve_id', ctrlProfesseurs.supprimerEleve)
+routeur.get('/professeur/afficherClassesProf/:perso_id', ctrlProfesseurs.afficherClassesProf)
 
 
 routeur.get('/professeur/voirNotesUnEleve/:eleve_id', ctrlProfesseurs.afficherNotesUnEleve)

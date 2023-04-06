@@ -50,7 +50,7 @@ module.exports = {
              */
             let data = await modelProfesseurs.modelAjouterEleve(req)
             if (data) {
-                res.status(200)
+                res.json("Elève ajouté avec succés")
             }
         } catch (error) {
             console.log(error)
@@ -104,7 +104,7 @@ module.exports = {
             let data = await modelProfesseurs.modelmodifEleve(req)
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Modification de l'élève avec succés")
             }
 
         } catch (error) {
@@ -120,6 +120,25 @@ module.exports = {
              * @param req envoie à la BDD les data du medicament a modifier
              */
             let data = await modelProfesseurs.modelAfficherMatieresProf(req)
+            if (data) {
+                //console.log(data)
+                res.status(200).json(data)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async afficherClassesProf(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAfficherClassesProf(req)
             if (data) {
                 //console.log(data)
                 res.status(200).json(data)

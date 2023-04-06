@@ -24,7 +24,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
             //obligé de trier par classe car GROUP BY ne récupére pas certanis eleves
-            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_nom, classes.class_nom
+            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom
             FROM  eleves, liaison_personnel_classes, classes 
             WHERE liaison_personnel_classes.perso_id = ?
             AND eleves.eleve_class_grade = classes.class_grade 
@@ -51,7 +51,7 @@ module.exports = {
 
             let eleve_nom = req.params.eleve_nom
             let eleve_identifiant = req.params.eleve_identifiant
-            let eleve_mdp = req.params.mdp
+            let eleve_mdp = req.params.eleve_mdp
             let eleve_class_grade = req.params.eleve_class_grade
 
             let requeteSQL = "INSERT INTO eleves (eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade) VALUES (?, ?, ?, ?)"
@@ -151,6 +151,31 @@ module.exports = {
             WHERE liaison_personnel_matieres.perso_id = ?
             AND matieres.mat_id = personnels.perso_id 
             AND liaison_personnel_matieres.mat_id = matieres.mat_id;`
+
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAfficherClassesProf(req) {
+
+
+        return new Promise((resolve, reject) => {
+            let perso_id = req.params.perso_id
+
+            let requeteSQL = `SELECT classes.class_grade, class_nom, COUNT(*) Nbr_eleve
+            FROM eleves, classes, liaison_personnel_classes
+            WHERE eleves.eleve_class_grade = classes.class_grade
+            AND liaison_personnel_classes.perso_id = 2
+            AND liaison_personnel_classes.class_grade = classes.class_grade
+            GROUP BY class_nom;`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
