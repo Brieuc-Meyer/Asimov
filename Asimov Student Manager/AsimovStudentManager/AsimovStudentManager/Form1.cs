@@ -224,7 +224,7 @@ namespace AsimovStudentManager
                 }
             }
         }
-        private void btn_DisconnectEleve_Click(object sender, EventArgs e)
+        private async void btn_DisconnectEleve_Click(object sender, EventArgs e)
         {
             tb_identifiant.Text = "";
             tb_mdp.Text = "";
@@ -253,6 +253,8 @@ namespace AsimovStudentManager
                 form.Close();
             }
             formsToClose.Clear();
+
+            string res = await GetUrlBody("https://localhost:3000/deconnection");
         }
 
 
@@ -371,16 +373,18 @@ namespace AsimovStudentManager
             tb_addEleveIdentifiant.Text = "";
             tb_addEleveMdp.Text = "";
         }
-        private void btn_DisconnectProf_Click(object sender, EventArgs e)
+        private async void btn_DisconnectProf_Click(object sender, EventArgs e)
         {
             tb_identifiant.Text = "";
             tb_mdp.Text = "";
             rb_ConnectEleve.Checked = false;
             rb_ConnectProf.Checked = false;
             tc_Main.SelectedIndex = 0;
+            tc_Prof.SelectedIndex = 0;
 
             dgv_ProfEleves.Rows.Clear();
             dgv_ProfEleves.Columns.Clear();
+            string res = await GetUrlBody("https://localhost:3000/deconnection");
         }
         private void btn_modifEleve_Click(object sender, EventArgs e)
         {
