@@ -24,6 +24,9 @@ module.exports = {
 
             if (typeof data[0] === "object") {
 
+                randomNumber = Math.floor(Math.random()*10001)
+                res.cookie('session',randomNumber, { maxAge: 900000, httpOnly: true })
+
                 res.json("Bonjour " + data[0].eleve_nom + ";" + data[0].eleve_id)
 
             } else{
@@ -48,6 +51,9 @@ module.exports = {
             console.log(data)
             if (typeof data[0] === "object") {
 
+                randomNumber = Math.floor(Math.random()*10001)
+                res.cookie('session',randomNumber, { maxAge: 900000, httpOnly: true })
+
                 res.json("Bonjour " + data[0].perso_nom + ";" + data[0].perso_id)
 
             } else{
@@ -59,6 +65,17 @@ module.exports = {
 
     },
 
+    async testDeconnetion(req, res) {
+
+        const sessionId = req.headers.cookie?.split('session=')[1]
+
+        if (sessionId) {
+            res.clearCookie('session')
+            res.json("Cookie supprimé")
+        } else {
+            res.json("Cookie non présent")
+        }
+    },
 
 
 
@@ -67,37 +84,18 @@ module.exports = {
     //middleware qui test la présence d'un cookie de session
     async testAuthentification(req, res, next) {
 
-
-
-
-        // XXX à enelever pour reelement tester l'authentification
-        return next()
-        
-
-
-
-
         //console.log(sessions)
         //console.log(req.headers.cookie?.split('session=')[1])
         
         const sessionId = req.headers.cookie?.split('session=')[1]
-        
-        const userSession = sessions[sessionId]
-        //si impossible de trouvrer la valeur après la clé "session="
-        if (!userSession) {
-            res.render('connexion')
 
+        console.log(sessionId)
+        //si impossible de trouvrer la valeur après la clé "session="
+        if (!sessionId) {
+            res.json("Cookie session non présent")
         } else { 
-            
-            try {
-                //prochaine instruction sera le controlleur placé apres l'appel de cette fonction
-                next()
-            } catch (error) {
-                console.log(error)
-            }
-    
+            next()
         }
     },
-
 
 }

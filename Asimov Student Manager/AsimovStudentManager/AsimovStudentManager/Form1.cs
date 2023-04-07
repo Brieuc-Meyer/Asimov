@@ -9,11 +9,11 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using System.Collections;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Text.Json.Nodes;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Net;
 
 namespace AsimovStudentManager
 {
@@ -86,13 +86,26 @@ namespace AsimovStudentManager
         {
             using (var handler = new HttpClientHandler())
             {
-                handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
-                using (var client = new HttpClient(handler))
+                try
                 {
-                    HttpResponseMessage response = await client.GetAsync(url);
-                    response.EnsureSuccessStatusCode();
-                    string responseBody = await response.Content.ReadAsStringAsync();
-                    return responseBody;
+                    handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                    using (var client = new HttpClient(handler))
+                    {
+                        var cookieContainer = new CookieContainer();
+                        Random rand = new Random();
+                        int randomNumber = rand.Next(0, 10001);
+                        cookieContainer.Add(new Uri(url), new Cookie("session", randomNumber.ToString()));
+                        handler.CookieContainer = cookieContainer;
+
+                        HttpResponseMessage response = await client.GetAsync(url);
+                        response.EnsureSuccessStatusCode();
+                        string responseBody = await response.Content.ReadAsStringAsync();
+                        return responseBody;
+                    }
+                } catch (Exception err)
+                {
+                    MessageBox.Show("L'accés au serveur est indisponible : " + err.Message);
+                    return null;
                 }
             }
         }
@@ -105,6 +118,7 @@ namespace AsimovStudentManager
                 if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
                 {
                     string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
+                    if (bodyResponse == null) { return; }
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
 
@@ -113,6 +127,7 @@ namespace AsimovStudentManager
                         lb_pageEleveTitle.Text = response.Split(new[] { ';' })[0];
                         this.ID = response.Split(new[] { ';' })[1];
                         string notes = await GetUrlBody("https://localhost:3000/eleve/" + this.ID + "/notes");
+                        if (notes == null) { return; }
                         JArray jsonArray = JArray.Parse(notes);
 
                         foreach (JObject jsonObject in jsonArray)
@@ -153,6 +168,7 @@ namespace AsimovStudentManager
                 else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
                 {
                     string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + tb_mdp.Text);
+                    if (bodyResponse == null) { return; }
                     string response = bodyResponse.Replace("\"", "");
                     string keyWord = "Bonjour";
                     if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
@@ -189,6 +205,7 @@ namespace AsimovStudentManager
         async void setGraphMoyennes()
         {
             string Moyennes = await GetUrlBody("https://localhost:3000/eleve/"+ this.ID +"/moyennes");
+            if (Moyennes == null) { return; }
             JArray jsonArray = JArray.Parse(Moyennes);
 
             foreach (JObject jsonObject in jsonArray)
@@ -247,6 +264,7 @@ namespace AsimovStudentManager
             dgv_ProfEleves.Rows.Clear();
             dgv_ProfEleves.Columns.Clear();
             string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+            if (profEleves == null) { return; }
             JArray jsonArray = JArray.Parse(profEleves);
 
             #region style datagridview eleves du prof
@@ -297,6 +315,7 @@ namespace AsimovStudentManager
             #endregion
 
             string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
+            if (classes == null) { return; }
             JArray jsonArray = JArray.Parse(classes);
 
             foreach(JObject jsonObject in jsonArray)
@@ -326,6 +345,7 @@ namespace AsimovStudentManager
             #endregion
 
             string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
+            if (classes == null) { return; }
             JArray jsonArray = JArray.Parse(classes);
 
             foreach (JObject jsonObject in jsonArray)
@@ -406,6 +426,7 @@ namespace AsimovStudentManager
                 if (result == DialogResult.Yes)
                 {
                     string delResult = await GetUrlBody("https://localhost:3000/professeur/supprimerEleve/" + eleveID);
+                    if (delResult == null) { return; }
                     string res = delResult.Replace("\"", "");
                     MessageBox.Show(res);
                     fill_dgv_ProfEleves();
@@ -430,6 +451,7 @@ namespace AsimovStudentManager
                             if (result == DialogResult.Yes)
                             {
                                 string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterEleve/" + tb_addElevePrenom.Text.Trim() + "/" + tb_addEleveIdentifiant.Text.Trim() + "/" + tb_addEleveMdp.Text.Trim() + "/" + dgv_addEleveClasses.SelectedRows[0].Cells[0].Value.ToString());
+                                if (addRes == null) { return; }
                                 string res = addRes.Replace("\"", "");
                                 MessageBox.Show(res);
                                 fill_dgv_ProfEleves();
@@ -471,8 +493,9 @@ namespace AsimovStudentManager
 
                             if (result == DialogResult.Yes)
                             {
-                                string addRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
-                                string res = addRes.Replace("\"", "");
+                                string modifRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
+                                if (modifRes == null) { return; }
+                                string res = modifRes.Replace("\"", "");
                                 MessageBox.Show(res);
                                 fill_dgv_ProfEleves();
                                 tc_Prof.SelectedIndex = 0;
