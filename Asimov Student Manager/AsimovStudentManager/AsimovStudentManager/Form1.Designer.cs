@@ -913,7 +913,6 @@
             this.dgv_ProfVoirNoteEleve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ProfVoirNoteEleve.Size = new System.Drawing.Size(557, 541);
             this.dgv_ProfVoirNoteEleve.TabIndex = 5;
-            this.dgv_ProfVoirNoteEleve.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProfVoirNoteEleve_CellContentClick);
             // 
             // chart_ProfNoteEleve
             // 
