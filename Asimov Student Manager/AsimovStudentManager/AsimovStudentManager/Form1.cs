@@ -82,149 +82,149 @@ namespace AsimovStudentManager
         }
 
         //recupere le body d'une url
-        public static async Task<string> GetUrlBody(string url)
-        {
-            using (var handler = new HttpClientHandler())
+            public static async Task<string> GetUrlBody(string url)
             {
-                try
+                using (var handler = new HttpClientHandler())
                 {
-                    handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
-                    using (var client = new HttpClient(handler))
+                    try
                     {
-                        var cookieContainer = new CookieContainer();
-                        Random rand = new Random();
-                        int randomNumber = rand.Next(0, 10001);
-                        cookieContainer.Add(new Uri(url), new Cookie("session", randomNumber.ToString()));
-                        handler.CookieContainer = cookieContainer;
+                        handler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true;
+                        using (var client = new HttpClient(handler))
+                        {
+                            var cookieContainer = new CookieContainer();
+                            Random rand = new Random();
+                            int randomNumber = rand.Next(0, 10001);
+                            cookieContainer.Add(new Uri(url), new Cookie("session", randomNumber.ToString()));
+                            handler.CookieContainer = cookieContainer;
 
-                        HttpResponseMessage response = await client.GetAsync(url);
-                        response.EnsureSuccessStatusCode();
-                        string responseBody = await response.Content.ReadAsStringAsync();
-                        return responseBody;
+                            HttpResponseMessage response = await client.GetAsync(url);
+                            response.EnsureSuccessStatusCode();
+                            string responseBody = await response.Content.ReadAsStringAsync();
+                            return responseBody;
+                        }
+                    } catch (Exception err)
+                    {
+                        MessageBox.Show("L'accés au serveur est indisponible : " + err.Message);
+                        return null;
                     }
-                } catch (Exception err)
-                {
-                    MessageBox.Show("L'accés au serveur est indisponible : " + err.Message);
-                    return null;
                 }
             }
-        }
-        async void Connect(Object sender, EventArgs e)
-        {
-            //verification que il y à bien des valeurs d'entrées
-            if (tb_identifiant.Text != "" && tb_mdp.Text != "")
+            async void Connect(Object sender, EventArgs e)
             {
-                #region si il a séléctionné la connexion de type éleve
-                if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
+                //verification que il y à bien des valeurs d'entrées
+                if (tb_identifiant.Text != "" && tb_mdp.Text != "")
                 {
-                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
-                    if (bodyResponse == null) { return; }
-                    string response = bodyResponse.Replace("\"", "");
-                    string keyWord = "Bonjour";
-
-                    if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
+                    #region si il a séléctionné la connexion de type éleve
+                    if (rb_ConnectEleve.Checked && rb_ConnectProf.Checked == false)
                     {
-                        lb_pageEleveTitle.Text = response.Split(new[] { ';' })[0];
-                        this.ID = response.Split(new[] { ';' })[1];
-                        string notes = await GetUrlBody("https://localhost:3000/eleve/" + this.ID + "/notes");
-                        if (notes == null) { return; }
-                        JArray jsonArray = JArray.Parse(notes);
+                        string bodyResponse = await GetUrlBody("https://localhost:3000/connexionEleve/" + tb_identifiant.Text + "/" + tb_mdp.Text);
+                        if (bodyResponse == null) { return; }
+                        string response = bodyResponse.Replace("\"", "");
+                        string keyWord = "Bonjour";
 
-                        foreach (JObject jsonObject in jsonArray)
+                        if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                         {
-                            Note newnote = new Note(Int32.Parse(jsonObject["note_id"].ToString()), Int32.Parse(jsonObject["note_eleve_id"].ToString()), Int32.Parse(jsonObject["note_pourcent"].ToString()), Int32.Parse(jsonObject["note_prof_id"].ToString()), Int32.Parse(jsonObject["note_mat_id"].ToString()), Convert.ToDateTime(jsonObject["note_date_evaluation"].ToString()), jsonObject["note_intitule"].ToString(), jsonObject["note_description"].ToString(), jsonObject["mat_nom"].ToString(), jsonObject["perso_nom"].ToString());
-                            NotesEleve.Add(newnote);
+                            lb_pageEleveTitle.Text = response.Split(new[] { ';' })[0];
+                            this.ID = response.Split(new[] { ';' })[1];
+                            string notes = await GetUrlBody("https://localhost:3000/eleve/" + this.ID + "/notes");
+                            if (notes == null) { return; }
+                            JArray jsonArray = JArray.Parse(notes);
+
+                            foreach (JObject jsonObject in jsonArray)
+                            {
+                                Note newnote = new Note(Int32.Parse(jsonObject["note_id"].ToString()), Int32.Parse(jsonObject["note_eleve_id"].ToString()), Int32.Parse(jsonObject["note_pourcent"].ToString()), Int32.Parse(jsonObject["note_prof_id"].ToString()), Int32.Parse(jsonObject["note_mat_id"].ToString()), Convert.ToDateTime(jsonObject["note_date_evaluation"].ToString()), jsonObject["note_intitule"].ToString(), jsonObject["note_description"].ToString(), jsonObject["mat_nom"].ToString(), jsonObject["perso_nom"].ToString());
+                                NotesEleve.Add(newnote);
+                            }
+
+                            #region Population du dgv des notes
+                            foreach (Note note in NotesEleve)
+                            {
+                                int rowIndex = dgv_NotesEleve.Rows.Add();
+                                dgv_NotesEleve.Rows[rowIndex].Cells[0].Value = note.note_id;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[1].Value = note.note_eleve_id;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[2].Value = note.note_pourcent;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[3].Value = note.note_prof_nom;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[4].Value = note.note_mat_name;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[5].Value = note.note_date_evaluation;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[6].Value = note.note_intitule;
+                                dgv_NotesEleve.Rows[rowIndex].Cells[7].Value = note.note_description;
+                            }
+                            #endregion
+
+                            setGraphMoyennes();
+
+                            tc_Main.SelectTab(1);
+                        }
+                        else
+                        {
+                            MessageBox.Show(response);
                         }
 
-                        #region Population du dgv des notes
-                        foreach (Note note in NotesEleve)
+                        //si il a séléctionné la connexion de type professeur
+                    }
+                    #endregion
+
+                    #region si il a séléctioné la connexion de type prof
+                    else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
+                    {
+                        string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + tb_mdp.Text);
+                        if (bodyResponse == null) { return; }
+                        string response = bodyResponse.Replace("\"", "");
+                        string keyWord = "Bonjour";
+                        if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
                         {
-                            int rowIndex = dgv_NotesEleve.Rows.Add();
-                            dgv_NotesEleve.Rows[rowIndex].Cells[0].Value = note.note_id;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[1].Value = note.note_eleve_id;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[2].Value = note.note_pourcent;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[3].Value = note.note_prof_nom;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[4].Value = note.note_mat_name;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[5].Value = note.note_date_evaluation;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[6].Value = note.note_intitule;
-                            dgv_NotesEleve.Rows[rowIndex].Cells[7].Value = note.note_description;
+                            ID = response.Split(new[] { ';' })[1];
+                            lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
+
+                            fill_dgv_ProfEleves();
+
+                            tc_Main.SelectTab(2);
                         }
-                        #endregion
-
-                        setGraphMoyennes();
-
-                        tc_Main.SelectTab(1);
+                        else
+                        {
+                            MessageBox.Show(response);
+                        }
                     }
+                    #endregion
+
+                    #region si aucun mode de connexion choisi
                     else
                     {
-                        MessageBox.Show(response);
+                        MessageBox.Show("Veuillez séléctionner un mode de connexion");
                     }
-
-                    //si il a séléctionné la connexion de type professeur
+                    #endregion
                 }
-                #endregion
-
-                #region si il a séléctioné la connexion de type prof
-                else if (rb_ConnectProf.Checked && rb_ConnectEleve.Checked == false)
+                else //Si auncun mdp ou aucun identifiant rempli
                 {
-                    string bodyResponse = await GetUrlBody("https://localhost:3000/connexionProfesseur/" + tb_identifiant.Text + "/" + tb_mdp.Text);
-                    if (bodyResponse == null) { return; }
-                    string response = bodyResponse.Replace("\"", "");
-                    string keyWord = "Bonjour";
-                    if (response.Split(new[] { ' ' })[0].Trim() == keyWord)
-                    {
-                        ID = response.Split(new[] { ';' })[1];
-                        lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
-
-                        fill_dgv_ProfEleves();
-
-                        tc_Main.SelectTab(2);
-                    }
-                    else
-                    {
-                        MessageBox.Show(response);
-                    }
+                    MessageBox.Show("Veuillez rentrer un identifiant et un mot de passe");
                 }
-                #endregion
-
-                #region si aucun mode de connexion choisi
-                else
-                {
-                    MessageBox.Show("Veuillez séléctionner un mode de connexion");
-                }
-                #endregion
             }
-            else //Si auncun mdp ou aucun identifiant rempli
-            {
-                MessageBox.Show("Veuillez rentrer un identifiant et un mot de passe");
-            }
-        }
 
 
         //Partie élève
-        async void setGraphMoyennes()
-        {
-            string Moyennes = await GetUrlBody("https://localhost:3000/eleve/"+ this.ID +"/moyennes");
-            if (Moyennes == null) { return; }
-            JArray jsonArray = JArray.Parse(Moyennes);
+            async void setGraphMoyennes()
+            {
+                string Moyennes = await GetUrlBody("https://localhost:3000/eleve/"+ this.ID +"/moyennes");
+                if (Moyennes == null) { return; }
+                JArray jsonArray = JArray.Parse(Moyennes);
 
-            foreach (JObject jsonObject in jsonArray)
-            {
-                chart_moyennesEleve.Series["Moyenne"].Points.AddXY(jsonObject["mat_nom"].ToString(), jsonObject["Moyenne"].ToString());
-            }
-        }
-        private void dgv_NotesEleve_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            foreach (Note note in NotesEleve)
-            {
-                if (note.note_id == (int)dgv_NotesEleve.Rows[e.RowIndex].Cells[0].Value)
+                foreach (JObject jsonObject in jsonArray)
                 {
-                    Form form_note = new Form_Note(note);
-                    form_note.Show();
+                    chart_moyennesEleve.Series["Moyenne"].Points.AddXY(jsonObject["mat_nom"].ToString(), jsonObject["Moyenne"].ToString());
                 }
             }
-        }
-        private async void btn_DisconnectEleve_Click(object sender, EventArgs e)
+            private void dgv_NotesEleve_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+            {
+                foreach (Note note in NotesEleve)
+                {
+                    if (note.note_id == (int)dgv_NotesEleve.Rows[e.RowIndex].Cells[0].Value)
+                    {
+                        Form form_note = new Form_Note(note);
+                        form_note.Show();
+                    }
+                }
+            }
+            private async void btn_DisconnectEleve_Click(object sender, EventArgs e)
         {
             tb_identifiant.Text = "";
             tb_mdp.Text = "";
@@ -260,276 +260,276 @@ namespace AsimovStudentManager
 
 
         //Partie prof
-        //remplissage de dgv
-        async void fill_dgv_ProfEleves()
-        {
-            dgv_ProfEleves.Rows.Clear();
-            dgv_ProfEleves.Columns.Clear();
-            string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
-            if (profEleves == null) { return; }
-            JArray jsonArray = JArray.Parse(profEleves);
+            //remplissage de dgv
+                async void fill_dgv_ProfEleves()
+                {
+                    dgv_ProfEleves.Rows.Clear();
+                    dgv_ProfEleves.Columns.Clear();
+                    string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+                    if (profEleves == null) { return; }
+                    JArray jsonArray = JArray.Parse(profEleves);
 
-            #region style datagridview eleves du prof
-            dgv_ProfEleves.Columns.Add("eleve_id", "eleve_id");
-            dgv_ProfEleves.Columns[0].Visible = false;
-            dgv_ProfEleves.Columns.Add("eleve_identifiant", "eleve_identifiant");
-            dgv_ProfEleves.Columns[1].Visible = false;
-            dgv_ProfEleves.Columns.Add("eleve_mdp", "eleve_mdp");
-            dgv_ProfEleves.Columns[2].Visible = false;
-            dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
-            dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
-            dgv_ProfEleves.Columns.Add("class_grade", "class_grade");
-            dgv_ProfEleves.Columns[5].Visible = false;
+                    #region style datagridview eleves du prof
+                    dgv_ProfEleves.Columns.Add("eleve_id", "eleve_id");
+                    dgv_ProfEleves.Columns[0].Visible = false;
+                    dgv_ProfEleves.Columns.Add("eleve_identifiant", "eleve_identifiant");
+                    dgv_ProfEleves.Columns[1].Visible = false;
+                    dgv_ProfEleves.Columns.Add("eleve_mdp", "eleve_mdp");
+                    dgv_ProfEleves.Columns[2].Visible = false;
+                    dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
+                    dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
+                    dgv_ProfEleves.Columns.Add("class_grade", "class_grade");
+                    dgv_ProfEleves.Columns[5].Visible = false;
 
-            foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
+                    foreach (DataGridViewColumn col in dgv_ProfEleves.Columns)
+                    {
+                        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                    #endregion
+
+                    foreach (JObject jsonObject in jsonArray)
+                    {
+                        int rowIndex = dgv_ProfEleves.Rows.Add();
+                        dgv_ProfEleves.Rows[rowIndex].Cells[0].Value = jsonObject["eleve_id"];
+                        dgv_ProfEleves.Rows[rowIndex].Cells[1].Value = jsonObject["eleve_identifiant"];
+                        dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["eleve_mdp"];
+                        dgv_ProfEleves.Rows[rowIndex].Cells[3].Value = jsonObject["eleve_nom"];
+                        dgv_ProfEleves.Rows[rowIndex].Cells[4].Value = jsonObject["class_nom"];
+                        dgv_ProfEleves.Rows[rowIndex].Cells[5].Value = jsonObject["class_grade"];
+                    }
+                }
+                async void fill_dgv_addEleveClasses()
+                {
+                    dgv_addEleveClasses.Rows.Clear();
+                    dgv_addEleveClasses.Columns.Clear();
+
+                    #region style du datagridview
+                    dgv_addEleveClasses.Columns.Add("class_grade", "class_grade");
+                    dgv_addEleveClasses.Columns.Add("Grade de la classe", "Grade de la classe");
+                    dgv_addEleveClasses.Columns.Add("Nombre d'élève", "Nombre d'élève");
+
+                    dgv_addEleveClasses.Columns[0].Visible = false;
+
+                    foreach(DataGridViewColumn col in dgv_addEleveClasses.Columns)
+                    {
+                        col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    }
+                    #endregion
+
+                    string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
+                    if (classes == null) { return; }
+                    JArray jsonArray = JArray.Parse(classes);
+
+                    foreach(JObject jsonObject in jsonArray)
+                    {
+                        int rowIndex = dgv_addEleveClasses.Rows.Add();
+                        dgv_addEleveClasses.Rows[rowIndex].Cells[0].Value = jsonObject["class_grade"].ToString();
+                        dgv_addEleveClasses.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
+                        dgv_addEleveClasses.Rows[rowIndex].Cells[2].Value = jsonObject["Nbr_eleve"].ToString();
+                    }
+                }
+                async void fill_dgv_modifEleveClasses()
             {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                dgv_modifEleveClass.Rows.Clear();
+                dgv_modifEleveClass.Columns.Clear();
+
+                #region style du datagridview
+                dgv_modifEleveClass.Columns.Add("class_grade", "class_grade");
+                dgv_modifEleveClass.Columns.Add("Grade de la classe", "Grade de la classe");
+                dgv_modifEleveClass.Columns.Add("Nombre d'élève", "Nombre d'élève");
+
+                dgv_modifEleveClass.Columns[0].Visible = false;
+
+                foreach (DataGridViewColumn col in dgv_modifEleveClass.Columns)
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+                #endregion
+
+                string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
+                if (classes == null) { return; }
+                JArray jsonArray = JArray.Parse(classes);
+
+                foreach (JObject jsonObject in jsonArray)
+                {
+                    int rowIndex = dgv_modifEleveClass.Rows.Add();
+                    dgv_modifEleveClass.Rows[rowIndex].Cells[0].Value = jsonObject["class_grade"].ToString();
+                    dgv_modifEleveClass.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
+                    dgv_modifEleveClass.Rows[rowIndex].Cells[2].Value = jsonObject["Nbr_eleve"].ToString();
+                }
             }
-            #endregion
-
-            foreach (JObject jsonObject in jsonArray)
-            {
-                int rowIndex = dgv_ProfEleves.Rows.Add();
-                dgv_ProfEleves.Rows[rowIndex].Cells[0].Value = jsonObject["eleve_id"];
-                dgv_ProfEleves.Rows[rowIndex].Cells[1].Value = jsonObject["eleve_identifiant"];
-                dgv_ProfEleves.Rows[rowIndex].Cells[2].Value = jsonObject["eleve_mdp"];
-                dgv_ProfEleves.Rows[rowIndex].Cells[3].Value = jsonObject["eleve_nom"];
-                dgv_ProfEleves.Rows[rowIndex].Cells[4].Value = jsonObject["class_nom"];
-                dgv_ProfEleves.Rows[rowIndex].Cells[5].Value = jsonObject["class_grade"];
-            }
-        }
-        async void fill_dgv_addEleveClasses()
-        {
-            dgv_addEleveClasses.Rows.Clear();
-            dgv_addEleveClasses.Columns.Clear();
-
-            #region style du datagridview
-            dgv_addEleveClasses.Columns.Add("class_grade", "class_grade");
-            dgv_addEleveClasses.Columns.Add("Grade de la classe", "Grade de la classe");
-            dgv_addEleveClasses.Columns.Add("Nombre d'élève", "Nombre d'élève");
-
-            dgv_addEleveClasses.Columns[0].Visible = false;
-
-            foreach(DataGridViewColumn col in dgv_addEleveClasses.Columns)
-            {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-            #endregion
-
-            string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
-            if (classes == null) { return; }
-            JArray jsonArray = JArray.Parse(classes);
-
-            foreach(JObject jsonObject in jsonArray)
-            {
-                int rowIndex = dgv_addEleveClasses.Rows.Add();
-                dgv_addEleveClasses.Rows[rowIndex].Cells[0].Value = jsonObject["class_grade"].ToString();
-                dgv_addEleveClasses.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
-                dgv_addEleveClasses.Rows[rowIndex].Cells[2].Value = jsonObject["Nbr_eleve"].ToString();
-            }
-        }
-        async void fill_dgv_modifEleveClasses()
-        {
-            dgv_modifEleveClass.Rows.Clear();
-            dgv_modifEleveClass.Columns.Clear();
-
-            #region style du datagridview
-            dgv_modifEleveClass.Columns.Add("class_grade", "class_grade");
-            dgv_modifEleveClass.Columns.Add("Grade de la classe", "Grade de la classe");
-            dgv_modifEleveClass.Columns.Add("Nombre d'élève", "Nombre d'élève");
-
-            dgv_modifEleveClass.Columns[0].Visible = false;
-
-            foreach (DataGridViewColumn col in dgv_modifEleveClass.Columns)
-            {
-                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            }
-            #endregion
-
-            string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + ID.ToString());
-            if (classes == null) { return; }
-            JArray jsonArray = JArray.Parse(classes);
-
-            foreach (JObject jsonObject in jsonArray)
-            {
-                int rowIndex = dgv_modifEleveClass.Rows.Add();
-                dgv_modifEleveClass.Rows[rowIndex].Cells[0].Value = jsonObject["class_grade"].ToString();
-                dgv_modifEleveClass.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
-                dgv_modifEleveClass.Rows[rowIndex].Cells[2].Value = jsonObject["Nbr_eleve"].ToString();
-            }
-        }
 
 
-        //navigation
-        private void btn_addEleve_Click(object sender, EventArgs e)
-        {
-            fill_dgv_addEleveClasses();
-            tc_Prof.SelectedIndex = 1;
-        }
-        private void btn_addEleveRetour_Click(object sender, EventArgs e)
-        {
-            tc_Prof.SelectedIndex = 0;
-            tb_addElevePrenom.Text = "";
-            tb_addEleveIdentifiant.Text = "";
-            tb_addEleveMdp.Text = "";
-        }
-        private async void btn_DisconnectProf_Click(object sender, EventArgs e)
-        {
-            tb_identifiant.Text = "";
-            tb_mdp.Text = "";
-            rb_ConnectEleve.Checked = false;
-            rb_ConnectProf.Checked = false;
-            tc_Main.SelectedIndex = 0;
-            tc_Prof.SelectedIndex = 0;
+            //navigation
+                private void btn_addEleve_Click(object sender, EventArgs e)
+                {
+                    fill_dgv_addEleveClasses();
+                    tc_Prof.SelectedIndex = 1;
+                }
+                private void btn_addEleveRetour_Click(object sender, EventArgs e)
+                {
+                    tc_Prof.SelectedIndex = 0;
+                    tb_addElevePrenom.Text = "";
+                    tb_addEleveIdentifiant.Text = "";
+                    tb_addEleveMdp.Text = "";
+                }
+                private async void btn_DisconnectProf_Click(object sender, EventArgs e)
+                {
+                    tb_identifiant.Text = "";
+                    tb_mdp.Text = "";
+                    rb_ConnectEleve.Checked = false;
+                    rb_ConnectProf.Checked = false;
+                    tc_Main.SelectedIndex = 0;
+                    tc_Prof.SelectedIndex = 0;
 
-            dgv_ProfEleves.Rows.Clear();
-            dgv_ProfEleves.Columns.Clear();
-            string res = await GetUrlBody("https://localhost:3000/deconnection");
-        }
-        private void btn_modifEleve_Click(object sender, EventArgs e)
-        {
-            if (dgv_ProfEleves.SelectedRows.Count != 0)
-            {
+                    dgv_ProfEleves.Rows.Clear();
+                    dgv_ProfEleves.Columns.Clear();
+                    string res = await GetUrlBody("https://localhost:3000/deconnection");
+                }
+                private void btn_modifEleve_Click(object sender, EventArgs e)
+                {
+                    if (dgv_ProfEleves.SelectedRows.Count != 0)
+                    {
                 
-                tb_modifEleveShowPrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
-                tb_modifEleveShowIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
-                tb_modifEleveShowMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
-                tb_modifEleveShowClass.Text = dgv_ProfEleves.SelectedRows[0].Cells[4].Value.ToString();
+                        tb_modifEleveShowPrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
+                        tb_modifEleveShowIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
+                        tb_modifEleveShowMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
+                        tb_modifEleveShowClass.Text = dgv_ProfEleves.SelectedRows[0].Cells[4].Value.ToString();
 
-                tb_modifElevePrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
-                tb_modifEleveIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
-                tb_modifEleveMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
+                        tb_modifElevePrenom.Text = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString();
+                        tb_modifEleveIdentifiant.Text = dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString();
+                        tb_modifEleveMdp.Text = dgv_ProfEleves.SelectedRows[0].Cells[2].Value.ToString();
 
-                fill_dgv_modifEleveClasses();
+                        fill_dgv_modifEleveClasses();
 
-                tc_Prof.SelectedIndex = 2;
-            }
-        }
-        private void btn_retourModifEleve_Click(object sender, EventArgs e)
-        {
-            tc_Prof.SelectedIndex = 0;
-            tb_modifEleveShowPrenom.Text = "";
-            tb_modifEleveShowIdentifiant.Text = "";
-            tb_modifEleveShowMdp.Text = "";
-            tb_modifEleveShowClass.Text = "";
-
-            tb_modifElevePrenom.Text = "";
-            tb_modifEleveIdentifiant.Text = "";
-            tb_modifEleveMdp.Text = "";
-        }
-
-
-        //CRUD
-        async void btn_DelEleve_Click(object sender, EventArgs e)
-        {
-            if (dgv_ProfEleves.SelectedRows.Count != 0)
-            {
-                string eleveID = dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString();
-                DialogResult result = MessageBox.Show("Voulez vous vraiment supprimer l'élève : " + dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString() + "\n Toutes les notes de l'élève seront supprimées", "Supprimer élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    string delResult = await GetUrlBody("https://localhost:3000/professeur/supprimerEleve/" + eleveID);
-                    if (delResult == null) { return; }
-                    string res = delResult.Replace("\"", "");
-                    MessageBox.Show(res);
-                    fill_dgv_ProfEleves();
+                        tc_Prof.SelectedIndex = 2;
+                    }
                 }
-                else
+                private void btn_retourModifEleve_Click(object sender, EventArgs e)
                 {
+                    tc_Prof.SelectedIndex = 0;
+                    tb_modifEleveShowPrenom.Text = "";
+                    tb_modifEleveShowIdentifiant.Text = "";
+                    tb_modifEleveShowMdp.Text = "";
+                    tb_modifEleveShowClass.Text = "";
+
+                    tb_modifElevePrenom.Text = "";
+                    tb_modifEleveIdentifiant.Text = "";
+                    tb_modifEleveMdp.Text = "";
                 }
-            }
-        }
-        private async void btn_addEleveToDb_Click(object sender, EventArgs e)
-        {
-            if(dgv_addEleveClasses.SelectedRows.Count != 0)
-            {
-                if(tb_addElevePrenom.Text != "")
+
+
+            //CRUD
+                async void btn_DelEleve_Click(object sender, EventArgs e)
                 {
-                    if (tb_addEleveIdentifiant.Text != "")
+                    if (dgv_ProfEleves.SelectedRows.Count != 0)
                     {
-                        if (tb_addEleveMdp.Text != "")
-                        {
-                            DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter l'élève : " + tb_addElevePrenom.Text, "Ajouter élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        string eleveID = dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString();
+                        DialogResult result = MessageBox.Show("Voulez vous vraiment supprimer l'élève : " + dgv_ProfEleves.SelectedRows[0].Cells[1].Value.ToString() + "\n Toutes les notes de l'élève seront supprimées", "Supprimer élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                            if (result == DialogResult.Yes)
-                            {
-                                string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterEleve/" + tb_addElevePrenom.Text.Trim() + "/" + tb_addEleveIdentifiant.Text.Trim() + "/" + tb_addEleveMdp.Text.Trim() + "/" + dgv_addEleveClasses.SelectedRows[0].Cells[0].Value.ToString());
-                                if (addRes == null) { return; }
-                                string res = addRes.Replace("\"", "");
-                                MessageBox.Show(res);
-                                fill_dgv_ProfEleves();
-                                tc_Prof.SelectedIndex = 0;
-                                tb_addElevePrenom.Text = "";
-                                tb_addEleveIdentifiant.Text = "";
-                                tb_addEleveMdp.Text = "";
-                            }
+                        if (result == DialogResult.Yes)
+                        {
+                            string delResult = await GetUrlBody("https://localhost:3000/professeur/supprimerEleve/" + eleveID);
+                            if (delResult == null) { return; }
+                            string res = delResult.Replace("\"", "");
+                            MessageBox.Show(res);
+                            fill_dgv_ProfEleves();
                         }
                         else
                         {
-                            MessageBox.Show("Veuillez entrer un mot de passe pour l'élève");
                         }
                     }
-                    else
-                    {
-                        MessageBox.Show("Veuillez entrer un identifiant pour l'élève");
-                    }
-                } else
-                {
-                    MessageBox.Show("Veuillez entrer un nom prénom pour l'élève");
                 }
-            } else
-            {
-                MessageBox.Show("Veuillez choisir une classe pour l'élève");
-            }
-        }
-        private async void btn_ModifEleveToDb_Click(object sender, EventArgs e)
-        {
-            if(dgv_modifEleveClass.SelectedRows.Count != 0)
-            {
-                if(tb_modifElevePrenom.Text != "")
+                private async void btn_addEleveToDb_Click(object sender, EventArgs e)
                 {
-                    if (tb_modifEleveIdentifiant.Text != "")
+                    if(dgv_addEleveClasses.SelectedRows.Count != 0)
                     {
-                        if (tb_modifEleveMdp.Text != "")
+                        if(tb_addElevePrenom.Text != "")
                         {
-                            DialogResult result = MessageBox.Show("Voulez vous vraiment modifier l'élève : " + tb_modifEleveShowPrenom.Text, "Modifier élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                            if (result == DialogResult.Yes)
+                            if (tb_addEleveIdentifiant.Text != "")
                             {
-                                string modifRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
-                                if (modifRes == null) { return; }
-                                string res = modifRes.Replace("\"", "");
-                                MessageBox.Show(res);
-                                fill_dgv_ProfEleves();
-                                tc_Prof.SelectedIndex = 0;
-                                tb_modifEleveShowPrenom.Text = "";
-                                tb_modifEleveShowIdentifiant.Text = "";
-                                tb_modifEleveShowMdp.Text = "";
-                                tb_modifEleveShowClass.Text = "";
+                                if (tb_addEleveMdp.Text != "")
+                                {
+                                    DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter l'élève : " + tb_addElevePrenom.Text, "Ajouter élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                                tb_modifElevePrenom.Text = "";
-                                tb_modifEleveIdentifiant.Text = "";
-                                tb_modifEleveMdp.Text = "";
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterEleve/" + tb_addElevePrenom.Text.Trim() + "/" + tb_addEleveIdentifiant.Text.Trim() + "/" + tb_addEleveMdp.Text.Trim() + "/" + dgv_addEleveClasses.SelectedRows[0].Cells[0].Value.ToString());
+                                        if (addRes == null) { return; }
+                                        string res = addRes.Replace("\"", "");
+                                        MessageBox.Show(res);
+                                        fill_dgv_ProfEleves();
+                                        tc_Prof.SelectedIndex = 0;
+                                        tb_addElevePrenom.Text = "";
+                                        tb_addEleveIdentifiant.Text = "";
+                                        tb_addEleveMdp.Text = "";
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Veuillez entrer un mot de passe pour l'élève");
+                                }
                             }
-                        }
-                        else
+                            else
+                            {
+                                MessageBox.Show("Veuillez entrer un identifiant pour l'élève");
+                            }
+                        } else
                         {
-                            MessageBox.Show("Veuillez entré un nouveau mote de passe pour l'élève");
+                            MessageBox.Show("Veuillez entrer un nom prénom pour l'élève");
                         }
-                    }
-                    else
+                    } else
                     {
-                        MessageBox.Show("Veuillez entré un nouveau identifiant pour l'élève");
+                        MessageBox.Show("Veuillez choisir une classe pour l'élève");
                     }
-                } else
-                {
-                    MessageBox.Show("Veuillez entré un nouveau nom prénom pour l'élève");
                 }
-            } else
-            {
-                MessageBox.Show("Veuillez choisir une nouvelle classe pour l'élève");
-            }
-        }
+                private async void btn_ModifEleveToDb_Click(object sender, EventArgs e)
+                {
+                    if(dgv_modifEleveClass.SelectedRows.Count != 0)
+                    {
+                        if(tb_modifElevePrenom.Text != "")
+                        {
+                            if (tb_modifEleveIdentifiant.Text != "")
+                            {
+                                if (tb_modifEleveMdp.Text != "")
+                                {
+                                    DialogResult result = MessageBox.Show("Voulez vous vraiment modifier l'élève : " + tb_modifEleveShowPrenom.Text, "Modifier élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                    if (result == DialogResult.Yes)
+                                    {
+                                        string modifRes = await GetUrlBody("https://localhost:3000/professeur/modifEleve/" + tb_modifElevePrenom.Text + "/" + tb_modifEleveIdentifiant.Text + "/" + tb_modifEleveMdp.Text + "/" + dgv_modifEleveClass.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString());
+                                        if (modifRes == null) { return; }
+                                        string res = modifRes.Replace("\"", "");
+                                        MessageBox.Show(res);
+                                        fill_dgv_ProfEleves();
+                                        tc_Prof.SelectedIndex = 0;
+                                        tb_modifEleveShowPrenom.Text = "";
+                                        tb_modifEleveShowIdentifiant.Text = "";
+                                        tb_modifEleveShowMdp.Text = "";
+                                        tb_modifEleveShowClass.Text = "";
+
+                                        tb_modifElevePrenom.Text = "";
+                                        tb_modifEleveIdentifiant.Text = "";
+                                        tb_modifEleveMdp.Text = "";
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Veuillez entré un nouveau mote de passe pour l'élève");
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Veuillez entré un nouveau identifiant pour l'élève");
+                            }
+                        } else
+                        {
+                            MessageBox.Show("Veuillez entré un nouveau nom prénom pour l'élève");
+                        }
+                    } else
+                    {
+                        MessageBox.Show("Veuillez choisir une nouvelle classe pour l'élève");
+                    }
+                }
     }
 }
