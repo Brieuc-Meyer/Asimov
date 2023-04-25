@@ -54,6 +54,28 @@ namespace AsimovStudentManager
             // Rajout d'une légende
             chart_moyennesEleve.Legends.Clear();
             chart_moyennesEleve.Legends.Add("Moyenne");
+
+
+
+
+
+            // Rajout du "ChartArea"
+            chart_ProfNoteEleve.ChartAreas.Clear();
+            chart_ProfNoteEleve.ChartAreas.Add(new ChartArea("MyChartArea"));
+
+            // Ajout de la série du chart
+            chart_ProfNoteEleve.Series.Clear();
+            Series series2 = new Series("Moyenne");
+            chart_ProfNoteEleve.Series.Add(series2);
+
+            // Propriétés du chart
+            chart_ProfNoteEleve.Titles.Add("Moyenne par sujet");
+            chart_ProfNoteEleve.ChartAreas["MyChartArea"].AxisX.Title = "Matière";
+            chart_ProfNoteEleve.ChartAreas["MyChartArea"].AxisY.Title = "Pourcentage";
+
+            // Rajout d'une légende
+            chart_ProfNoteEleve.Legends.Clear();
+            chart_ProfNoteEleve.Legends.Add("Moyenne");
             #endregion
 
             #region Ajout et style des colonnes
@@ -532,9 +554,81 @@ namespace AsimovStudentManager
                     }
                 }
 
-        private void btn_VoirNotesEleve_Click(object sender, EventArgs e)
+
+
+        //En production
+                private async void btn_VoirNotesEleve_Click(object sender, EventArgs e)
+                {
+                    if (dgv_ProfEleves.SelectedRows.Count > 0)
+                    {
+                        int ID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
+                        string response = await GetUrlBody("https://localhost:3000/eleve/" + ID.ToString() + "/notes");
+                        JArray notes = JArray.Parse(response);
+
+                        #region style du dgv
+                        dgv_ProfVoirNoteEleve.Columns.Add("note_id", "note_id");
+                        dgv_ProfVoirNoteEleve.Columns.Add("note_eleve_id", "note_eleve_id");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Résultat", "Résultat");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Professeur", "Professeur");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Matière", "Matière");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Date", "Date");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Intitulé", "Intitulé");
+                        dgv_ProfVoirNoteEleve.Columns.Add("Déscription", "Déscription");
+
+                        dgv_ProfVoirNoteEleve.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                        dgv_ProfVoirNoteEleve.Columns[2].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                        dgv_ProfVoirNoteEleve.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+                        dgv_ProfVoirNoteEleve.Columns[3].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+                        dgv_ProfVoirNoteEleve.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+                        dgv_ProfVoirNoteEleve.Columns[0].Visible = false;
+                        dgv_ProfVoirNoteEleve.Columns[1].Visible = false;
+                        dgv_ProfVoirNoteEleve.Columns[5].Visible = false;
+                        dgv_ProfVoirNoteEleve.Columns[6].Visible = false;
+                        dgv_ProfVoirNoteEleve.Columns[7].Visible = false;
+                        #endregion
+
+                        foreach(JObject jsonObject in notes)
+                        {
+                            int rowIndex = dgv_ProfVoirNoteEleve.Rows.Add();
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[0].Value = jsonObject["note_id"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[1].Value = jsonObject["note_eleve_id"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[2].Value = jsonObject["note_pourcent"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[3].Value = jsonObject["perso_nom"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[4].Value = jsonObject["mat_nom"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[5].Value = jsonObject["note_date_evaluation"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[6].Value = jsonObject["note_intitule"];
+                            dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[7].Value = jsonObject["note_description"];
+                        }
+
+                        setGraphProfEleveMoyennes();
+
+                        tc_Prof.SelectedIndex = 3;
+                    }
+                }
+
+                async void setGraphProfEleveMoyennes()
+                {
+                    int ID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
+                    string Moyennes = await GetUrlBody("https://localhost:3000/eleve/" + ID + "/moyennes");
+                    if (Moyennes == null) { return; }
+                    JArray jsonArray = JArray.Parse(Moyennes);
+
+                    foreach (JObject jsonObject in jsonArray)
+                    {
+                        chart_ProfNoteEleve.Series["Moyenne"].Points.AddXY(jsonObject["mat_nom"].ToString(), jsonObject["Moyenne"].ToString());
+                    }
+                }
+
+                private void btn_VoirNotesRetour_Click(object sender, EventArgs e)
         {
-            tc_Prof.SelectedIndex = 3;
+            tc_Prof.SelectedIndex = 0;
+            dgv_ProfVoirNoteEleve.Rows.Clear();
+            dgv_ProfVoirNoteEleve.Columns.Clear();
+            foreach (Series series in chart_ProfNoteEleve.Series)
+            {
+                series.Points.Clear();
+            }
         }
     }
 }
