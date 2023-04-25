@@ -531,5 +531,10 @@ namespace AsimovStudentManager
                         MessageBox.Show("Veuillez choisir une nouvelle classe pour l'élève");
                     }
                 }
+
+        private void btn_VoirNotesEleve_Click(object sender, EventArgs e)
+        {
+            tc_Prof.SelectedIndex = 3;
+        }
     }
 }
