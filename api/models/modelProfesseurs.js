@@ -146,7 +146,7 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
 
-            let requeteSQL = `SELECT * 
+            let requeteSQL = `SELECT matieres.mat_id, matieres.mat_nom
             FROM  matieres, liaison_personnel_matieres, personnels 
             WHERE liaison_personnel_matieres.perso_id = ?
             AND matieres.mat_id = personnels.perso_id 

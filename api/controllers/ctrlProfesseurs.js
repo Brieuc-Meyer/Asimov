@@ -122,7 +122,7 @@ module.exports = {
             let data = await modelProfesseurs.modelAfficherMatieresProf(req)
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json(data)
             }
 
         } catch (error) {
@@ -141,7 +141,7 @@ module.exports = {
             let data = await modelProfesseurs.modelAfficherClassesProf(req)
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json(data)
             }
 
         } catch (error) {
@@ -160,7 +160,7 @@ module.exports = {
             let data = await modelProfesseurs.modelAjouterNote(req)
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Note ajoutée avec succés")
             }
 
         } catch (error) {
@@ -200,7 +200,7 @@ module.exports = {
             let data = await modelProfesseurs.modelModifNote(req)
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json("Note modifiée avec succés")
 
             }
 
@@ -221,7 +221,7 @@ module.exports = {
             let data = await modelProfesseurs.modelSupprimerNote(req)
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json("Note supprimé avec succés")
 
             }
 
