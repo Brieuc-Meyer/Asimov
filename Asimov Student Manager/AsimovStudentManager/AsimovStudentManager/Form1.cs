@@ -713,7 +713,7 @@ namespace AsimovStudentManager
                                     String inputDate = dtp_AddNoteDate.Value.ToString();
                                     DateTime date = DateTime.ParseExact(inputDate, "dd/MM/yyyy", null);
                                     string outputDate = date.ToString("yyyy-MM-dd");
-                                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterNote/" + eleveID + "/" + int.Parse(tb_addNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_MatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + newdate + "/" + tb_AddNoteIntitule.Text + "/" + tb_AddNoteDescription.Text);
+                                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterNote/" + eleveID + "/" + int.Parse(tb_addNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_MatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + outputDate + "/" + tb_AddNoteIntitule.Text + "/" + tb_AddNoteDescription.Text);
                                     if (addRes == null) { return; }
                                     string res = addRes.Replace("\"", "");
                                     MessageBox.Show(res);
