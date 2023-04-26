@@ -89,25 +89,25 @@
             this.dgv_modifEleveClass = new System.Windows.Forms.DataGridView();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.btn_VoirNotesRetour = new System.Windows.Forms.Button();
-            this.label17 = new System.Windows.Forms.Label();
+            this.lb_ProfNotesEleves = new System.Windows.Forms.Label();
             this.btn_ProfSuppNoteEleve = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btn_ProfAjouterNoteEleve = new System.Windows.Forms.Button();
             this.dgv_ProfVoirNoteEleve = new System.Windows.Forms.DataGridView();
             this.chart_ProfNoteEleve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.dtp_AddNoteDate = new System.Windows.Forms.DateTimePicker();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tb_AddNoteIntitule = new System.Windows.Forms.TextBox();
             this.btn_RetourAjouterNote = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_ProfAjouterNote = new System.Windows.Forms.Button();
             this.label18 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tb_AddNoteDescription = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_addNoteResultat = new System.Windows.Forms.TextBox();
             this.dgv_MatieresNotes = new System.Windows.Forms.DataGridView();
             this.label21 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -851,7 +851,7 @@
             // 
             this.tabPage7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.tabPage7.Controls.Add(this.btn_VoirNotesRetour);
-            this.tabPage7.Controls.Add(this.label17);
+            this.tabPage7.Controls.Add(this.lb_ProfNotesEleves);
             this.tabPage7.Controls.Add(this.btn_ProfSuppNoteEleve);
             this.tabPage7.Controls.Add(this.button3);
             this.tabPage7.Controls.Add(this.btn_ProfAjouterNoteEleve);
@@ -877,16 +877,16 @@
             this.btn_VoirNotesRetour.UseVisualStyleBackColor = false;
             this.btn_VoirNotesRetour.Click += new System.EventHandler(this.btn_VoirNotesRetour_Click);
             // 
-            // label17
+            // lb_ProfNotesEleves
             // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(8, 17);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(404, 42);
-            this.label17.TabIndex = 12;
-            this.label17.Text = "Nom de l\'élève modifier";
+            this.lb_ProfNotesEleves.AutoSize = true;
+            this.lb_ProfNotesEleves.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lb_ProfNotesEleves.ForeColor = System.Drawing.Color.White;
+            this.lb_ProfNotesEleves.Location = new System.Drawing.Point(8, 17);
+            this.lb_ProfNotesEleves.Name = "lb_ProfNotesEleves";
+            this.lb_ProfNotesEleves.Size = new System.Drawing.Size(404, 42);
+            this.lb_ProfNotesEleves.TabIndex = 12;
+            this.lb_ProfNotesEleves.Text = "Nom de l\'élève modifier";
             // 
             // btn_ProfSuppNoteEleve
             // 
@@ -961,16 +961,16 @@
             // tabPage8
             // 
             this.tabPage8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tabPage8.Controls.Add(this.dateTimePicker1);
+            this.tabPage8.Controls.Add(this.dtp_AddNoteDate);
             this.tabPage8.Controls.Add(this.label22);
-            this.tabPage8.Controls.Add(this.textBox4);
+            this.tabPage8.Controls.Add(this.tb_AddNoteIntitule);
             this.tabPage8.Controls.Add(this.btn_RetourAjouterNote);
-            this.tabPage8.Controls.Add(this.button2);
+            this.tabPage8.Controls.Add(this.btn_ProfAjouterNote);
             this.tabPage8.Controls.Add(this.label18);
-            this.tabPage8.Controls.Add(this.textBox1);
+            this.tabPage8.Controls.Add(this.tb_AddNoteDescription);
             this.tabPage8.Controls.Add(this.label19);
             this.tabPage8.Controls.Add(this.label20);
-            this.tabPage8.Controls.Add(this.textBox3);
+            this.tabPage8.Controls.Add(this.tb_addNoteResultat);
             this.tabPage8.Controls.Add(this.dgv_MatieresNotes);
             this.tabPage8.Controls.Add(this.label21);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
@@ -979,6 +979,32 @@
             this.tabPage8.Size = new System.Drawing.Size(1157, 667);
             this.tabPage8.TabIndex = 4;
             this.tabPage8.Text = "Ajouter une note";
+            // 
+            // dtp_AddNoteDate
+            // 
+            this.dtp_AddNoteDate.Location = new System.Drawing.Point(285, 145);
+            this.dtp_AddNoteDate.Name = "dtp_AddNoteDate";
+            this.dtp_AddNoteDate.Size = new System.Drawing.Size(223, 20);
+            this.dtp_AddNoteDate.TabIndex = 25;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.ForeColor = System.Drawing.Color.White;
+            this.label22.Location = new System.Drawing.Point(88, 297);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(120, 25);
+            this.label22.TabIndex = 24;
+            this.label22.Text = "Description";
+            // 
+            // tb_AddNoteIntitule
+            // 
+            this.tb_AddNoteIntitule.Location = new System.Drawing.Point(285, 221);
+            this.tb_AddNoteIntitule.Name = "tb_AddNoteIntitule";
+            this.tb_AddNoteIntitule.Size = new System.Drawing.Size(223, 20);
+            this.tb_AddNoteIntitule.TabIndex = 23;
             // 
             // btn_RetourAjouterNote
             // 
@@ -991,19 +1017,20 @@
             this.btn_RetourAjouterNote.TabIndex = 22;
             this.btn_RetourAjouterNote.Text = "Retour";
             this.btn_RetourAjouterNote.UseVisualStyleBackColor = false;
-            this.btn_RetourAjouterNote.Click += new System.EventHandler(this.btn_VoirNotesRetour_Click);
+            this.btn_RetourAjouterNote.Click += new System.EventHandler(this.btn_RetourAjouterNote_Click);
             // 
-            // button2
+            // btn_ProfAjouterNote
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(18, 596);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(555, 52);
-            this.button2.TabIndex = 21;
-            this.button2.Text = "Ajouter Note";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_ProfAjouterNote.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProfAjouterNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProfAjouterNote.ForeColor = System.Drawing.Color.White;
+            this.btn_ProfAjouterNote.Location = new System.Drawing.Point(18, 596);
+            this.btn_ProfAjouterNote.Name = "btn_ProfAjouterNote";
+            this.btn_ProfAjouterNote.Size = new System.Drawing.Size(555, 52);
+            this.btn_ProfAjouterNote.TabIndex = 21;
+            this.btn_ProfAjouterNote.Text = "Ajouter Note";
+            this.btn_ProfAjouterNote.UseVisualStyleBackColor = false;
+            this.btn_ProfAjouterNote.Click += new System.EventHandler(this.btn_ProfAjouterNote_Click);
             // 
             // label18
             // 
@@ -1017,13 +1044,13 @@
             this.label18.TabIndex = 20;
             this.label18.Text = "Matières";
             // 
-            // textBox1
+            // tb_AddNoteDescription
             // 
-            this.textBox1.Location = new System.Drawing.Point(285, 297);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(223, 161);
-            this.textBox1.TabIndex = 19;
+            this.tb_AddNoteDescription.Location = new System.Drawing.Point(285, 297);
+            this.tb_AddNoteDescription.Multiline = true;
+            this.tb_AddNoteDescription.Name = "tb_AddNoteDescription";
+            this.tb_AddNoteDescription.Size = new System.Drawing.Size(223, 161);
+            this.tb_AddNoteDescription.TabIndex = 19;
             // 
             // label19
             // 
@@ -1049,12 +1076,12 @@
             this.label20.TabIndex = 16;
             this.label20.Text = "Date éxamen";
             // 
-            // textBox3
+            // tb_addNoteResultat
             // 
-            this.textBox3.Location = new System.Drawing.Point(285, 71);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(223, 20);
-            this.textBox3.TabIndex = 15;
+            this.tb_addNoteResultat.Location = new System.Drawing.Point(285, 71);
+            this.tb_addNoteResultat.Name = "tb_addNoteResultat";
+            this.tb_addNoteResultat.Size = new System.Drawing.Size(223, 20);
+            this.tb_addNoteResultat.TabIndex = 15;
             // 
             // dgv_MatieresNotes
             // 
@@ -1085,32 +1112,6 @@
             this.label21.Size = new System.Drawing.Size(130, 25);
             this.label21.TabIndex = 13;
             this.label21.Text = "Résultat (%)";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(285, 221);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(223, 20);
-            this.textBox4.TabIndex = 23;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.ForeColor = System.Drawing.Color.White;
-            this.label22.Location = new System.Drawing.Point(88, 297);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(120, 25);
-            this.label22.TabIndex = 24;
-            this.label22.Text = "Description";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(285, 145);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(223, 20);
-            this.dateTimePicker1.TabIndex = 25;
             // 
             // Form1
             // 
@@ -1220,22 +1221,22 @@
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.DataGridView dgv_ProfVoirNoteEleve;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart_ProfNoteEleve;
-        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label lb_ProfNotesEleves;
         private System.Windows.Forms.Button btn_ProfSuppNoteEleve;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btn_ProfAjouterNoteEleve;
         private System.Windows.Forms.Button btn_VoirNotesRetour;
         private System.Windows.Forms.TabPage tabPage8;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dtp_AddNoteDate;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox tb_AddNoteIntitule;
         private System.Windows.Forms.Button btn_RetourAjouterNote;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_ProfAjouterNote;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tb_AddNoteDescription;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_addNoteResultat;
         private System.Windows.Forms.DataGridView dgv_MatieresNotes;
         private System.Windows.Forms.Label label21;
     }

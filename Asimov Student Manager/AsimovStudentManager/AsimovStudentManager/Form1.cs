@@ -299,6 +299,7 @@ namespace AsimovStudentManager
             dgv_ProfEleves.Columns.Add("eleve_mdp", "eleve_mdp");
             dgv_ProfEleves.Columns[2].Visible = false;
             dgv_ProfEleves.Columns.Add("Nom de l'élève", "Nom de l'élève");
+
             dgv_ProfEleves.Columns.Add("Classe de l'élève", "Classe de l'élève");
             dgv_ProfEleves.Columns.Add("class_grade", "class_grade");
             dgv_ProfEleves.Columns[5].Visible = false;
@@ -528,6 +529,8 @@ namespace AsimovStudentManager
         {
             if (dgv_ProfEleves.SelectedRows.Count > 0)
             {
+                string nomEleve = dgv_ProfEleves.SelectedRows[0].Cells[3].Value.ToString().Trim();
+                lb_ProfNotesEleves.Text = "Notes de : " + nomEleve;
                 fill_dgv_ProfVoirNotesEleves();
 
                 setGraphProfEleveMoyennes();
@@ -550,6 +553,10 @@ namespace AsimovStudentManager
             fill_dgv_MatieresNotes();
             tc_Prof.SelectedIndex = 4;
 
+        }
+        private void btn_RetourAjouterNote_Click(object sender, EventArgs e)
+        {
+            tc_Prof.SelectedIndex = 3;
         }
 
 
@@ -687,5 +694,59 @@ namespace AsimovStudentManager
             }
         }
 
+        private async void btn_ProfAjouterNote_Click(object sender, EventArgs e)
+        {
+            {
+                if (dgv_MatieresNotes.SelectedRows.Count != 0)
+                {
+                    if (tb_addNoteResultat.Text != "" && int.Parse(tb_addNoteResultat.Text.Trim()) >= 0 && int.Parse(tb_addNoteResultat.Text.Trim()) <= 100)
+                    {
+                        if (tb_AddNoteIntitule.Text != "")
+                        {
+                            if (tb_AddNoteDescription.Text != "")
+                            {
+                                DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter la note " + tb_AddNoteIntitule.Text, "Ajouter Note", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                                if (result == DialogResult.Yes)
+                                {
+                                    int eleveID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
+                                    String inputDate = dtp_AddNoteDate.Value.ToString();
+                                    DateTime date = DateTime.ParseExact(inputDate, "dd/MM/yyyy", null);
+                                    string outputDate = date.ToString("yyyy-MM-dd");
+                                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterNote/" + eleveID + "/" + int.Parse(tb_addNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_MatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + newdate + "/" + tb_AddNoteIntitule.Text + "/" + tb_AddNoteDescription.Text);
+                                    if (addRes == null) { return; }
+                                    string res = addRes.Replace("\"", "");
+                                    MessageBox.Show(res);
+                                    fill_dgv_ProfEleves();
+                                    tc_Prof.SelectedIndex = 3;
+                                    tb_addNoteResultat.Text = "";
+                                    tb_AddNoteIntitule.Text = "";
+                                    tb_AddNoteDescription.Text = "";
+                                    dgv_MatieresNotes.Rows.Clear();
+                                    dgv_MatieresNotes.Columns.Clear();
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Veuillez entrer une description");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez entrer un intitulé");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entrer une note en % valide");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez choisir une matière ");
+                }
+            }
+
+        }
     }
 }
