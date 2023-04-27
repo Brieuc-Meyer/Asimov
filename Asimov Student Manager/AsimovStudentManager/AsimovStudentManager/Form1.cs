@@ -921,5 +921,33 @@ namespace AsimovStudentManager
         }
 
 
+
+
+        //Partie proviseur
+
+        //remplissage de dgv
+
+        //navigation
+        private void btns_retourProviseur(object sender, EventArgs e)
+        {
+            tc_Proviseur.SelectedIndex = 0;
+            tb_modifEleveShowPrenom.Text = "";
+            tb_modifEleveShowIdentifiant.Text = "";
+            tb_modifEleveShowMdp.Text = "";
+            tb_modifEleveShowClass.Text = "";
+
+            tb_modifElevePrenom.Text = "";
+            tb_modifEleveIdentifiant.Text = "";
+            tb_modifEleveMdp.Text = "";
+        }
+
+
+
+        //CRUD
+
+        //Contôles de saisie
+
+
+
     }
 }
