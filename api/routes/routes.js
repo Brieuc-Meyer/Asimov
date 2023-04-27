@@ -33,7 +33,7 @@ routeur.get('/professeur/afficherClassesProf/:perso_id', ctrlConnexion.testAuthe
 routeur.get('/professeur/voirNotesUnEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherNotesUnEleve)
 routeur.get('/professeur/ajouterNote/:note_eleve_id/:note_pourcent/:note_prof_id/:note_mat_id/:note_date_evaluation/:note_intitule/:note_description', ctrlConnexion.testAuthentification, ctrlProfesseurs.ajouterNote)
 routeur.get('/professeur/supprimerNote/:note_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerNote)
-routeur.get('/professeur/modifNote/:note_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifNote)
+routeur.get('/professeur/modifNote/:note_eleve_id/:note_pourcent/:note_prof_id/:note_mat_id/:note_date_evaluation/:note_intitule/:note_description/:note_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifNote)
 routeur.get('/professeur/voirModifEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherModifEleve)
 routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifEleve)
 routeur.get('/professeur/supprimerEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerEleve)
