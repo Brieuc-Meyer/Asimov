@@ -854,6 +854,7 @@ namespace AsimovStudentManager
                                 string dateSansHeure = inputDate.Split(new[] { ' ' })[0];
                                 string[] dateSansHeureSplitee = dateSansHeure.Split(new[] { '/' });
                                 string dateFormatee = dateSansHeureSplitee[2] + "-" + dateSansHeureSplitee[1] + "-" + dateSansHeureSplitee[0];
+                                MessageBox.Show("https://localhost:3000/professeur/modifNote/" + eleveID + "/" + int.Parse(tb_modifNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_ModifMatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + dateFormatee + "/" + tb_modifNoteIntitule.Text + "/" + tb_modifNoteDescription.Text + "/" + noteID);
                                 string addRes = await GetUrlBody("https://localhost:3000/professeur/modifNote/" + eleveID + "/" + int.Parse(tb_modifNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_ModifMatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + dateFormatee + "/" + tb_modifNoteIntitule.Text + "/" + tb_modifNoteDescription.Text + "/"+ noteID);
                                 if (addRes == null) { return; }
                                 string res = addRes.Replace("\"", "");

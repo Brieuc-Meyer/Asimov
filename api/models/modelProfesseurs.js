@@ -270,7 +270,7 @@ module.exports = {
             let note_id = req.params.note_id
 
 
-            let requeteSQL = 'UPDATE eleves SET note_eleve_id = ?, note_pourcent = ?, note_prof_id = ?, note_mat_id = ?, note_date_evaluation = ?, note_intitule = ?, note_description = ?  WHERE note_id = ?'
+            let requeteSQL = 'UPDATE notes SET note_eleve_id = ?, note_pourcent = ?, note_prof_id = ?, note_mat_id = ?, note_date_evaluation = ?, note_intitule = ?, note_description = ?  WHERE note_id = ?'
             mysqlConnexion.query(requeteSQL, [note_eleve_id, note_pourcent, note_prof_id, note_mat_id, note_date_evaluation, note_intitule, note_description, note_id], (err, data) => {
 
                 if (err) {
