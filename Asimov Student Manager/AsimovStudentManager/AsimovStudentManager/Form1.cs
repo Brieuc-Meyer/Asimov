@@ -462,6 +462,34 @@ namespace AsimovStudentManager
                 dgv_MatieresNotes.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
             }
         }
+        async void fill_dgv_ModifMatieresNotes()
+        {
+            dgv_ModifMatieresNotes.Rows.Clear();
+            dgv_ModifMatieresNotes.Columns.Clear();
+
+            #region style du datagridview
+            dgv_ModifMatieresNotes.Columns.Add("mat_id", "mat_id");
+            dgv_ModifMatieresNotes.Columns.Add("Nom de la matière", "Nom de la matière");
+
+            dgv_ModifMatieresNotes.Columns[0].Visible = false;
+
+            foreach (DataGridViewColumn col in dgv_ModifMatieresNotes.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            string classes = await GetUrlBody("https://localhost:3000/professeur/afficherMatieresProf/" + ID.ToString());
+            if (classes == null) { return; }
+            JArray jsonArray = JArray.Parse(classes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ModifMatieresNotes.Rows.Add();
+                dgv_ModifMatieresNotes.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
+                dgv_ModifMatieresNotes.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+            }
+        }
         async void setGraphProfEleveMoyennes()
         {
             foreach (Series series in chart_ProfNoteEleve.Series)
@@ -581,6 +609,37 @@ namespace AsimovStudentManager
                     form_note.Show();
                 }
             }
+        }
+        private void btn_ProfModifNoteEleve_Click(object sender, EventArgs e)
+        {
+            if (dgv_ProfVoirNoteEleve.SelectedRows.Count != 0)
+            {
+
+                tb_modifNoteShowResultat.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[2].Value.ToString();
+                tb_modifNoteShowMatiere.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[4].Value.ToString();
+                tb_modifNoteShowDate.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[5].Value.ToString();
+                tb_modifNoteShowIntitule.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[6].Value.ToString();
+                tb_modifNoteShowDescription.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[7].Value.ToString();
+
+
+                tb_modifNoteResultat.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[2].Value.ToString();
+                string inputDate = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[5].Value.ToString();
+                string dateSansHeure = inputDate.Split(new[] { ' ' })[0];
+                string[] dateSansHeureSplitee = dateSansHeure.Split(new[] { '/' });
+                dtp_modifNoteDate.Value = new DateTime(int.Parse(dateSansHeureSplitee[2]), int.Parse(dateSansHeureSplitee[1]), int.Parse(dateSansHeureSplitee[0]), 10, 30, 0); // Set the date and time you want to set
+
+                tb_modifNoteIntitule.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[6].Value.ToString();
+                tb_modifNoteDescription.Text = dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[7].Value.ToString();
+
+
+                fill_dgv_ModifMatieresNotes();
+
+                tc_Prof.SelectedIndex = 5;
+            }
+        }
+        private void btn_RetourModifierNote_Click(object sender, EventArgs e)
+        {
+            tc_Prof.SelectedIndex = 3;
         }
 
 
@@ -774,6 +833,63 @@ namespace AsimovStudentManager
             }
 
         }
+        private async void btn_ModifNoteToDb_Click(object sender, EventArgs e)
+        {       
+            if (dgv_ModifMatieresNotes.SelectedRows.Count != 0)
+            {
+                if (tb_modifNoteResultat.Text != "" && int.Parse(tb_modifNoteResultat.Text.Trim()) >= 0 && int.Parse(tb_modifNoteResultat.Text.Trim()) <= 100)
+                {
+                    if (tb_modifNoteIntitule.Text != "")
+                    {
+                        if (tb_modifNoteDescription.Text != "")
+                        {
+                            DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter la note " + tb_modifNoteIntitule.Text, "Ajouter Note", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                int eleveID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
+                                int noteID = int.Parse(dgv_ProfVoirNoteEleve.SelectedRows[0].Cells[0].Value.ToString().Trim());
+
+                                string inputDate = dtp_modifNoteDate.Value.ToString();
+                                string dateSansHeure = inputDate.Split(new[] { ' ' })[0];
+                                string[] dateSansHeureSplitee = dateSansHeure.Split(new[] { '/' });
+                                string dateFormatee = dateSansHeureSplitee[2] + "-" + dateSansHeureSplitee[1] + "-" + dateSansHeureSplitee[0];
+                                string addRes = await GetUrlBody("https://localhost:3000/professeur/modifNote/" + eleveID + "/" + int.Parse(tb_modifNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_ModifMatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + dateFormatee + "/" + tb_modifNoteIntitule.Text + "/" + tb_modifNoteDescription.Text + "/"+ noteID);
+                                if (addRes == null) { return; }
+                                string res = addRes.Replace("\"", "");
+                                MessageBox.Show(res);
+                                tc_Prof.SelectedIndex = 3;
+                                tb_modifNoteResultat.Text = "";
+                                tb_modifNoteIntitule.Text = "";
+                                tb_modifNoteDescription.Text = "";
+                                dgv_ModifMatieresNotes.Rows.Clear();
+                                dgv_ModifMatieresNotes.Columns.Clear();
+                                fill_dgv_ProfVoirNotesEleves();
+                                setGraphProfEleveMoyennes();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez entrer une description");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entrer un intitulé");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez entrer une note en % valide");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez choisir une matière ");
+            }
+        }
+
+
 
         //Contôles de saisie
         private void tb_addNoteResultat_KeyPress(object sender, KeyPressEventArgs e)
@@ -789,5 +905,20 @@ namespace AsimovStudentManager
                 e.Handled = true;
             }
         }
+        private void tb_modifNoteResultat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
+        }
+
+
     }
 }

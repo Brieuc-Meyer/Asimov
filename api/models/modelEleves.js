@@ -44,7 +44,7 @@ module.exports = {
             //ORDER BY afin que pas de mutuelle soit selected
             let eleve_id = req.params.eleve_id
 
-            let requeteSQL = 'SELECT matieres.mat_nom, AVG(notes.note_pourcent) Moyenne FROM notes, matieres, eleves WHERE notes.note_eleve_id = ? AND notes.note_mat_id = matieres.mat_id group by notes.note_mat_id'
+            let requeteSQL = 'SELECT matieres.mat_nom, ROUND(AVG(notes.note_pourcent)) Moyenne FROM notes, matieres, eleves WHERE notes.note_eleve_id = ? AND notes.note_mat_id = matieres.mat_id group by notes.note_mat_id'
             mysqlConnexion.query(requeteSQL,[eleve_id], (err, data) => {
 
                 if (err) {
