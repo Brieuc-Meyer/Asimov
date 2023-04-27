@@ -385,6 +385,7 @@ namespace AsimovStudentManager
         {
             dgv_ProfVoirNoteEleve.Rows.Clear();
             dgv_ProfVoirNoteEleve.Columns.Clear();
+            NotesEleve.Clear();
             int ID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
             string response = await GetUrlBody("https://localhost:3000/eleve/" + ID.ToString() + "/notes");
             JArray notes = JArray.Parse(response);
@@ -414,16 +415,24 @@ namespace AsimovStudentManager
 
             foreach (JObject jsonObject in notes)
             {
-                int rowIndex = dgv_ProfVoirNoteEleve.Rows.Add();
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[0].Value = jsonObject["note_id"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[1].Value = jsonObject["note_eleve_id"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[2].Value = jsonObject["note_pourcent"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[3].Value = jsonObject["perso_nom"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[4].Value = jsonObject["mat_nom"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[5].Value = jsonObject["note_date_evaluation"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[6].Value = jsonObject["note_intitule"];
-                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[7].Value = jsonObject["note_description"];
+                Note newnote = new Note(Int32.Parse(jsonObject["note_id"].ToString()), Int32.Parse(jsonObject["note_eleve_id"].ToString()), Int32.Parse(jsonObject["note_pourcent"].ToString()), Int32.Parse(jsonObject["note_prof_id"].ToString()), Int32.Parse(jsonObject["note_mat_id"].ToString()), Convert.ToDateTime(jsonObject["note_date_evaluation"].ToString()), jsonObject["note_intitule"].ToString(), jsonObject["note_description"].ToString(), jsonObject["mat_nom"].ToString(), jsonObject["perso_nom"].ToString());
+                NotesEleve.Add(newnote);
             }
+
+            #region Population du dgv des notes
+            foreach (Note note in NotesEleve)
+            {
+                int rowIndex = dgv_ProfVoirNoteEleve.Rows.Add();
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[0].Value = note.note_id;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[1].Value = note.note_eleve_id;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[2].Value = note.note_pourcent;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[3].Value = note.note_prof_nom;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[4].Value = note.note_mat_name;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[5].Value = note.note_date_evaluation;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[6].Value = note.note_intitule;
+                dgv_ProfVoirNoteEleve.Rows[rowIndex].Cells[7].Value = note.note_description;
+            }
+            #endregion
         }
         async void fill_dgv_MatieresNotes()
         {
@@ -455,6 +464,10 @@ namespace AsimovStudentManager
         }
         async void setGraphProfEleveMoyennes()
         {
+            foreach (Series series in chart_ProfNoteEleve.Series)
+            {
+                series.Points.Clear();
+            }
             int ID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
             string Moyennes = await GetUrlBody("https://localhost:3000/eleve/" + ID + "/moyennes");
             if (Moyennes == null) { return; }
@@ -558,6 +571,18 @@ namespace AsimovStudentManager
         {
             tc_Prof.SelectedIndex = 3;
         }
+        private void dgv_ProfVoirNoteEleve_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            foreach (Note note in NotesEleve)
+            {
+                if (note.note_id == (int)dgv_ProfVoirNoteEleve.Rows[e.RowIndex].Cells[0].Value)
+                {
+                    Form form_note = new Form_Note(note);
+                    form_note.Show();
+                }
+            }
+        }
+
 
 
 
@@ -693,7 +718,6 @@ namespace AsimovStudentManager
                 }
             }
         }
-
         private async void btn_ProfAjouterNote_Click(object sender, EventArgs e)
         {
             {
@@ -710,20 +734,22 @@ namespace AsimovStudentManager
                                 if (result == DialogResult.Yes)
                                 {
                                     int eleveID = int.Parse(dgv_ProfEleves.SelectedRows[0].Cells[0].Value.ToString().Trim());
-                                    String inputDate = dtp_AddNoteDate.Value.ToString();
-                                    DateTime date = DateTime.ParseExact(inputDate, "dd/MM/yyyy", null);
-                                    string outputDate = date.ToString("yyyy-MM-dd");
-                                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterNote/" + eleveID + "/" + int.Parse(tb_addNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_MatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + outputDate + "/" + tb_AddNoteIntitule.Text + "/" + tb_AddNoteDescription.Text);
+                                    string inputDate = dtp_AddNoteDate.Value.ToString();
+                                    string dateSansHeure = inputDate.Split(new[] { ' ' })[0];
+                                    string[] dateSansHeureSplitee = dateSansHeure.Split(new[] { '/' });
+                                    string dateFormatee = dateSansHeureSplitee[2] + "-" + dateSansHeureSplitee[1] + "-" + dateSansHeureSplitee[0];
+                                    string addRes = await GetUrlBody("https://localhost:3000/professeur/ajouterNote/" + eleveID + "/" + int.Parse(tb_addNoteResultat.Text.Trim()) + "/" + ID.ToString() + "/" + dgv_MatieresNotes.SelectedRows[0].Cells[0].Value.ToString() + "/" + dateFormatee + "/" + tb_AddNoteIntitule.Text + "/" + tb_AddNoteDescription.Text);
                                     if (addRes == null) { return; }
                                     string res = addRes.Replace("\"", "");
                                     MessageBox.Show(res);
-                                    fill_dgv_ProfEleves();
                                     tc_Prof.SelectedIndex = 3;
                                     tb_addNoteResultat.Text = "";
                                     tb_AddNoteIntitule.Text = "";
                                     tb_AddNoteDescription.Text = "";
                                     dgv_MatieresNotes.Rows.Clear();
                                     dgv_MatieresNotes.Columns.Clear();
+                                    fill_dgv_ProfVoirNotesEleves();
+                                    setGraphProfEleveMoyennes();
                                 }
                             }
                             else
@@ -747,6 +773,21 @@ namespace AsimovStudentManager
                 }
             }
 
+        }
+
+        //Contôles de saisie
+        private void tb_addNoteResultat_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == '.') && ((sender as TextBox).Text.IndexOf('.') > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

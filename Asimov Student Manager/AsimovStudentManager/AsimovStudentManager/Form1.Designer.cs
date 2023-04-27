@@ -944,6 +944,7 @@
             this.dgv_ProfVoirNoteEleve.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ProfVoirNoteEleve.Size = new System.Drawing.Size(557, 541);
             this.dgv_ProfVoirNoteEleve.TabIndex = 5;
+            this.dgv_ProfVoirNoteEleve.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProfVoirNoteEleve_CellDoubleClick);
             // 
             // chart_ProfNoteEleve
             // 
@@ -1079,9 +1080,11 @@
             // tb_addNoteResultat
             // 
             this.tb_addNoteResultat.Location = new System.Drawing.Point(285, 71);
+            this.tb_addNoteResultat.MaxLength = 2;
             this.tb_addNoteResultat.Name = "tb_addNoteResultat";
             this.tb_addNoteResultat.Size = new System.Drawing.Size(223, 20);
             this.tb_addNoteResultat.TabIndex = 15;
+            this.tb_addNoteResultat.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tb_addNoteResultat_KeyPress);
             // 
             // dgv_MatieresNotes
             // 
