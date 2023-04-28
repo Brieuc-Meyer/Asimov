@@ -22,7 +22,9 @@ module.exports = {
     async modelAfficherTousLesEleves(req) {
 
         return new Promise((resolve, reject) => {
-            let requeteSQL = `SELECT * FROM  eleves`
+            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_grade
+            FROM  eleves, classes 
+            WHERE eleve_class_grade = class_grade`
 
             mysqlConnexion.query(requeteSQL, (err, data) => {
 

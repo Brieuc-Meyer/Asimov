@@ -20,6 +20,8 @@ namespace AsimovStudentManager
     public partial class Form1 : Form
     {
         public string ID;
+        public bool ProviseurOn = false;
+
         public List<Note> NotesEleve = new List<Note>();
 
         public Form1()
@@ -33,7 +35,7 @@ namespace AsimovStudentManager
             tc_Prof.ItemSize = new Size(0, 1);
             tc_Prof.SizeMode = TabSizeMode.Fixed;
 
-            tb_identifiant.Text = "marc.leroy";
+            tb_identifiant.Text = "jeanne.dupuis";
             tb_mdp.Text = "root";
 
             #region chart style
@@ -198,8 +200,13 @@ namespace AsimovStudentManager
                         ID = response.Split(new[] { ';' })[1];
                         lb_pageProfTitle.Text = response.Split(new[] { ';' })[0];
 
+                        
+                        if (int.Parse(response.Split(new[] { ';' })[2]) == 1 )
+                        {
+                            btn_ProvieurAdmin.Visible = true;
+                            ProviseurOn = true;
+                        }
                         fill_dgv_ProfEleves();
-
                         tc_Main.SelectTab(2);
                     }
                     else
@@ -285,9 +292,18 @@ namespace AsimovStudentManager
         //remplissage de dgv
         async void fill_dgv_ProfEleves()
         {
+            string profEleves = null;
             dgv_ProfEleves.Rows.Clear();
             dgv_ProfEleves.Columns.Clear();
-            string profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+            if (ProviseurOn == true)
+            {
+                profEleves = await GetUrlBody("https://localhost:3000/proviseur/afficherTousLesEleves/");
+            }
+            else
+            {
+                profEleves = await GetUrlBody("https://localhost:3000/professeur/" + ID.ToString() + "/voireleves");
+            }
+            
             if (profEleves == null) { return; }
             JArray jsonArray = JArray.Parse(profEleves);
 
@@ -926,8 +942,87 @@ namespace AsimovStudentManager
         //Partie proviseur
 
         //remplissage de dgv
+        async void fill_dgv_ProviseurMatieres()
+        {
+            dgv_ProviseurMatieres.Rows.Clear();
+            dgv_ProviseurMatieres.Columns.Clear();
+
+            #region style du datagridview
+            dgv_ProviseurMatieres.Columns.Add("mat_id", "mat_id");
+            dgv_ProviseurMatieres.Columns.Add("Nom de la matière", "Nom de la matière");
+
+            dgv_ProviseurMatieres.Columns[0].Visible = false;
+
+            foreach (DataGridViewColumn col in dgv_ProviseurMatieres.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherToutesLesMatieres/");
+            if (classes == null) { return; }
+            JArray jsonArray = JArray.Parse(classes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ProviseurMatieres.Rows.Add();
+                dgv_ProviseurMatieres.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
+                dgv_ProviseurMatieres.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+            }
+        }
+        async void fill_dgv_ProviseurProfesseurs()
+        {
+            dgv_ProviseurProfesseurs.Rows.Clear();
+            dgv_ProviseurProfesseurs.Columns.Clear();
+
+            #region style du datagridview
+            dgv_ProviseurProfesseurs.Columns.Add("perso_id", "perso_id");
+            dgv_ProviseurProfesseurs.Columns.Add("Nom du professeur", "Nom du professeur");
+            dgv_ProviseurProfesseurs.Columns.Add("Identifiant du professeur", "Identifiant du professeur");
+            dgv_ProviseurProfesseurs.Columns.Add("perso_mdp", "perso_mdp");
+
+
+            dgv_ProviseurProfesseurs.Columns[0].Visible = false;
+            dgv_ProviseurProfesseurs.Columns[3].Visible = false;
+
+
+            foreach (DataGridViewColumn col in dgv_ProviseurProfesseurs.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherProfesseurs/");
+            if (classes == null) { return; }
+            JArray jsonArray = JArray.Parse(classes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ProviseurProfesseurs.Rows.Add();
+                dgv_ProviseurProfesseurs.Rows[rowIndex].Cells[0].Value = jsonObject["perso_id"].ToString();
+                dgv_ProviseurProfesseurs.Rows[rowIndex].Cells[1].Value = jsonObject["perso_nom"].ToString();
+                dgv_ProviseurProfesseurs.Rows[rowIndex].Cells[2].Value = jsonObject["perso_identifiant"].ToString();
+                dgv_ProviseurProfesseurs.Rows[rowIndex].Cells[3].Value = jsonObject["perso_mdp"].ToString();
+
+            }
+        }
+
+
+
 
         //navigation
+
+        private void btn_ProvieurAdmin_Click(object sender, EventArgs e)
+        {
+            fill_dgv_ProviseurMatieres();
+            fill_dgv_ProviseurProfesseurs();
+            dgv_ProviseurProfesseurs.ClearSelection();
+            dgv_ProviseurMatieres.ClearSelection();
+
+            tc_Main.SelectTab(3);
+            tc_Proviseur.SelectedIndex = 0;
+        }
+
         private void btns_retourProviseur(object sender, EventArgs e)
         {
             tc_Proviseur.SelectedIndex = 0;
@@ -940,6 +1035,25 @@ namespace AsimovStudentManager
             tb_modifEleveIdentifiant.Text = "";
             tb_modifEleveMdp.Text = "";
         }
+        private void btn_ProviseurAjouterMatiere_Click(object sender, EventArgs e)
+        {
+            tc_Proviseur.SelectedIndex = 1;
+
+        }
+
+        private void btn_ProviseurAjouterProf_Click(object sender, EventArgs e)
+        {
+            tc_Proviseur.SelectedIndex = 3;
+
+        }
+
+        private void btn_ProviseurToutsEleves_Click(object sender, EventArgs e)
+        {
+            tc_Main.SelectTab(2);
+            tc_Proviseur.SelectedIndex = 0;
+        }
+
+
 
 
 
@@ -947,6 +1061,16 @@ namespace AsimovStudentManager
 
         //Contôles de saisie
 
+        private void dgv_ProviseurMatieres_Click(object sender, DataGridViewCellEventArgs e)
+        {
+            dgv_ProviseurProfesseurs.ClearSelection();
+        }
+
+        private void dgv_ProviseurProfesseurs_Click(object sender, DataGridViewCellEventArgs e)
+        {
+            dgv_ProviseurMatieres.ClearSelection();
+
+        }
 
 
     }

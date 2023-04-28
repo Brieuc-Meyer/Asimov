@@ -54,7 +54,7 @@ module.exports = {
                 randomNumber = Math.floor(Math.random()*10001)
                 res.cookie('session',randomNumber, { maxAge: 900000, httpOnly: true })
 
-                res.json("Bonjour " + data[0].perso_nom + ";" + data[0].perso_id)
+                res.json("Bonjour " + data[0].perso_nom + ";" + data[0].perso_id + ";" + data[0].perso_proviseur_on)
 
             } else{
                 res.json("Connexion refusé : identifiant ou mot de pass incorrecte")

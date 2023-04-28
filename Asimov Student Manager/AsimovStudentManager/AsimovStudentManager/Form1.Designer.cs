@@ -44,6 +44,7 @@
             this.chart_moyennesEleve = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lb_pageEleveTitle = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btn_ProvieurAdmin = new System.Windows.Forms.Button();
             this.btn_DisconnectProf = new System.Windows.Forms.Button();
             this.tc_Prof = new System.Windows.Forms.TabControl();
             this.tabPage4 = new System.Windows.Forms.TabPage();
@@ -136,64 +137,66 @@
             this.label31 = new System.Windows.Forms.Label();
             this.dgv_ModifMatieresNotes = new System.Windows.Forms.DataGridView();
             this.tabPage10 = new System.Windows.Forms.TabPage();
+            this.btn_ProviseurToutsEleves = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.button15 = new System.Windows.Forms.Button();
-            this.button14 = new System.Windows.Forms.Button();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.label51 = new System.Windows.Forms.Label();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.label45 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label42 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label38 = new System.Windows.Forms.Label();
-            this.label37 = new System.Windows.Forms.Label();
-            this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.label67 = new System.Windows.Forms.Label();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label68 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.label53 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.label49 = new System.Windows.Forms.Label();
-            this.tabPage13 = new System.Windows.Forms.TabPage();
-            this.button9 = new System.Windows.Forms.Button();
-            this.btn_RetourModifMatière = new System.Windows.Forms.Button();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.tb_ModifMatiereNom = new System.Windows.Forms.TextBox();
-            this.label41 = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.tabPage12 = new System.Windows.Forms.TabPage();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.tb_AjouterMatiereNom = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.label34 = new System.Windows.Forms.Label();
-            this.dgv_ProviseurMatieres = new System.Windows.Forms.DataGridView();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.dgv_ProviseurProfesseurs = new System.Windows.Forms.DataGridView();
             this.tc_Proviseur = new System.Windows.Forms.TabControl();
+            this.tabPage11 = new System.Windows.Forms.TabPage();
+            this.Professeurs = new System.Windows.Forms.Label();
+            this.dgv_ProviseurProfesseurs = new System.Windows.Forms.DataGridView();
+            this.btn_ProviseurModifier = new System.Windows.Forms.Button();
+            this.btn_ProviseurSuprimmer = new System.Windows.Forms.Button();
+            this.btn_ProviseurAjouterProf = new System.Windows.Forms.Button();
+            this.btn_ProviseurAjouterMatiere = new System.Windows.Forms.Button();
+            this.dgv_ProviseurMatieres = new System.Windows.Forms.DataGridView();
+            this.label34 = new System.Windows.Forms.Label();
+            this.tabPage12 = new System.Windows.Forms.TabPage();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label35 = new System.Windows.Forms.Label();
+            this.label36 = new System.Windows.Forms.Label();
+            this.tb_AjouterMatiereNom = new System.Windows.Forms.TextBox();
+            this.button6 = new System.Windows.Forms.Button();
+            this.btn_ProviseurAjouterMatiereToDb = new System.Windows.Forms.Button();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.tb_ModifMatiereNom = new System.Windows.Forms.TextBox();
+            this.btn_RetourModifMatière = new System.Windows.Forms.Button();
+            this.btn_ProviseurModifierMatiere = new System.Windows.Forms.Button();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.label49 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.label53 = new System.Windows.Forms.Label();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label68 = new System.Windows.Forms.Label();
+            this.label67 = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button10 = new System.Windows.Forms.Button();
+            this.btn_ProviseurAjouterProfToDb = new System.Windows.Forms.Button();
+            this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label44 = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label46 = new System.Windows.Forms.Label();
+            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.label51 = new System.Windows.Forms.Label();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.button14 = new System.Windows.Forms.Button();
+            this.btn_ProviseurModifierProf = new System.Windows.Forms.Button();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -220,21 +223,21 @@
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ModifMatieresNotes)).BeginInit();
             this.tabPage10.SuspendLayout();
-            this.tabPage15.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.panel11.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.tabPage14.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            this.panel12.SuspendLayout();
-            this.tabPage13.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.tc_Proviseur.SuspendLayout();
+            this.tabPage11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurProfesseurs)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurMatieres)).BeginInit();
             this.tabPage12.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.tabPage11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurMatieres)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurProfesseurs)).BeginInit();
-            this.tc_Proviseur.SuspendLayout();
+            this.tabPage13.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.tabPage14.SuspendLayout();
+            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage15.SuspendLayout();
+            this.panel10.SuspendLayout();
+            this.panel11.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tc_Main
@@ -435,6 +438,7 @@
             // tabPage3
             // 
             this.tabPage3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tabPage3.Controls.Add(this.btn_ProvieurAdmin);
             this.tabPage3.Controls.Add(this.btn_DisconnectProf);
             this.tabPage3.Controls.Add(this.tc_Prof);
             this.tabPage3.Location = new System.Drawing.Point(4, 25);
@@ -443,6 +447,20 @@
             this.tabPage3.Size = new System.Drawing.Size(1564, 894);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "MainProf";
+            // 
+            // btn_ProvieurAdmin
+            // 
+            this.btn_ProvieurAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btn_ProvieurAdmin.ForeColor = System.Drawing.Color.White;
+            this.btn_ProvieurAdmin.Location = new System.Drawing.Point(1055, 10);
+            this.btn_ProvieurAdmin.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProvieurAdmin.Name = "btn_ProvieurAdmin";
+            this.btn_ProvieurAdmin.Size = new System.Drawing.Size(228, 36);
+            this.btn_ProvieurAdmin.TabIndex = 6;
+            this.btn_ProvieurAdmin.Text = "Administration";
+            this.btn_ProvieurAdmin.UseVisualStyleBackColor = false;
+            this.btn_ProvieurAdmin.Visible = false;
+            this.btn_ProvieurAdmin.Click += new System.EventHandler(this.btn_ProvieurAdmin_Click);
             // 
             // btn_DisconnectProf
             // 
@@ -1655,6 +1673,7 @@
             // tabPage10
             // 
             this.tabPage10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage10.Controls.Add(this.btn_ProviseurToutsEleves);
             this.tabPage10.Controls.Add(this.button1);
             this.tabPage10.Controls.Add(this.tc_Proviseur);
             this.tabPage10.Location = new System.Drawing.Point(4, 25);
@@ -1662,6 +1681,19 @@
             this.tabPage10.Size = new System.Drawing.Size(1564, 894);
             this.tabPage10.TabIndex = 3;
             this.tabPage10.Text = "MainProviseur";
+            // 
+            // btn_ProviseurToutsEleves
+            // 
+            this.btn_ProviseurToutsEleves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btn_ProviseurToutsEleves.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurToutsEleves.Location = new System.Drawing.Point(1090, 2);
+            this.btn_ProviseurToutsEleves.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurToutsEleves.Name = "btn_ProviseurToutsEleves";
+            this.btn_ProviseurToutsEleves.Size = new System.Drawing.Size(228, 36);
+            this.btn_ProviseurToutsEleves.TabIndex = 8;
+            this.btn_ProviseurToutsEleves.Text = "Élèves";
+            this.btn_ProviseurToutsEleves.UseVisualStyleBackColor = false;
+            this.btn_ProviseurToutsEleves.Click += new System.EventHandler(this.btn_ProviseurToutsEleves_Click);
             // 
             // button1
             // 
@@ -1674,276 +1706,331 @@
             this.button1.TabIndex = 7;
             this.button1.Text = "Se déconnecter";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.btn_DisconnectProf_Click);
             // 
-            // tabPage15
+            // tc_Proviseur
             // 
-            this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tabPage15.Controls.Add(this.label37);
-            this.tabPage15.Controls.Add(this.label38);
-            this.tabPage15.Controls.Add(this.panel10);
-            this.tabPage15.Controls.Add(this.panel11);
-            this.tabPage15.Controls.Add(this.label51);
-            this.tabPage15.Controls.Add(this.dataGridView2);
-            this.tabPage15.Controls.Add(this.button14);
-            this.tabPage15.Controls.Add(this.button15);
-            this.tabPage15.Location = new System.Drawing.Point(4, 25);
-            this.tabPage15.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage15.Name = "tabPage15";
-            this.tabPage15.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage15.Size = new System.Drawing.Size(1545, 824);
-            this.tabPage15.TabIndex = 4;
-            this.tabPage15.Text = "Modifier Professeur";
+            this.tc_Proviseur.Controls.Add(this.tabPage11);
+            this.tc_Proviseur.Controls.Add(this.tabPage12);
+            this.tc_Proviseur.Controls.Add(this.tabPage13);
+            this.tc_Proviseur.Controls.Add(this.tabPage14);
+            this.tc_Proviseur.Controls.Add(this.tabPage15);
+            this.tc_Proviseur.Location = new System.Drawing.Point(6, 40);
+            this.tc_Proviseur.Margin = new System.Windows.Forms.Padding(4);
+            this.tc_Proviseur.Name = "tc_Proviseur";
+            this.tc_Proviseur.SelectedIndex = 0;
+            this.tc_Proviseur.Size = new System.Drawing.Size(1553, 853);
+            this.tc_Proviseur.TabIndex = 6;
+            this.tc_Proviseur.Click += new System.EventHandler(this.btns_retourProviseur);
             // 
-            // button15
+            // tabPage11
             // 
-            this.button15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button15.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button15.ForeColor = System.Drawing.Color.White;
-            this.button15.Location = new System.Drawing.Point(24, 734);
-            this.button15.Margin = new System.Windows.Forms.Padding(4);
-            this.button15.Name = "button15";
-            this.button15.Size = new System.Drawing.Size(740, 64);
-            this.button15.TabIndex = 21;
-            this.button15.Text = "Modifier Professeur";
-            this.button15.UseVisualStyleBackColor = false;
+            this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage11.Controls.Add(this.Professeurs);
+            this.tabPage11.Controls.Add(this.dgv_ProviseurProfesseurs);
+            this.tabPage11.Controls.Add(this.btn_ProviseurModifier);
+            this.tabPage11.Controls.Add(this.btn_ProviseurSuprimmer);
+            this.tabPage11.Controls.Add(this.btn_ProviseurAjouterProf);
+            this.tabPage11.Controls.Add(this.btn_ProviseurAjouterMatiere);
+            this.tabPage11.Controls.Add(this.dgv_ProviseurMatieres);
+            this.tabPage11.Controls.Add(this.label34);
+            this.tabPage11.Location = new System.Drawing.Point(4, 25);
+            this.tabPage11.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage11.Name = "tabPage11";
+            this.tabPage11.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage11.Size = new System.Drawing.Size(1545, 824);
+            this.tabPage11.TabIndex = 0;
+            this.tabPage11.Text = "Matières & Professeurs";
             // 
-            // button14
+            // Professeurs
             // 
-            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button14.ForeColor = System.Drawing.Color.White;
-            this.button14.Location = new System.Drawing.Point(772, 734);
-            this.button14.Margin = new System.Windows.Forms.Padding(4);
-            this.button14.Name = "button14";
-            this.button14.Size = new System.Drawing.Size(747, 64);
-            this.button14.TabIndex = 22;
-            this.button14.Text = "Retour";
-            this.button14.UseVisualStyleBackColor = false;
+            this.Professeurs.AutoSize = true;
+            this.Professeurs.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Professeurs.ForeColor = System.Drawing.Color.White;
+            this.Professeurs.Location = new System.Drawing.Point(774, 4);
+            this.Professeurs.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.Professeurs.Name = "Professeurs";
+            this.Professeurs.Size = new System.Drawing.Size(275, 54);
+            this.Professeurs.TabIndex = 9;
+            this.Professeurs.Text = "Professeurs";
             // 
-            // dataGridView2
+            // dgv_ProviseurProfesseurs
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(772, 56);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(747, 670);
-            this.dataGridView2.TabIndex = 41;
+            this.dgv_ProviseurProfesseurs.AllowUserToAddRows = false;
+            this.dgv_ProviseurProfesseurs.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurProfesseurs.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurProfesseurs.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurProfesseurs.AllowUserToResizeRows = false;
+            this.dgv_ProviseurProfesseurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurProfesseurs.Location = new System.Drawing.Point(772, 59);
+            this.dgv_ProviseurProfesseurs.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurProfesseurs.MultiSelect = false;
+            this.dgv_ProviseurProfesseurs.Name = "dgv_ProviseurProfesseurs";
+            this.dgv_ProviseurProfesseurs.ReadOnly = true;
+            this.dgv_ProviseurProfesseurs.RowHeadersVisible = false;
+            this.dgv_ProviseurProfesseurs.RowHeadersWidth = 51;
+            this.dgv_ProviseurProfesseurs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurProfesseurs.Size = new System.Drawing.Size(749, 683);
+            this.dgv_ProviseurProfesseurs.TabIndex = 8;
+            this.dgv_ProviseurProfesseurs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProviseurProfesseurs_Click);
             // 
-            // label51
+            // btn_ProviseurModifier
             // 
-            this.label51.AutoSize = true;
-            this.label51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label51.ForeColor = System.Drawing.Color.White;
-            this.label51.Location = new System.Drawing.Point(772, 21);
-            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(118, 31);
-            this.label51.TabIndex = 42;
-            this.label51.Text = "Matières";
+            this.btn_ProviseurModifier.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(38)))), ((int)(((byte)(115)))));
+            this.btn_ProviseurModifier.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_ProviseurModifier.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifier.Location = new System.Drawing.Point(774, 752);
+            this.btn_ProviseurModifier.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifier.Name = "btn_ProviseurModifier";
+            this.btn_ProviseurModifier.Size = new System.Drawing.Size(376, 64);
+            this.btn_ProviseurModifier.TabIndex = 7;
+            this.btn_ProviseurModifier.Text = "Modifier";
+            this.btn_ProviseurModifier.UseVisualStyleBackColor = false;
             // 
-            // panel11
+            // btn_ProviseurSuprimmer
             // 
-            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel11.Controls.Add(this.label44);
-            this.panel11.Controls.Add(this.label45);
-            this.panel11.Controls.Add(this.label46);
-            this.panel11.Controls.Add(this.textBox6);
-            this.panel11.Controls.Add(this.textBox7);
-            this.panel11.Controls.Add(this.textBox8);
-            this.panel11.Location = new System.Drawing.Point(24, 56);
-            this.panel11.Margin = new System.Windows.Forms.Padding(4);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(740, 284);
-            this.panel11.TabIndex = 43;
+            this.btn_ProviseurSuprimmer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(0)))), ((int)(((byte)(11)))));
+            this.btn_ProviseurSuprimmer.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_ProviseurSuprimmer.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurSuprimmer.Location = new System.Drawing.Point(388, 750);
+            this.btn_ProviseurSuprimmer.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurSuprimmer.Name = "btn_ProviseurSuprimmer";
+            this.btn_ProviseurSuprimmer.Size = new System.Drawing.Size(378, 64);
+            this.btn_ProviseurSuprimmer.TabIndex = 6;
+            this.btn_ProviseurSuprimmer.Text = "Supprimer";
+            this.btn_ProviseurSuprimmer.UseVisualStyleBackColor = false;
             // 
-            // textBox8
+            // btn_ProviseurAjouterProf
             // 
-            this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox8.ForeColor = System.Drawing.Color.White;
-            this.textBox8.Location = new System.Drawing.Point(387, 130);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(265, 22);
-            this.textBox8.TabIndex = 26;
+            this.btn_ProviseurAjouterProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurAjouterProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_ProviseurAjouterProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurAjouterProf.Location = new System.Drawing.Point(1158, 752);
+            this.btn_ProviseurAjouterProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurAjouterProf.Name = "btn_ProviseurAjouterProf";
+            this.btn_ProviseurAjouterProf.Size = new System.Drawing.Size(363, 64);
+            this.btn_ProviseurAjouterProf.TabIndex = 5;
+            this.btn_ProviseurAjouterProf.Text = "Ajouter Professeurs";
+            this.btn_ProviseurAjouterProf.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAjouterProf.Click += new System.EventHandler(this.btn_ProviseurAjouterProf_Click);
             // 
-            // textBox7
+            // btn_ProviseurAjouterMatiere
             // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox7.ForeColor = System.Drawing.Color.White;
-            this.textBox7.Location = new System.Drawing.Point(387, 67);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(265, 22);
-            this.textBox7.TabIndex = 24;
+            this.btn_ProviseurAjouterMatiere.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurAjouterMatiere.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurAjouterMatiere.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurAjouterMatiere.Location = new System.Drawing.Point(17, 750);
+            this.btn_ProviseurAjouterMatiere.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurAjouterMatiere.Name = "btn_ProviseurAjouterMatiere";
+            this.btn_ProviseurAjouterMatiere.Size = new System.Drawing.Size(363, 64);
+            this.btn_ProviseurAjouterMatiere.TabIndex = 4;
+            this.btn_ProviseurAjouterMatiere.Text = "Ajouter matière";
+            this.btn_ProviseurAjouterMatiere.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAjouterMatiere.Click += new System.EventHandler(this.btn_ProviseurAjouterMatiere_Click);
             // 
-            // textBox6
+            // dgv_ProviseurMatieres
             // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox6.ForeColor = System.Drawing.Color.White;
-            this.textBox6.Location = new System.Drawing.Point(387, 188);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(265, 22);
-            this.textBox6.TabIndex = 28;
+            this.dgv_ProviseurMatieres.AllowUserToAddRows = false;
+            this.dgv_ProviseurMatieres.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurMatieres.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurMatieres.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurMatieres.AllowUserToResizeRows = false;
+            this.dgv_ProviseurMatieres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurMatieres.Location = new System.Drawing.Point(17, 59);
+            this.dgv_ProviseurMatieres.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurMatieres.MultiSelect = false;
+            this.dgv_ProviseurMatieres.Name = "dgv_ProviseurMatieres";
+            this.dgv_ProviseurMatieres.ReadOnly = true;
+            this.dgv_ProviseurMatieres.RowHeadersVisible = false;
+            this.dgv_ProviseurMatieres.RowHeadersWidth = 51;
+            this.dgv_ProviseurMatieres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurMatieres.Size = new System.Drawing.Size(749, 683);
+            this.dgv_ProviseurMatieres.TabIndex = 3;
+            this.dgv_ProviseurMatieres.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProviseurMatieres_Click);
             // 
-            // label46
+            // label34
             // 
-            this.label46.AutoSize = true;
-            this.label46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.ForeColor = System.Drawing.Color.White;
-            this.label46.Location = new System.Drawing.Point(76, 67);
-            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(172, 31);
-            this.label46.TabIndex = 34;
-            this.label46.Text = "Prénom Nom";
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.ForeColor = System.Drawing.Color.White;
+            this.label34.Location = new System.Drawing.Point(8, 4);
+            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(193, 54);
+            this.label34.TabIndex = 2;
+            this.label34.Text = "Matères";
             // 
-            // label45
+            // tabPage12
             // 
-            this.label45.AutoSize = true;
-            this.label45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.ForeColor = System.Drawing.Color.White;
-            this.label45.Location = new System.Drawing.Point(76, 130);
-            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(133, 31);
-            this.label45.TabIndex = 36;
-            this.label45.Text = "Identifiant";
+            this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage12.Controls.Add(this.panel7);
+            this.tabPage12.Controls.Add(this.button6);
+            this.tabPage12.Controls.Add(this.btn_ProviseurAjouterMatiereToDb);
+            this.tabPage12.Location = new System.Drawing.Point(4, 25);
+            this.tabPage12.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage12.Name = "tabPage12";
+            this.tabPage12.Size = new System.Drawing.Size(1545, 824);
+            this.tabPage12.TabIndex = 1;
+            this.tabPage12.Text = "Ajouter Matière";
             // 
-            // label44
+            // panel7
             // 
-            this.label44.AutoSize = true;
-            this.label44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.ForeColor = System.Drawing.Color.White;
-            this.label44.Location = new System.Drawing.Point(76, 179);
-            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(176, 31);
-            this.label44.TabIndex = 37;
-            this.label44.Text = "Mot de passe";
+            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.panel7.Controls.Add(this.label35);
+            this.panel7.Controls.Add(this.label36);
+            this.panel7.Controls.Add(this.tb_AjouterMatiereNom);
+            this.panel7.Location = new System.Drawing.Point(25, 314);
+            this.panel7.Margin = new System.Windows.Forms.Padding(4);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1495, 428);
+            this.panel7.TabIndex = 31;
             // 
-            // panel10
+            // label35
             // 
-            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel10.Controls.Add(this.textBox1);
-            this.panel10.Controls.Add(this.textBox2);
-            this.panel10.Controls.Add(this.textBox3);
-            this.panel10.Controls.Add(this.label40);
-            this.panel10.Controls.Add(this.label42);
-            this.panel10.Controls.Add(this.label43);
-            this.panel10.Location = new System.Drawing.Point(24, 437);
-            this.panel10.Margin = new System.Windows.Forms.Padding(4);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(740, 288);
-            this.panel10.TabIndex = 44;
+            this.label35.AutoSize = true;
+            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.ForeColor = System.Drawing.Color.White;
+            this.label35.Location = new System.Drawing.Point(622, 19);
+            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(285, 31);
+            this.label35.TabIndex = 32;
+            this.label35.Text = "Données de la matière";
             // 
-            // label43
+            // label36
             // 
-            this.label43.AutoSize = true;
-            this.label43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.ForeColor = System.Drawing.Color.White;
-            this.label43.Location = new System.Drawing.Point(76, 69);
-            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(172, 31);
-            this.label43.TabIndex = 34;
-            this.label43.Text = "Prénom Nom";
+            this.label36.AutoSize = true;
+            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.ForeColor = System.Drawing.Color.White;
+            this.label36.Location = new System.Drawing.Point(531, 197);
+            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(71, 31);
+            this.label36.TabIndex = 23;
+            this.label36.Text = "Nom";
             // 
-            // label42
+            // tb_AjouterMatiereNom
             // 
-            this.label42.AutoSize = true;
-            this.label42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label42.ForeColor = System.Drawing.Color.White;
-            this.label42.Location = new System.Drawing.Point(76, 132);
-            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(133, 31);
-            this.label42.TabIndex = 36;
-            this.label42.Text = "Identifiant";
+            this.tb_AjouterMatiereNom.Location = new System.Drawing.Point(628, 197);
+            this.tb_AjouterMatiereNom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_AjouterMatiereNom.Name = "tb_AjouterMatiereNom";
+            this.tb_AjouterMatiereNom.Size = new System.Drawing.Size(310, 22);
+            this.tb_AjouterMatiereNom.TabIndex = 24;
             // 
-            // label40
+            // button6
             // 
-            this.label40.AutoSize = true;
-            this.label40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.ForeColor = System.Drawing.Color.White;
-            this.label40.Location = new System.Drawing.Point(76, 181);
-            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(176, 31);
-            this.label40.TabIndex = 37;
-            this.label40.Text = "Mot de passe";
+            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.ForeColor = System.Drawing.Color.White;
+            this.button6.Location = new System.Drawing.Point(771, 750);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(747, 64);
+            this.button6.TabIndex = 12;
+            this.button6.Text = "Retour";
+            this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.btns_retourProviseur);
             // 
-            // textBox3
+            // btn_ProviseurAjouterMatiereToDb
             // 
-            this.textBox3.Location = new System.Drawing.Point(403, 69);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.MaxLength = 2;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(265, 22);
-            this.textBox3.TabIndex = 35;
+            this.btn_ProviseurAjouterMatiereToDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurAjouterMatiereToDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurAjouterMatiereToDb.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurAjouterMatiereToDb.Location = new System.Drawing.Point(23, 750);
+            this.btn_ProviseurAjouterMatiereToDb.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurAjouterMatiereToDb.Name = "btn_ProviseurAjouterMatiereToDb";
+            this.btn_ProviseurAjouterMatiereToDb.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurAjouterMatiereToDb.TabIndex = 11;
+            this.btn_ProviseurAjouterMatiereToDb.Text = "Ajouter matière";
+            this.btn_ProviseurAjouterMatiereToDb.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // tabPage13
             // 
-            this.textBox2.Location = new System.Drawing.Point(400, 181);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(268, 22);
-            this.textBox2.TabIndex = 38;
+            this.tabPage13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage13.Controls.Add(this.panel6);
+            this.tabPage13.Controls.Add(this.btn_RetourModifMatière);
+            this.tabPage13.Controls.Add(this.btn_ProviseurModifierMatiere);
+            this.tabPage13.Location = new System.Drawing.Point(4, 25);
+            this.tabPage13.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(1545, 824);
+            this.tabPage13.TabIndex = 2;
+            this.tabPage13.Text = "Modifier Matère";
             // 
-            // textBox1
+            // panel6
             // 
-            this.textBox1.Location = new System.Drawing.Point(400, 132);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 22);
-            this.textBox1.TabIndex = 39;
+            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.panel6.Controls.Add(this.label39);
+            this.panel6.Controls.Add(this.label41);
+            this.panel6.Controls.Add(this.tb_ModifMatiereNom);
+            this.panel6.Location = new System.Drawing.Point(24, 320);
+            this.panel6.Margin = new System.Windows.Forms.Padding(4);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1495, 406);
+            this.panel6.TabIndex = 30;
             // 
-            // label38
+            // label39
             // 
-            this.label38.AutoSize = true;
-            this.label38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label38.ForeColor = System.Drawing.Color.White;
-            this.label38.Location = new System.Drawing.Point(24, 21);
-            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(446, 31);
-            this.label38.TabIndex = 45;
-            this.label38.Text = "Professeur en cours de modification";
+            this.label39.AutoSize = true;
+            this.label39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label39.ForeColor = System.Drawing.Color.White;
+            this.label39.Location = new System.Drawing.Point(531, 34);
+            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(407, 31);
+            this.label39.TabIndex = 32;
+            this.label39.Text = "Nouvelles données de la matière";
             // 
-            // label37
+            // label41
             // 
-            this.label37.AutoSize = true;
-            this.label37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.ForeColor = System.Drawing.Color.White;
-            this.label37.Location = new System.Drawing.Point(24, 403);
-            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(418, 31);
-            this.label37.TabIndex = 46;
-            this.label37.Text = "Nouvelles données du professeur";
+            this.label41.AutoSize = true;
+            this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.ForeColor = System.Drawing.Color.White;
+            this.label41.Location = new System.Drawing.Point(531, 197);
+            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(71, 31);
+            this.label41.TabIndex = 23;
+            this.label41.Text = "Nom";
+            // 
+            // tb_ModifMatiereNom
+            // 
+            this.tb_ModifMatiereNom.Location = new System.Drawing.Point(628, 197);
+            this.tb_ModifMatiereNom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_ModifMatiereNom.Name = "tb_ModifMatiereNom";
+            this.tb_ModifMatiereNom.Size = new System.Drawing.Size(310, 22);
+            this.tb_ModifMatiereNom.TabIndex = 24;
+            // 
+            // btn_RetourModifMatière
+            // 
+            this.btn_RetourModifMatière.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.btn_RetourModifMatière.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_RetourModifMatière.ForeColor = System.Drawing.Color.White;
+            this.btn_RetourModifMatière.Location = new System.Drawing.Point(772, 734);
+            this.btn_RetourModifMatière.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_RetourModifMatière.Name = "btn_RetourModifMatière";
+            this.btn_RetourModifMatière.Size = new System.Drawing.Size(747, 64);
+            this.btn_RetourModifMatière.TabIndex = 22;
+            this.btn_RetourModifMatière.Text = "Retour";
+            this.btn_RetourModifMatière.UseVisualStyleBackColor = false;
+            this.btn_RetourModifMatière.Click += new System.EventHandler(this.btns_retourProviseur);
+            // 
+            // btn_ProviseurModifierMatiere
+            // 
+            this.btn_ProviseurModifierMatiere.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierMatiere.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierMatiere.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierMatiere.Location = new System.Drawing.Point(24, 734);
+            this.btn_ProviseurModifierMatiere.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierMatiere.Name = "btn_ProviseurModifierMatiere";
+            this.btn_ProviseurModifierMatiere.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierMatiere.TabIndex = 21;
+            this.btn_ProviseurModifierMatiere.Text = "Modifier matière";
+            this.btn_ProviseurModifierMatiere.UseVisualStyleBackColor = false;
             // 
             // tabPage14
             // 
@@ -1953,7 +2040,7 @@
             this.tabPage14.Controls.Add(this.label67);
             this.tabPage14.Controls.Add(this.dataGridView1);
             this.tabPage14.Controls.Add(this.button10);
-            this.tabPage14.Controls.Add(this.button13);
+            this.tabPage14.Controls.Add(this.btn_ProviseurAjouterProfToDb);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
             this.tabPage14.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tabPage14.Name = "tabPage14";
@@ -1961,31 +2048,111 @@
             this.tabPage14.TabIndex = 3;
             this.tabPage14.Text = "Ajouter Professeur";
             // 
-            // button13
+            // label49
             // 
-            this.button13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button13.ForeColor = System.Drawing.Color.White;
-            this.button13.Location = new System.Drawing.Point(20, 750);
-            this.button13.Margin = new System.Windows.Forms.Padding(4);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(734, 64);
-            this.button13.TabIndex = 8;
-            this.button13.Text = "Ajouter professeur";
-            this.button13.UseVisualStyleBackColor = false;
+            this.label49.AutoSize = true;
+            this.label49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label49.ForeColor = System.Drawing.Color.White;
+            this.label49.Location = new System.Drawing.Point(14, 39);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label49.Name = "label49";
+            this.label49.Size = new System.Drawing.Size(426, 31);
+            this.label49.TabIndex = 48;
+            this.label49.Text = "Nouvelles données du proffesseur";
             // 
-            // button10
+            // panel12
             // 
-            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.button10.ForeColor = System.Drawing.Color.White;
-            this.button10.Location = new System.Drawing.Point(781, 750);
-            this.button10.Margin = new System.Windows.Forms.Padding(4);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(743, 64);
-            this.button10.TabIndex = 13;
-            this.button10.Text = "Retour";
-            this.button10.UseVisualStyleBackColor = false;
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.panel12.Controls.Add(this.textBox12);
+            this.panel12.Controls.Add(this.textBox9);
+            this.panel12.Controls.Add(this.textBox11);
+            this.panel12.Controls.Add(this.label53);
+            this.panel12.Controls.Add(this.label54);
+            this.panel12.Controls.Add(this.label68);
+            this.panel12.Location = new System.Drawing.Point(14, 82);
+            this.panel12.Margin = new System.Windows.Forms.Padding(4);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(740, 644);
+            this.panel12.TabIndex = 47;
+            // 
+            // textBox12
+            // 
+            this.textBox12.Location = new System.Drawing.Point(384, 98);
+            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox12.MaxLength = 2;
+            this.textBox12.Name = "textBox12";
+            this.textBox12.Size = new System.Drawing.Size(265, 22);
+            this.textBox12.TabIndex = 33;
+            // 
+            // textBox9
+            // 
+            this.textBox9.Location = new System.Drawing.Point(384, 155);
+            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox9.Name = "textBox9";
+            this.textBox9.Size = new System.Drawing.Size(268, 22);
+            this.textBox9.TabIndex = 31;
+            // 
+            // textBox11
+            // 
+            this.textBox11.Location = new System.Drawing.Point(387, 26);
+            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox11.MaxLength = 2;
+            this.textBox11.Name = "textBox11";
+            this.textBox11.Size = new System.Drawing.Size(265, 22);
+            this.textBox11.TabIndex = 27;
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label53.ForeColor = System.Drawing.Color.White;
+            this.label53.Location = new System.Drawing.Point(63, 138);
+            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(176, 31);
+            this.label53.TabIndex = 29;
+            this.label53.Text = "Mot de passe";
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label54.ForeColor = System.Drawing.Color.White;
+            this.label54.Location = new System.Drawing.Point(63, 89);
+            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(133, 31);
+            this.label54.TabIndex = 28;
+            this.label54.Text = "Identifiant";
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label68.ForeColor = System.Drawing.Color.White;
+            this.label68.Location = new System.Drawing.Point(63, 26);
+            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(172, 31);
+            this.label68.TabIndex = 26;
+            this.label68.Text = "Prénom Nom";
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label67.ForeColor = System.Drawing.Color.White;
+            this.label67.Location = new System.Drawing.Point(785, 47);
+            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(118, 31);
+            this.label67.TabIndex = 22;
+            this.label67.Text = "Matières";
             // 
             // dataGridView1
             // 
@@ -2006,415 +2173,303 @@
             this.dataGridView1.Size = new System.Drawing.Size(747, 644);
             this.dataGridView1.TabIndex = 21;
             // 
-            // label67
+            // button10
             // 
-            this.label67.AutoSize = true;
-            this.label67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.Color.White;
-            this.label67.Location = new System.Drawing.Point(785, 47);
-            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(118, 31);
-            this.label67.TabIndex = 22;
-            this.label67.Text = "Matières";
+            this.button10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.button10.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.button10.ForeColor = System.Drawing.Color.White;
+            this.button10.Location = new System.Drawing.Point(781, 750);
+            this.button10.Margin = new System.Windows.Forms.Padding(4);
+            this.button10.Name = "button10";
+            this.button10.Size = new System.Drawing.Size(743, 64);
+            this.button10.TabIndex = 13;
+            this.button10.Text = "Retour";
+            this.button10.UseVisualStyleBackColor = false;
+            this.button10.Click += new System.EventHandler(this.btns_retourProviseur);
             // 
-            // panel12
+            // btn_ProviseurAjouterProfToDb
             // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel12.Controls.Add(this.textBox12);
-            this.panel12.Controls.Add(this.textBox9);
-            this.panel12.Controls.Add(this.textBox11);
-            this.panel12.Controls.Add(this.label53);
-            this.panel12.Controls.Add(this.label54);
-            this.panel12.Controls.Add(this.label68);
-            this.panel12.Location = new System.Drawing.Point(14, 82);
-            this.panel12.Margin = new System.Windows.Forms.Padding(4);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(740, 644);
-            this.panel12.TabIndex = 47;
+            this.btn_ProviseurAjouterProfToDb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurAjouterProfToDb.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurAjouterProfToDb.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurAjouterProfToDb.Location = new System.Drawing.Point(20, 750);
+            this.btn_ProviseurAjouterProfToDb.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurAjouterProfToDb.Name = "btn_ProviseurAjouterProfToDb";
+            this.btn_ProviseurAjouterProfToDb.Size = new System.Drawing.Size(734, 64);
+            this.btn_ProviseurAjouterProfToDb.TabIndex = 8;
+            this.btn_ProviseurAjouterProfToDb.Text = "Ajouter professeur";
+            this.btn_ProviseurAjouterProfToDb.UseVisualStyleBackColor = false;
             // 
-            // label68
+            // tabPage15
             // 
-            this.label68.AutoSize = true;
-            this.label68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label68.ForeColor = System.Drawing.Color.White;
-            this.label68.Location = new System.Drawing.Point(63, 26);
-            this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(172, 31);
-            this.label68.TabIndex = 26;
-            this.label68.Text = "Prénom Nom";
+            this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage15.Controls.Add(this.label37);
+            this.tabPage15.Controls.Add(this.label38);
+            this.tabPage15.Controls.Add(this.panel10);
+            this.tabPage15.Controls.Add(this.panel11);
+            this.tabPage15.Controls.Add(this.label51);
+            this.tabPage15.Controls.Add(this.dataGridView2);
+            this.tabPage15.Controls.Add(this.button14);
+            this.tabPage15.Controls.Add(this.btn_ProviseurModifierProf);
+            this.tabPage15.Location = new System.Drawing.Point(4, 25);
+            this.tabPage15.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage15.Name = "tabPage15";
+            this.tabPage15.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage15.Size = new System.Drawing.Size(1545, 824);
+            this.tabPage15.TabIndex = 4;
+            this.tabPage15.Text = "Modifier Professeur";
             // 
-            // label54
+            // label37
             // 
-            this.label54.AutoSize = true;
-            this.label54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label54.ForeColor = System.Drawing.Color.White;
-            this.label54.Location = new System.Drawing.Point(63, 89);
-            this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(133, 31);
-            this.label54.TabIndex = 28;
-            this.label54.Text = "Identifiant";
+            this.label37.AutoSize = true;
+            this.label37.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.ForeColor = System.Drawing.Color.White;
+            this.label37.Location = new System.Drawing.Point(24, 403);
+            this.label37.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(418, 31);
+            this.label37.TabIndex = 46;
+            this.label37.Text = "Nouvelles données du professeur";
             // 
-            // label53
+            // label38
             // 
-            this.label53.AutoSize = true;
-            this.label53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label53.ForeColor = System.Drawing.Color.White;
-            this.label53.Location = new System.Drawing.Point(63, 138);
-            this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(176, 31);
-            this.label53.TabIndex = 29;
-            this.label53.Text = "Mot de passe";
+            this.label38.AutoSize = true;
+            this.label38.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label38.ForeColor = System.Drawing.Color.White;
+            this.label38.Location = new System.Drawing.Point(24, 21);
+            this.label38.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(446, 31);
+            this.label38.TabIndex = 45;
+            this.label38.Text = "Professeur en cours de modification";
             // 
-            // textBox11
+            // panel10
             // 
-            this.textBox11.Location = new System.Drawing.Point(387, 26);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox11.MaxLength = 2;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(265, 22);
-            this.textBox11.TabIndex = 27;
+            this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.panel10.Controls.Add(this.textBox1);
+            this.panel10.Controls.Add(this.textBox2);
+            this.panel10.Controls.Add(this.textBox3);
+            this.panel10.Controls.Add(this.label40);
+            this.panel10.Controls.Add(this.label42);
+            this.panel10.Controls.Add(this.label43);
+            this.panel10.Location = new System.Drawing.Point(24, 437);
+            this.panel10.Margin = new System.Windows.Forms.Padding(4);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(740, 288);
+            this.panel10.TabIndex = 44;
             // 
-            // textBox9
+            // textBox1
             // 
-            this.textBox9.Location = new System.Drawing.Point(384, 155);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(268, 22);
-            this.textBox9.TabIndex = 31;
+            this.textBox1.Location = new System.Drawing.Point(400, 132);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox1.MaxLength = 2;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(265, 22);
+            this.textBox1.TabIndex = 39;
             // 
-            // textBox12
+            // textBox2
             // 
-            this.textBox12.Location = new System.Drawing.Point(384, 98);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox12.MaxLength = 2;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(265, 22);
-            this.textBox12.TabIndex = 33;
+            this.textBox2.Location = new System.Drawing.Point(400, 181);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(268, 22);
+            this.textBox2.TabIndex = 38;
             // 
-            // label49
+            // textBox3
             // 
-            this.label49.AutoSize = true;
-            this.label49.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.ForeColor = System.Drawing.Color.White;
-            this.label49.Location = new System.Drawing.Point(14, 39);
-            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(426, 31);
-            this.label49.TabIndex = 48;
-            this.label49.Text = "Nouvelles données du proffesseur";
+            this.textBox3.Location = new System.Drawing.Point(403, 69);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox3.MaxLength = 2;
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(265, 22);
+            this.textBox3.TabIndex = 35;
             // 
-            // tabPage13
+            // label40
             // 
-            this.tabPage13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tabPage13.Controls.Add(this.panel6);
-            this.tabPage13.Controls.Add(this.btn_RetourModifMatière);
-            this.tabPage13.Controls.Add(this.button9);
-            this.tabPage13.Location = new System.Drawing.Point(4, 25);
-            this.tabPage13.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(1545, 824);
-            this.tabPage13.TabIndex = 2;
-            this.tabPage13.Text = "Modifier Matère";
+            this.label40.AutoSize = true;
+            this.label40.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label40.ForeColor = System.Drawing.Color.White;
+            this.label40.Location = new System.Drawing.Point(76, 181);
+            this.label40.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(176, 31);
+            this.label40.TabIndex = 37;
+            this.label40.Text = "Mot de passe";
             // 
-            // button9
+            // label42
             // 
-            this.button9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.ForeColor = System.Drawing.Color.White;
-            this.button9.Location = new System.Drawing.Point(24, 734);
-            this.button9.Margin = new System.Windows.Forms.Padding(4);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(740, 64);
-            this.button9.TabIndex = 21;
-            this.button9.Text = "Modifier matière";
-            this.button9.UseVisualStyleBackColor = false;
+            this.label42.AutoSize = true;
+            this.label42.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label42.ForeColor = System.Drawing.Color.White;
+            this.label42.Location = new System.Drawing.Point(76, 132);
+            this.label42.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(133, 31);
+            this.label42.TabIndex = 36;
+            this.label42.Text = "Identifiant";
             // 
-            // btn_RetourModifMatière
+            // label43
             // 
-            this.btn_RetourModifMatière.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.btn_RetourModifMatière.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_RetourModifMatière.ForeColor = System.Drawing.Color.White;
-            this.btn_RetourModifMatière.Location = new System.Drawing.Point(772, 734);
-            this.btn_RetourModifMatière.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_RetourModifMatière.Name = "btn_RetourModifMatière";
-            this.btn_RetourModifMatière.Size = new System.Drawing.Size(747, 64);
-            this.btn_RetourModifMatière.TabIndex = 22;
-            this.btn_RetourModifMatière.Text = "Retour";
-            this.btn_RetourModifMatière.UseVisualStyleBackColor = false;
+            this.label43.AutoSize = true;
+            this.label43.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label43.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label43.ForeColor = System.Drawing.Color.White;
+            this.label43.Location = new System.Drawing.Point(76, 69);
+            this.label43.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(172, 31);
+            this.label43.TabIndex = 34;
+            this.label43.Text = "Prénom Nom";
             // 
-            // panel6
+            // panel11
             // 
-            this.panel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel6.Controls.Add(this.label39);
-            this.panel6.Controls.Add(this.label41);
-            this.panel6.Controls.Add(this.tb_ModifMatiereNom);
-            this.panel6.Location = new System.Drawing.Point(24, 320);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1495, 406);
-            this.panel6.TabIndex = 30;
+            this.panel11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.panel11.Controls.Add(this.label44);
+            this.panel11.Controls.Add(this.label45);
+            this.panel11.Controls.Add(this.label46);
+            this.panel11.Controls.Add(this.textBox6);
+            this.panel11.Controls.Add(this.textBox7);
+            this.panel11.Controls.Add(this.textBox8);
+            this.panel11.Location = new System.Drawing.Point(24, 56);
+            this.panel11.Margin = new System.Windows.Forms.Padding(4);
+            this.panel11.Name = "panel11";
+            this.panel11.Size = new System.Drawing.Size(740, 284);
+            this.panel11.TabIndex = 43;
             // 
-            // tb_ModifMatiereNom
+            // label44
             // 
-            this.tb_ModifMatiereNom.Location = new System.Drawing.Point(628, 197);
-            this.tb_ModifMatiereNom.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_ModifMatiereNom.Name = "tb_ModifMatiereNom";
-            this.tb_ModifMatiereNom.Size = new System.Drawing.Size(310, 22);
-            this.tb_ModifMatiereNom.TabIndex = 24;
+            this.label44.AutoSize = true;
+            this.label44.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label44.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label44.ForeColor = System.Drawing.Color.White;
+            this.label44.Location = new System.Drawing.Point(76, 179);
+            this.label44.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(176, 31);
+            this.label44.TabIndex = 37;
+            this.label44.Text = "Mot de passe";
             // 
-            // label41
+            // label45
             // 
-            this.label41.AutoSize = true;
-            this.label41.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label41.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.ForeColor = System.Drawing.Color.White;
-            this.label41.Location = new System.Drawing.Point(531, 197);
-            this.label41.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(71, 31);
-            this.label41.TabIndex = 23;
-            this.label41.Text = "Nom";
+            this.label45.AutoSize = true;
+            this.label45.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.ForeColor = System.Drawing.Color.White;
+            this.label45.Location = new System.Drawing.Point(76, 130);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(133, 31);
+            this.label45.TabIndex = 36;
+            this.label45.Text = "Identifiant";
             // 
-            // label39
+            // label46
             // 
-            this.label39.AutoSize = true;
-            this.label39.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.ForeColor = System.Drawing.Color.White;
-            this.label39.Location = new System.Drawing.Point(531, 34);
-            this.label39.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(407, 31);
-            this.label39.TabIndex = 32;
-            this.label39.Text = "Nouvelles données de la matière";
+            this.label46.AutoSize = true;
+            this.label46.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.ForeColor = System.Drawing.Color.White;
+            this.label46.Location = new System.Drawing.Point(76, 67);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(172, 31);
+            this.label46.TabIndex = 34;
+            this.label46.Text = "Prénom Nom";
             // 
-            // tabPage12
+            // textBox6
             // 
-            this.tabPage12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tabPage12.Controls.Add(this.panel7);
-            this.tabPage12.Controls.Add(this.button6);
-            this.tabPage12.Controls.Add(this.button7);
-            this.tabPage12.Location = new System.Drawing.Point(4, 25);
-            this.tabPage12.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(1545, 824);
-            this.tabPage12.TabIndex = 1;
-            this.tabPage12.Text = "Ajouter Matière";
+            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.textBox6.ForeColor = System.Drawing.Color.White;
+            this.textBox6.Location = new System.Drawing.Point(387, 188);
+            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox6.Name = "textBox6";
+            this.textBox6.ReadOnly = true;
+            this.textBox6.Size = new System.Drawing.Size(265, 22);
+            this.textBox6.TabIndex = 28;
             // 
-            // button7
+            // textBox7
             // 
-            this.button7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.ForeColor = System.Drawing.Color.White;
-            this.button7.Location = new System.Drawing.Point(23, 750);
-            this.button7.Margin = new System.Windows.Forms.Padding(4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(740, 64);
-            this.button7.TabIndex = 11;
-            this.button7.Text = "Ajouter matière";
-            this.button7.UseVisualStyleBackColor = false;
+            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.textBox7.ForeColor = System.Drawing.Color.White;
+            this.textBox7.Location = new System.Drawing.Point(387, 67);
+            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox7.Name = "textBox7";
+            this.textBox7.ReadOnly = true;
+            this.textBox7.Size = new System.Drawing.Size(265, 22);
+            this.textBox7.TabIndex = 24;
             // 
-            // button6
+            // textBox8
             // 
-            this.button6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(771, 750);
-            this.button6.Margin = new System.Windows.Forms.Padding(4);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(747, 64);
-            this.button6.TabIndex = 12;
-            this.button6.Text = "Retour";
-            this.button6.UseVisualStyleBackColor = false;
+            this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.textBox8.ForeColor = System.Drawing.Color.White;
+            this.textBox8.Location = new System.Drawing.Point(387, 130);
+            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
+            this.textBox8.Name = "textBox8";
+            this.textBox8.ReadOnly = true;
+            this.textBox8.Size = new System.Drawing.Size(265, 22);
+            this.textBox8.TabIndex = 26;
             // 
-            // panel7
+            // label51
             // 
-            this.panel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel7.Controls.Add(this.label35);
-            this.panel7.Controls.Add(this.label36);
-            this.panel7.Controls.Add(this.tb_AjouterMatiereNom);
-            this.panel7.Location = new System.Drawing.Point(25, 314);
-            this.panel7.Margin = new System.Windows.Forms.Padding(4);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1495, 428);
-            this.panel7.TabIndex = 31;
+            this.label51.AutoSize = true;
+            this.label51.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label51.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label51.ForeColor = System.Drawing.Color.White;
+            this.label51.Location = new System.Drawing.Point(772, 21);
+            this.label51.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label51.Name = "label51";
+            this.label51.Size = new System.Drawing.Size(118, 31);
+            this.label51.TabIndex = 42;
+            this.label51.Text = "Matières";
             // 
-            // tb_AjouterMatiereNom
+            // dataGridView2
             // 
-            this.tb_AjouterMatiereNom.Location = new System.Drawing.Point(628, 197);
-            this.tb_AjouterMatiereNom.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_AjouterMatiereNom.Name = "tb_AjouterMatiereNom";
-            this.tb_AjouterMatiereNom.Size = new System.Drawing.Size(310, 22);
-            this.tb_AjouterMatiereNom.TabIndex = 24;
+            this.dataGridView2.AllowUserToAddRows = false;
+            this.dataGridView2.AllowUserToDeleteRows = false;
+            this.dataGridView2.AllowUserToOrderColumns = true;
+            this.dataGridView2.AllowUserToResizeColumns = false;
+            this.dataGridView2.AllowUserToResizeRows = false;
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(772, 56);
+            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridView2.MultiSelect = false;
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.ReadOnly = true;
+            this.dataGridView2.RowHeadersVisible = false;
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView2.Size = new System.Drawing.Size(747, 670);
+            this.dataGridView2.TabIndex = 41;
             // 
-            // label36
+            // button14
             // 
-            this.label36.AutoSize = true;
-            this.label36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.ForeColor = System.Drawing.Color.White;
-            this.label36.Location = new System.Drawing.Point(531, 197);
-            this.label36.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(71, 31);
-            this.label36.TabIndex = 23;
-            this.label36.Text = "Nom";
+            this.button14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.button14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button14.ForeColor = System.Drawing.Color.White;
+            this.button14.Location = new System.Drawing.Point(772, 734);
+            this.button14.Margin = new System.Windows.Forms.Padding(4);
+            this.button14.Name = "button14";
+            this.button14.Size = new System.Drawing.Size(747, 64);
+            this.button14.TabIndex = 22;
+            this.button14.Text = "Retour";
+            this.button14.UseVisualStyleBackColor = false;
+            this.button14.Click += new System.EventHandler(this.btns_retourProviseur);
             // 
-            // label35
+            // btn_ProviseurModifierProf
             // 
-            this.label35.AutoSize = true;
-            this.label35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.ForeColor = System.Drawing.Color.White;
-            this.label35.Location = new System.Drawing.Point(622, 19);
-            this.label35.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(285, 31);
-            this.label35.TabIndex = 32;
-            this.label35.Text = "Données de la matière";
-            // 
-            // tabPage11
-            // 
-            this.tabPage11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
-            this.tabPage11.Controls.Add(this.dgv_ProviseurProfesseurs);
-            this.tabPage11.Controls.Add(this.button2);
-            this.tabPage11.Controls.Add(this.button3);
-            this.tabPage11.Controls.Add(this.button4);
-            this.tabPage11.Controls.Add(this.button5);
-            this.tabPage11.Controls.Add(this.dgv_ProviseurMatieres);
-            this.tabPage11.Controls.Add(this.label34);
-            this.tabPage11.Location = new System.Drawing.Point(4, 25);
-            this.tabPage11.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage11.Size = new System.Drawing.Size(1545, 824);
-            this.tabPage11.TabIndex = 0;
-            this.tabPage11.Text = "Matières & Professeurs";
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.ForeColor = System.Drawing.Color.White;
-            this.label34.Location = new System.Drawing.Point(8, 4);
-            this.label34.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(381, 54);
-            this.label34.TabIndex = 2;
-            this.label34.Text = "Bonjour NomProf";
-            // 
-            // dgv_ProviseurMatieres
-            // 
-            this.dgv_ProviseurMatieres.AllowUserToAddRows = false;
-            this.dgv_ProviseurMatieres.AllowUserToDeleteRows = false;
-            this.dgv_ProviseurMatieres.AllowUserToOrderColumns = true;
-            this.dgv_ProviseurMatieres.AllowUserToResizeColumns = false;
-            this.dgv_ProviseurMatieres.AllowUserToResizeRows = false;
-            this.dgv_ProviseurMatieres.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ProviseurMatieres.Location = new System.Drawing.Point(17, 59);
-            this.dgv_ProviseurMatieres.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ProviseurMatieres.MultiSelect = false;
-            this.dgv_ProviseurMatieres.Name = "dgv_ProviseurMatieres";
-            this.dgv_ProviseurMatieres.ReadOnly = true;
-            this.dgv_ProviseurMatieres.RowHeadersVisible = false;
-            this.dgv_ProviseurMatieres.RowHeadersWidth = 51;
-            this.dgv_ProviseurMatieres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ProviseurMatieres.Size = new System.Drawing.Size(749, 683);
-            this.dgv_ProviseurMatieres.TabIndex = 3;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.White;
-            this.button5.Location = new System.Drawing.Point(17, 750);
-            this.button5.Margin = new System.Windows.Forms.Padding(4);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(363, 64);
-            this.button5.TabIndex = 4;
-            this.button5.Text = "Ajouter matière";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(1158, 752);
-            this.button4.Margin = new System.Windows.Forms.Padding(4);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(363, 64);
-            this.button4.TabIndex = 5;
-            this.button4.Text = "Ajouter Professeurs";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(0)))), ((int)(((byte)(11)))));
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(388, 750);
-            this.button3.Margin = new System.Windows.Forms.Padding(4);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(378, 64);
-            this.button3.TabIndex = 6;
-            this.button3.Text = "Supprimer";
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(38)))), ((int)(((byte)(115)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(774, 752);
-            this.button2.Margin = new System.Windows.Forms.Padding(4);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(376, 64);
-            this.button2.TabIndex = 7;
-            this.button2.Text = "Modifier";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // dgv_ProviseurProfesseurs
-            // 
-            this.dgv_ProviseurProfesseurs.AllowUserToAddRows = false;
-            this.dgv_ProviseurProfesseurs.AllowUserToDeleteRows = false;
-            this.dgv_ProviseurProfesseurs.AllowUserToOrderColumns = true;
-            this.dgv_ProviseurProfesseurs.AllowUserToResizeColumns = false;
-            this.dgv_ProviseurProfesseurs.AllowUserToResizeRows = false;
-            this.dgv_ProviseurProfesseurs.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ProviseurProfesseurs.Location = new System.Drawing.Point(772, 59);
-            this.dgv_ProviseurProfesseurs.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ProviseurProfesseurs.MultiSelect = false;
-            this.dgv_ProviseurProfesseurs.Name = "dgv_ProviseurProfesseurs";
-            this.dgv_ProviseurProfesseurs.ReadOnly = true;
-            this.dgv_ProviseurProfesseurs.RowHeadersVisible = false;
-            this.dgv_ProviseurProfesseurs.RowHeadersWidth = 51;
-            this.dgv_ProviseurProfesseurs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ProviseurProfesseurs.Size = new System.Drawing.Size(749, 683);
-            this.dgv_ProviseurProfesseurs.TabIndex = 8;
-            // 
-            // tc_Proviseur
-            // 
-            this.tc_Proviseur.Controls.Add(this.tabPage11);
-            this.tc_Proviseur.Controls.Add(this.tabPage12);
-            this.tc_Proviseur.Controls.Add(this.tabPage13);
-            this.tc_Proviseur.Controls.Add(this.tabPage14);
-            this.tc_Proviseur.Controls.Add(this.tabPage15);
-            this.tc_Proviseur.Location = new System.Drawing.Point(6, 40);
-            this.tc_Proviseur.Margin = new System.Windows.Forms.Padding(4);
-            this.tc_Proviseur.Name = "tc_Proviseur";
-            this.tc_Proviseur.SelectedIndex = 0;
-            this.tc_Proviseur.Size = new System.Drawing.Size(1553, 853);
-            this.tc_Proviseur.TabIndex = 6;
+            this.btn_ProviseurModifierProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierProf.Location = new System.Drawing.Point(24, 734);
+            this.btn_ProviseurModifierProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierProf.Name = "btn_ProviseurModifierProf";
+            this.btn_ProviseurModifierProf.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierProf.TabIndex = 21;
+            this.btn_ProviseurModifierProf.Text = "Modifier Professeur";
+            this.btn_ProviseurModifierProf.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -2465,29 +2520,29 @@
             this.panel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ModifMatieresNotes)).EndInit();
             this.tabPage10.ResumeLayout(false);
-            this.tabPage15.ResumeLayout(false);
-            this.tabPage15.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.panel11.ResumeLayout(false);
-            this.panel11.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.tabPage14.ResumeLayout(false);
-            this.tabPage14.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
-            this.tabPage13.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
+            this.tc_Proviseur.ResumeLayout(false);
+            this.tabPage11.ResumeLayout(false);
+            this.tabPage11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurProfesseurs)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurMatieres)).EndInit();
             this.tabPage12.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.tabPage11.ResumeLayout(false);
-            this.tabPage11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurMatieres)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurProfesseurs)).EndInit();
-            this.tc_Proviseur.ResumeLayout(false);
+            this.tabPage13.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage15.ResumeLayout(false);
+            this.tabPage15.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
+            this.panel11.ResumeLayout(false);
+            this.panel11.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2606,10 +2661,10 @@
         private System.Windows.Forms.TabControl tc_Proviseur;
         private System.Windows.Forms.TabPage tabPage11;
         private System.Windows.Forms.DataGridView dgv_ProviseurProfesseurs;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btn_ProviseurModifier;
+        private System.Windows.Forms.Button btn_ProviseurSuprimmer;
+        private System.Windows.Forms.Button btn_ProviseurAjouterProf;
+        private System.Windows.Forms.Button btn_ProviseurAjouterMatiere;
         private System.Windows.Forms.DataGridView dgv_ProviseurMatieres;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.TabPage tabPage12;
@@ -2618,14 +2673,14 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.TextBox tb_AjouterMatiereNom;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btn_ProviseurAjouterMatiereToDb;
         private System.Windows.Forms.TabPage tabPage13;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.TextBox tb_ModifMatiereNom;
         private System.Windows.Forms.Button btn_RetourModifMatière;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button btn_ProviseurModifierMatiere;
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Panel panel12;
@@ -2638,7 +2693,7 @@
         private System.Windows.Forms.Label label67;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btn_ProviseurAjouterProfToDb;
         private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
@@ -2659,7 +2714,10 @@
         private System.Windows.Forms.Label label51;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.Button button14;
-        private System.Windows.Forms.Button button15;
+        private System.Windows.Forms.Button btn_ProviseurModifierProf;
+        private System.Windows.Forms.Button btn_ProvieurAdmin;
+        private System.Windows.Forms.Button btn_ProviseurToutsEleves;
+        private System.Windows.Forms.Label Professeurs;
     }
 }
 

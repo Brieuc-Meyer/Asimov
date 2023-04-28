@@ -39,5 +39,10 @@ routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:el
 routeur.get('/professeur/supprimerEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerEleve)
 routeur.get('/professeur/afficherMatieresProf/:perso_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherMatieresProf)
 
+routeur.get('/proviseur/afficherToutesLesMatieres', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherToutesLesMatieres)
+routeur.get('/proviseur/afficherProfesseurs', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherProfesseurs)
+
+routeur.get('/proviseur/afficherTousLesEleves', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherTousLesEleves)
+
 
 module.exports = routeur;
