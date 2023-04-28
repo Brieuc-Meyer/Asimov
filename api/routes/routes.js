@@ -41,8 +41,12 @@ routeur.get('/professeur/afficherMatieresProf/:perso_id', ctrlConnexion.testAuth
 
 routeur.get('/proviseur/afficherToutesLesMatieres', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherToutesLesMatieres)
 routeur.get('/proviseur/afficherProfesseurs', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherProfesseurs)
-
 routeur.get('/proviseur/afficherTousLesEleves', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherTousLesEleves)
+routeur.get('/proviseur/ajouterMatiere/:mat_nom', ctrlConnexion.testAuthentification, ctrlProviseurs.ajouterMatiere)
+routeur.get('/proviseur/modifMatiere/:mat_nom/:mat_id', ctrlConnexion.testAuthentification, ctrlProviseurs.modifMatiere)
+routeur.get('/proviseur/ajouterPersonnel/:perso_nom/:perso_identifiant/:perso_mdp/:perso_proviseur_on', ctrlConnexion.testAuthentification, ctrlProviseurs.ajouterPersonnel)
+routeur.get('/proviseur/modifPersonnel/:perso_nom/:perso_identifiant/:perso_mdp/:perso_proviseur_on/:perso_id', ctrlConnexion.testAuthentification, ctrlProviseurs.modifPersonnel)
+
 
 
 module.exports = routeur;

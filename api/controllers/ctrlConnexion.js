@@ -15,9 +15,6 @@ module.exports = {
     async testConnexionEleves(req, res) {
 
 
-        let eleve_identifiant = req.params.eleve_identifiant
-        let eleve_mdp = req.params.eleve_mdp
-
         try {
             let data = await modelConnexion.modeltestConnexionEleves(req, res)
             console.log(data)

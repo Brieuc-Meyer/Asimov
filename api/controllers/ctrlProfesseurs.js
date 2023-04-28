@@ -76,23 +76,6 @@ module.exports = {
 
 
     },
-    async afficherModifEleve(req, res) {
-
-        try {
-            /**
-             * @param req contient les data du medicament a modifier
-             */
-            let data = await modelProfesseurs.modelafficherModifEleve(req)
-            if (data) {
-                //console.log(data)
-                res.status(200).json(data)
-            }
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    },
 
 
     async modifEleve(req, res) {
@@ -171,25 +154,6 @@ module.exports = {
     },
     
     
-    async afficherModifNote(req, res) {
-
-        try {
-            /**
-             * @param req envoie à la BDD les data du medicament a modifier
-             */
-            let data = await modelProfesseurs.modelAfficherModifNote(req)
-            if (data) {
-                //console.log(data)
-                res.status(200).json(data)
-
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    },
 
     async modifNote(req, res) {
 

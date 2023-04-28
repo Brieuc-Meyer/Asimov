@@ -92,26 +92,6 @@ module.exports = {
     },
 
 
-    async modelafficherModifEleve(req) {
-
-        return new Promise((resolve, reject) => {
-
-            let eleve_id = req.params.eleve_id
-
-            let requeteSQL = 'SELECT * FROM eleves WHERE eleve_id = ?'
-            mysqlConnexion.query(requeteSQL, [eleve_id], (err, data) => {
-
-                if (err) {
-                    return reject(err)
-
-                }
-                return resolve(data)
-            })
-        }
-        )
-    },
-
-
 
 
     async modelmodifEleve(req) {
@@ -234,24 +214,7 @@ module.exports = {
         )
     },
 
-    async modelAfficherModifNote(req) {
 
-        return new Promise((resolve, reject) => {
-
-            let note_id = req.params.note_id
-
-            let requeteSQL = 'SELECT * FROM eleves WHERE note_id = ?'
-            mysqlConnexion.query(requeteSQL, [note_id], (err, data) => {
-
-                if (err) {
-                    return reject(err)
-
-                }
-                return resolve(data)
-            })
-        }
-        )
-    },
 
     async modelModifNote(req) {
 

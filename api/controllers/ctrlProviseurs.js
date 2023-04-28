@@ -60,7 +60,7 @@ module.exports = {
             
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Matière ajoutée avec succès")
             }
 
         } catch (error) {
@@ -80,7 +80,7 @@ module.exports = {
             let data = await modelProviseurs.modelSupprimerMatiere(req)
             if (data ) {
                 //console.log(data)
-                res.status(200)
+                res.json("Matière supprimée avec succès")
             }
         } catch (error) {
             console.log(error)
@@ -89,25 +89,6 @@ module.exports = {
 
     },
 
-    async afficherModifMatiere(req, res) {
-
-        try {
-            /**
-             * @param req envoie à la BDD les data de la mutuelle a modifier
-             */
-            let data = await modelProviseurs.modelAfficherModifMatiere(req)
-            
-            if (data) {
-                //console.log(data)
-                res.status(200).json(data)
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    },
     async modifMatiere(req, res) {
 
         try {
@@ -118,7 +99,7 @@ module.exports = {
             
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Matière modifiée avec succès")
             }
 
         } catch (error) {
@@ -158,7 +139,7 @@ module.exports = {
             
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json("Professeur ajouté avec succès")
             }
 
         } catch (error) {
@@ -168,25 +149,7 @@ module.exports = {
 
     },
 
-    async afficherModifPersonnel(req, res) {
 
-        try {
-            /**
-             * @param req envoie à la BDD les data de la mutuelle a modifier
-             */
-            let data = await modelProviseurs.modelAfficherModifPersonnel(req)
-            
-            if (data) {
-                //console.log(data)
-                res.status(200).json(data)
-            }
-
-        } catch (error) {
-            console.log(error)
-        }
-
-
-    },
 
     async modifPersonnel(req, res) {
 
@@ -198,7 +161,7 @@ module.exports = {
             
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Professeur modifié avec succès")
             }
 
         } catch (error) {
@@ -218,7 +181,7 @@ module.exports = {
             
             if (data) {
                 //console.log(data)
-                res.status(200)
+                res.json("Professeur suprimmé avec succès")
             }
 
         } catch (error) {
@@ -226,6 +189,6 @@ module.exports = {
         }
 
 
-    },
+    }
 
 }

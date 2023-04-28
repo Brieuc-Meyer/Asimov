@@ -35,6 +35,10 @@ namespace AsimovStudentManager
             tc_Prof.ItemSize = new Size(0, 1);
             tc_Prof.SizeMode = TabSizeMode.Fixed;
 
+            tc_Proviseur.Appearance = TabAppearance.FlatButtons;
+            tc_Proviseur.ItemSize = new Size(0, 1);
+            tc_Proviseur.SizeMode = TabSizeMode.Fixed;
+
             tb_identifiant.Text = "jeanne.dupuis";
             tb_mdp.Text = "root";
 
@@ -969,6 +973,8 @@ namespace AsimovStudentManager
                 dgv_ProviseurMatieres.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
                 dgv_ProviseurMatieres.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
             }
+            dgv_ProviseurMatieres.ClearSelection();
+
         }
         async void fill_dgv_ProviseurProfesseurs()
         {
@@ -1005,8 +1011,65 @@ namespace AsimovStudentManager
                 dgv_ProviseurProfesseurs.Rows[rowIndex].Cells[3].Value = jsonObject["perso_mdp"].ToString();
 
             }
-        }
+            dgv_ProviseurProfesseurs.ClearSelection();
 
+        }
+        async void fill_dgv_ProviseurAjouter()
+        {
+            dgv_ProviseurAjouter.Rows.Clear();
+            dgv_ProviseurAjouter.Columns.Clear();
+
+            #region style du datagridview
+            dgv_ProviseurAjouter.Columns.Add("mat_id", "mat_id");
+            dgv_ProviseurAjouter.Columns.Add("Nom de la matière", "Nom de la matière");
+
+            dgv_ProviseurAjouter.Columns[0].Visible = false;
+
+            foreach (DataGridViewColumn col in dgv_ProviseurAjouter.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherToutesLesMatieres/");
+            if (classes == null) { return; }
+            JArray jsonArray = JArray.Parse(classes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ProviseurAjouter.Rows.Add();
+                dgv_ProviseurAjouter.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
+                dgv_ProviseurAjouter.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+            }
+        }
+        async void fill_dgv_ProviseurModifier()
+        {
+            dgv_ProviseurModifier.Rows.Clear();
+            dgv_ProviseurModifier.Columns.Clear();
+
+            #region style du datagridview
+            dgv_ProviseurModifier.Columns.Add("mat_id", "mat_id");
+            dgv_ProviseurModifier.Columns.Add("Nom de la matière", "Nom de la matière");
+
+            dgv_ProviseurModifier.Columns[0].Visible = false;
+
+            foreach (DataGridViewColumn col in dgv_ProviseurModifier.Columns)
+            {
+                col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            }
+            #endregion
+
+            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherToutesLesMatieres/");
+            if (classes == null) { return; }
+            JArray jsonArray = JArray.Parse(classes);
+
+            foreach (JObject jsonObject in jsonArray)
+            {
+                int rowIndex = dgv_ProviseurModifier.Rows.Add();
+                dgv_ProviseurModifier.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
+                dgv_ProviseurModifier.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+            }
+        }
 
 
 
@@ -1016,8 +1079,9 @@ namespace AsimovStudentManager
         {
             fill_dgv_ProviseurMatieres();
             fill_dgv_ProviseurProfesseurs();
-            dgv_ProviseurProfesseurs.ClearSelection();
-            dgv_ProviseurMatieres.ClearSelection();
+            fill_dgv_ProviseurAjouter();
+            fill_dgv_ProviseurModifier();
+
 
             tc_Main.SelectTab(3);
             tc_Proviseur.SelectedIndex = 0;
@@ -1058,15 +1122,33 @@ namespace AsimovStudentManager
 
 
         //CRUD
+        //Insert
+        private void btn_ProviseurAjouterMatiereToDb_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btn_ProviseurAjouterProfToDb_Click(object sender, EventArgs e)
+        {
+
+        }
+        //Update
+        private void btn_ProviseurModifierProf_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
+        {
+
+        }
 
         //Contôles de saisie
 
-        private void dgv_ProviseurMatieres_Click(object sender, DataGridViewCellEventArgs e)
+        private void dgv_ProviseurMatieres_Click(object sender, EventArgs e)
         {
             dgv_ProviseurProfesseurs.ClearSelection();
         }
 
-        private void dgv_ProviseurProfesseurs_Click(object sender, DataGridViewCellEventArgs e)
+        private void dgv_ProviseurProfesseurs_Click(object sender, EventArgs e)
         {
             dgv_ProviseurMatieres.ClearSelection();
 

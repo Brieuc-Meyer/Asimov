@@ -173,7 +173,7 @@
             this.label54 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgv_ProviseurAjouter = new System.Windows.Forms.DataGridView();
             this.button10 = new System.Windows.Forms.Button();
             this.btn_ProviseurAjouterProfToDb = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
@@ -194,7 +194,7 @@
             this.textBox7 = new System.Windows.Forms.TextBox();
             this.textBox8 = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgv_ProviseurModifier = new System.Windows.Forms.DataGridView();
             this.button14 = new System.Windows.Forms.Button();
             this.btn_ProviseurModifierProf = new System.Windows.Forms.Button();
             this.tc_Main.SuspendLayout();
@@ -233,11 +233,11 @@
             this.panel6.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouter)).BeginInit();
             this.tabPage15.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurModifier)).BeginInit();
             this.SuspendLayout();
             // 
             // tc_Main
@@ -1686,7 +1686,7 @@
             // 
             this.btn_ProviseurToutsEleves.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             this.btn_ProviseurToutsEleves.ForeColor = System.Drawing.Color.White;
-            this.btn_ProviseurToutsEleves.Location = new System.Drawing.Point(1090, 2);
+            this.btn_ProviseurToutsEleves.Location = new System.Drawing.Point(1045, 0);
             this.btn_ProviseurToutsEleves.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ProviseurToutsEleves.Name = "btn_ProviseurToutsEleves";
             this.btn_ProviseurToutsEleves.Size = new System.Drawing.Size(228, 36);
@@ -1715,6 +1715,7 @@
             this.tc_Proviseur.Controls.Add(this.tabPage13);
             this.tc_Proviseur.Controls.Add(this.tabPage14);
             this.tc_Proviseur.Controls.Add(this.tabPage15);
+            this.tc_Proviseur.ItemSize = new System.Drawing.Size(151, 0);
             this.tc_Proviseur.Location = new System.Drawing.Point(6, 40);
             this.tc_Proviseur.Margin = new System.Windows.Forms.Padding(4);
             this.tc_Proviseur.Name = "tc_Proviseur";
@@ -1772,7 +1773,7 @@
             this.dgv_ProviseurProfesseurs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ProviseurProfesseurs.Size = new System.Drawing.Size(749, 683);
             this.dgv_ProviseurProfesseurs.TabIndex = 8;
-            this.dgv_ProviseurProfesseurs.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProviseurProfesseurs_Click);
+            this.dgv_ProviseurProfesseurs.Click += new System.EventHandler(this.dgv_ProviseurProfesseurs_Click);
             // 
             // btn_ProviseurModifier
             // 
@@ -1846,7 +1847,7 @@
             this.dgv_ProviseurMatieres.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_ProviseurMatieres.Size = new System.Drawing.Size(749, 683);
             this.dgv_ProviseurMatieres.TabIndex = 3;
-            this.dgv_ProviseurMatieres.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_ProviseurMatieres_Click);
+            this.dgv_ProviseurMatieres.Click += new System.EventHandler(this.dgv_ProviseurMatieres_Click);
             // 
             // label34
             // 
@@ -1945,6 +1946,7 @@
             this.btn_ProviseurAjouterMatiereToDb.TabIndex = 11;
             this.btn_ProviseurAjouterMatiereToDb.Text = "Ajouter matière";
             this.btn_ProviseurAjouterMatiereToDb.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAjouterMatiereToDb.Click += new System.EventHandler(this.btn_ProviseurAjouterMatiereToDb_Click);
             // 
             // tabPage13
             // 
@@ -2031,6 +2033,7 @@
             this.btn_ProviseurModifierMatiere.TabIndex = 21;
             this.btn_ProviseurModifierMatiere.Text = "Modifier matière";
             this.btn_ProviseurModifierMatiere.UseVisualStyleBackColor = false;
+            this.btn_ProviseurModifierMatiere.Click += new System.EventHandler(this.btn_ProviseurModifierMatiere_Click);
             // 
             // tabPage14
             // 
@@ -2038,7 +2041,7 @@
             this.tabPage14.Controls.Add(this.label49);
             this.tabPage14.Controls.Add(this.panel12);
             this.tabPage14.Controls.Add(this.label67);
-            this.tabPage14.Controls.Add(this.dataGridView1);
+            this.tabPage14.Controls.Add(this.dgv_ProviseurAjouter);
             this.tabPage14.Controls.Add(this.button10);
             this.tabPage14.Controls.Add(this.btn_ProviseurAjouterProfToDb);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
@@ -2154,24 +2157,24 @@
             this.label67.TabIndex = 22;
             this.label67.Text = "Matières";
             // 
-            // dataGridView1
+            // dgv_ProviseurAjouter
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AllowUserToOrderColumns = true;
-            this.dataGridView1.AllowUserToResizeColumns = false;
-            this.dataGridView1.AllowUserToResizeRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(781, 82);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView1.MultiSelect = false;
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(747, 644);
-            this.dataGridView1.TabIndex = 21;
+            this.dgv_ProviseurAjouter.AllowUserToAddRows = false;
+            this.dgv_ProviseurAjouter.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurAjouter.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurAjouter.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurAjouter.AllowUserToResizeRows = false;
+            this.dgv_ProviseurAjouter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurAjouter.Location = new System.Drawing.Point(781, 82);
+            this.dgv_ProviseurAjouter.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurAjouter.MultiSelect = false;
+            this.dgv_ProviseurAjouter.Name = "dgv_ProviseurAjouter";
+            this.dgv_ProviseurAjouter.ReadOnly = true;
+            this.dgv_ProviseurAjouter.RowHeadersVisible = false;
+            this.dgv_ProviseurAjouter.RowHeadersWidth = 51;
+            this.dgv_ProviseurAjouter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurAjouter.Size = new System.Drawing.Size(747, 644);
+            this.dgv_ProviseurAjouter.TabIndex = 21;
             // 
             // button10
             // 
@@ -2199,6 +2202,7 @@
             this.btn_ProviseurAjouterProfToDb.TabIndex = 8;
             this.btn_ProviseurAjouterProfToDb.Text = "Ajouter professeur";
             this.btn_ProviseurAjouterProfToDb.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAjouterProfToDb.Click += new System.EventHandler(this.btn_ProviseurAjouterProfToDb_Click);
             // 
             // tabPage15
             // 
@@ -2208,7 +2212,7 @@
             this.tabPage15.Controls.Add(this.panel10);
             this.tabPage15.Controls.Add(this.panel11);
             this.tabPage15.Controls.Add(this.label51);
-            this.tabPage15.Controls.Add(this.dataGridView2);
+            this.tabPage15.Controls.Add(this.dgv_ProviseurModifier);
             this.tabPage15.Controls.Add(this.button14);
             this.tabPage15.Controls.Add(this.btn_ProviseurModifierProf);
             this.tabPage15.Location = new System.Drawing.Point(4, 25);
@@ -2425,24 +2429,24 @@
             this.label51.TabIndex = 42;
             this.label51.Text = "Matières";
             // 
-            // dataGridView2
+            // dgv_ProviseurModifier
             // 
-            this.dataGridView2.AllowUserToAddRows = false;
-            this.dataGridView2.AllowUserToDeleteRows = false;
-            this.dataGridView2.AllowUserToOrderColumns = true;
-            this.dataGridView2.AllowUserToResizeColumns = false;
-            this.dataGridView2.AllowUserToResizeRows = false;
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(772, 56);
-            this.dataGridView2.Margin = new System.Windows.Forms.Padding(4);
-            this.dataGridView2.MultiSelect = false;
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.RowHeadersVisible = false;
-            this.dataGridView2.RowHeadersWidth = 51;
-            this.dataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView2.Size = new System.Drawing.Size(747, 670);
-            this.dataGridView2.TabIndex = 41;
+            this.dgv_ProviseurModifier.AllowUserToAddRows = false;
+            this.dgv_ProviseurModifier.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurModifier.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurModifier.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurModifier.AllowUserToResizeRows = false;
+            this.dgv_ProviseurModifier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurModifier.Location = new System.Drawing.Point(772, 56);
+            this.dgv_ProviseurModifier.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurModifier.MultiSelect = false;
+            this.dgv_ProviseurModifier.Name = "dgv_ProviseurModifier";
+            this.dgv_ProviseurModifier.ReadOnly = true;
+            this.dgv_ProviseurModifier.RowHeadersVisible = false;
+            this.dgv_ProviseurModifier.RowHeadersWidth = 51;
+            this.dgv_ProviseurModifier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurModifier.Size = new System.Drawing.Size(747, 670);
+            this.dgv_ProviseurModifier.TabIndex = 41;
             // 
             // button14
             // 
@@ -2470,6 +2474,7 @@
             this.btn_ProviseurModifierProf.TabIndex = 21;
             this.btn_ProviseurModifierProf.Text = "Modifier Professeur";
             this.btn_ProviseurModifierProf.UseVisualStyleBackColor = false;
+            this.btn_ProviseurModifierProf.Click += new System.EventHandler(this.btn_ProviseurModifierProf_Click);
             // 
             // Form1
             // 
@@ -2535,14 +2540,14 @@
             this.tabPage14.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouter)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.tabPage15.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurModifier)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2691,7 +2696,7 @@
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgv_ProviseurAjouter;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btn_ProviseurAjouterProfToDb;
         private System.Windows.Forms.TabPage tabPage15;
@@ -2712,7 +2717,7 @@
         private System.Windows.Forms.TextBox textBox7;
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgv_ProviseurModifier;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button btn_ProviseurModifierProf;
         private System.Windows.Forms.Button btn_ProvieurAdmin;

@@ -100,27 +100,6 @@ module.exports = {
     },
 
 
-    async modelAfficherModifMatiere(req) {
-
-        return new Promise((resolve, reject) => {
-
-            let mat_id = req.params.mat_id
-
-            let requeteSQL = 'SELECT * FROM matieres WHERE mat_id = ?'
-            mysqlConnexion.query(requeteSQL, [mat_id], (err, data) => {
-
-                if (err) {
-                    return reject(err)
-
-                }
-                return resolve(data)
-            })
-        }
-        )
-    },
-
-
-
 
     async modelModifMatiere(req) {
 
@@ -187,24 +166,7 @@ module.exports = {
         )
     },
 
-    async modelAfficherModifPersonnel(req) {
 
-        return new Promise((resolve, reject) => {
-
-            let perso_id = req.params.perso_id
-
-            let requeteSQL = 'SELECT * FROM personnels WHERE perso_id = ?'
-            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
-
-                if (err) {
-                    return reject(err)
-
-                }
-                return resolve(data)
-            })
-        }
-        )
-    },
 
     async modelModifPersonnel(req) {
 
