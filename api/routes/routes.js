@@ -24,7 +24,6 @@ routeur.get('/eleve/:eleve_id/moyennes', ctrlConnexion.testAuthentification, ctr
 
 routeur.get('/professeur/:perso_id/voirEleves', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherElevesUnProf)
 routeur.get('/professeur/ajouterEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlConnexion.testAuthentification, ctrlProfesseurs.ajouterEleve)
-routeur.get('/professeur/voirModifEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherModifEleve)
 routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifEleve)
 routeur.get('/professeur/supprimerEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerEleve)
 routeur.get('/professeur/afficherClassesProf/:perso_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherClassesProf)
@@ -34,10 +33,12 @@ routeur.get('/professeur/voirNotesUnEleve/:eleve_id', ctrlConnexion.testAuthenti
 routeur.get('/professeur/ajouterNote/:note_eleve_id/:note_pourcent/:note_prof_id/:note_mat_id/:note_date_evaluation/:note_intitule/:note_description', ctrlConnexion.testAuthentification, ctrlProfesseurs.ajouterNote)
 routeur.get('/professeur/supprimerNote/:note_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerNote)
 routeur.get('/professeur/modifNote/:note_eleve_id/:note_pourcent/:note_prof_id/:note_mat_id/:note_date_evaluation/:note_intitule/:note_description/:note_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifNote)
-routeur.get('/professeur/voirModifEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherModifEleve)
 routeur.get('/professeur/modifEleve/:eleve_nom/:eleve_identifiant/:eleve_mdp/:eleve_class_grade', ctrlConnexion.testAuthentification, ctrlProfesseurs.modifEleve)
 routeur.get('/professeur/supprimerEleve/:eleve_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.supprimerEleve)
+
 routeur.get('/professeur/afficherMatieresProf/:perso_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherMatieresProf)
+routeur.get('/professeur/afficherClassesProf/:perso_id', ctrlConnexion.testAuthentification, ctrlProfesseurs.afficherClassesProf)
+
 
 routeur.get('/proviseur/afficherToutesLesMatieres', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherToutesLesMatieres)
 routeur.get('/proviseur/afficherProfesseurs', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherProfesseurs)

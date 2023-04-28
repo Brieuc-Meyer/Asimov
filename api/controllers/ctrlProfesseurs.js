@@ -18,7 +18,7 @@ module.exports = {
            
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json(data)
             }
         } catch (error) {
             console.log(error)
@@ -33,7 +33,7 @@ module.exports = {
            
             if (data) {
                 //console.log(data)
-                res.status(200).json(data)
+                res.json(data)
             }
         } catch (error) {
             console.log(error)

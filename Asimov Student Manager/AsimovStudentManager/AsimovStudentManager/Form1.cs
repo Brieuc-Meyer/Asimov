@@ -3,15 +3,8 @@ using System.Drawing;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Text.Json;
-using System.Xml.Linq;
-using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
-using System.Collections;
-using System.Data;
-using System.Data.SqlClient;
-using System.Text.Json.Nodes;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Net;
 
@@ -1014,60 +1007,60 @@ namespace AsimovStudentManager
             dgv_ProviseurProfesseurs.ClearSelection();
 
         }
-        async void fill_dgv_ProviseurAjouter()
+        async void fill_dgv_ProviseurShowClassesProf()
         {
-            dgv_ProviseurAjouter.Rows.Clear();
-            dgv_ProviseurAjouter.Columns.Clear();
+            dgv_ProviseurShowClassesProf.Rows.Clear();
+            dgv_ProviseurShowClassesProf.Columns.Clear();
 
             #region style du datagridview
-            dgv_ProviseurAjouter.Columns.Add("mat_id", "mat_id");
-            dgv_ProviseurAjouter.Columns.Add("Nom de la matière", "Nom de la matière");
+            dgv_ProviseurShowClassesProf.Columns.Add("class_grade", "class_grade");
+            dgv_ProviseurShowClassesProf.Columns.Add("Nom de la classe", "Nom de la classe");
 
-            dgv_ProviseurAjouter.Columns[0].Visible = false;
+            dgv_ProviseurShowClassesProf.Columns[0].Visible = false;
 
-            foreach (DataGridViewColumn col in dgv_ProviseurAjouter.Columns)
+            foreach (DataGridViewColumn col in dgv_ProviseurShowClassesProf.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             #endregion
 
-            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherToutesLesMatieres/");
+            string classes = await GetUrlBody("https://localhost:3000/professeur/afficherClassesProf/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString());
             if (classes == null) { return; }
             JArray jsonArray = JArray.Parse(classes);
 
             foreach (JObject jsonObject in jsonArray)
             {
-                int rowIndex = dgv_ProviseurAjouter.Rows.Add();
-                dgv_ProviseurAjouter.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
-                dgv_ProviseurAjouter.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+                int rowIndex = dgv_ProviseurShowClassesProf.Rows.Add();
+                dgv_ProviseurShowClassesProf.Rows[rowIndex].Cells[0].Value = jsonObject["class_grade"].ToString();
+                dgv_ProviseurShowClassesProf.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
             }
         }
-        async void fill_dgv_ProviseurModifier()
+        async void fill_dgv_ProviseurShowMatieresProf()
         {
-            dgv_ProviseurModifier.Rows.Clear();
-            dgv_ProviseurModifier.Columns.Clear();
+            dgv_ProviseurShowMatieresProf.Rows.Clear();
+            dgv_ProviseurShowMatieresProf.Columns.Clear();
 
             #region style du datagridview
-            dgv_ProviseurModifier.Columns.Add("mat_id", "mat_id");
-            dgv_ProviseurModifier.Columns.Add("Nom de la matière", "Nom de la matière");
+            dgv_ProviseurShowMatieresProf.Columns.Add("mat_id", "mat_id");
+            dgv_ProviseurShowMatieresProf.Columns.Add("Nom de la matière", "Nom de la matière");
 
-            dgv_ProviseurModifier.Columns[0].Visible = false;
+            dgv_ProviseurShowMatieresProf.Columns[0].Visible = false;
 
-            foreach (DataGridViewColumn col in dgv_ProviseurModifier.Columns)
+            foreach (DataGridViewColumn col in dgv_ProviseurShowMatieresProf.Columns)
             {
                 col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
             #endregion
 
-            string classes = await GetUrlBody("https://localhost:3000/proviseur/afficherToutesLesMatieres/");
+            string classes = await GetUrlBody("https://localhost:3000/professeur/afficherMatieresProf/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString());
             if (classes == null) { return; }
             JArray jsonArray = JArray.Parse(classes);
 
             foreach (JObject jsonObject in jsonArray)
             {
-                int rowIndex = dgv_ProviseurModifier.Rows.Add();
-                dgv_ProviseurModifier.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
-                dgv_ProviseurModifier.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
+                int rowIndex = dgv_ProviseurShowMatieresProf.Rows.Add();
+                dgv_ProviseurShowMatieresProf.Rows[rowIndex].Cells[0].Value = jsonObject["mat_id"].ToString();
+                dgv_ProviseurShowMatieresProf.Rows[rowIndex].Cells[1].Value = jsonObject["mat_nom"].ToString();
             }
         }
 
@@ -1079,8 +1072,6 @@ namespace AsimovStudentManager
         {
             fill_dgv_ProviseurMatieres();
             fill_dgv_ProviseurProfesseurs();
-            fill_dgv_ProviseurAjouter();
-            fill_dgv_ProviseurModifier();
 
 
             tc_Main.SelectTab(3);
@@ -1117,26 +1108,153 @@ namespace AsimovStudentManager
             tc_Proviseur.SelectedIndex = 0;
         }
 
+        private void btn_ProviseurModifier_Click(object sender, EventArgs e)
+        {
+            if (dgv_ProviseurProfesseurs.SelectedRows.Count != 0)
+            {
+                fill_dgv_ProviseurShowClassesProf();
+                fill_dgv_ProviseurShowMatieresProf();
+                tc_Proviseur.SelectedIndex = 4;
+
+            }
+            if (dgv_ProviseurMatieres.SelectedRows.Count != 0)
+            {
+                tc_Proviseur.SelectedIndex = 2;
+            }
+
+        }
+
 
 
 
 
         //CRUD
         //Insert
-        private void btn_ProviseurAjouterMatiereToDb_Click(object sender, EventArgs e)
+        private async void btn_ProviseurAjouterMatiereToDb_Click(object sender, EventArgs e)
         {
 
+            if (tb_AjouterMatiereNom.Text != "")
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter la matière: " + tb_AjouterMatiereNom.Text, "Ajouter matière", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string addRes = await GetUrlBody("https://localhost:3000/proviseur/ajouterMatiere/" + tb_AjouterMatiereNom.Text.Trim());
+                    if (addRes == null) { return; }
+                    string res = addRes.Replace("\"", "");
+                    MessageBox.Show(res);
+
+                    fill_dgv_ProviseurMatieres();
+                    fill_dgv_ProviseurProfesseurs();
+
+                    tb_AjouterMatiereNom.Text = "";
+
+                    tc_Proviseur.SelectedIndex = 0;
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez entrer un nom pour la matière");
+            }
+
         }
-        private void btn_ProviseurAjouterProfToDb_Click(object sender, EventArgs e)
+        private async void btn_ProviseurAjouterProfToDb_Click(object sender, EventArgs e)
         {
+       
+            if (tb_ProviseurAddProfPrenomNom.Text != "")
+            {
+                if (tb_ProviseurAddProfIdentifiant.Text != "")
+                {
+                    if (tb_ProviseurAddProfMdp.Text != "")
+                    {
+                        DialogResult result = MessageBox.Show("Voulez vous vraiment ajouter l'élève : " + tb_addElevePrenom.Text, "Ajouter élève", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            string addRes = await GetUrlBody("https://localhost:3000/proviseur/ajouterPersonnel/" + tb_ProviseurAddProfPrenomNom.Text.Trim() + "/" + tb_ProviseurAddProfIdentifiant.Text.Trim() + "/" + tb_ProviseurAddProfMdp.Text.Trim() + "/0" );
+                            if (addRes == null) { return; }
+                            string res = addRes.Replace("\"", "");
+                            MessageBox.Show(res);
+                            fill_dgv_ProviseurMatieres();
+                            fill_dgv_ProviseurProfesseurs();
+
+                            tc_Prof.SelectedIndex = 0;
+                            tb_ProviseurAddProfPrenomNom.Text = "";
+                            tb_ProviseurAddProfIdentifiant.Text = "";
+                            tb_ProviseurAddProfMdp.Text = "";
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entrer un mot de passe pour le professeur");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez entrer un identifiant pour le professeur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez entrer un nom prénom pour le Professeur");
+            }
+            
 
         }
         //Update
-        private void btn_ProviseurModifierProf_Click(object sender, EventArgs e)
+        private async void btn_ProviseurModifierProf_Click(object sender, EventArgs e)
         {
+            if (dgv_ProviseurAjouterProfMatiere.SelectedRows.Count != 0)
+            {
+                if (tb_modifProfPrenom.Text != "")
+                {
+                    if (tb_modifProfIdentifiant.Text != "")
+                    {
+                        if (tb_modifProfMdp.Text != "")
+                        {
+                            DialogResult result = MessageBox.Show("Voulez vous vraiment modifier le professeur : " + tb_modifProfPrenom.Text, "Modifier professeur", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                            if (result == DialogResult.Yes)
+                            {
+                                string modifRes = await GetUrlBody("https://localhost:3000/proviseur/ajouterPersonnel/" + tb_modifProfPrenom.Text.Trim() + "/" + tb_modifProfIdentifiant.Text.Trim() + "/" + tb_modifProfMdp.Text.Trim() + "/0/" + dgv_ProviseurAjouterProfMatiere.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString());
+                                if (modifRes == null) { return; }
+                                string res = modifRes.Replace("\"", "");
+                                MessageBox.Show(res);
+                                fill_dgv_ProfEleves();
+                                tc_Prof.SelectedIndex = 0;
+                                tb_modifEleveShowPrenom.Text = "";
+                                tb_modifEleveShowIdentifiant.Text = "";
+                                tb_modifEleveShowMdp.Text = "";
+                                tb_modifEleveShowClass.Text = "";
+
+                                tb_modifElevePrenom.Text = "";
+                                tb_modifEleveIdentifiant.Text = "";
+                                tb_modifEleveMdp.Text = "";
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Veuillez entrer un nouveau mot de passe pour le professeur");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Veuillez entrer un nouveau identifiant pour le professeur");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Veuillez entrer un nouveau nom prénom pour le professeur");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez choisir une nouvelle matière pour le professeur");
+            }
 
         }
-        private void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
+        private  void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
         {
 
         }

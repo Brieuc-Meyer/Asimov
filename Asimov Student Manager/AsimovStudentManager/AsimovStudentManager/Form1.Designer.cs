@@ -166,23 +166,25 @@
             this.tabPage14 = new System.Windows.Forms.TabPage();
             this.label49 = new System.Windows.Forms.Label();
             this.panel12 = new System.Windows.Forms.Panel();
-            this.textBox12 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
-            this.textBox11 = new System.Windows.Forms.TextBox();
+            this.tb_ProviseurAddProfIdentifiant = new System.Windows.Forms.TextBox();
+            this.tb_ProviseurAddProfMdp = new System.Windows.Forms.TextBox();
+            this.tb_ProviseurAddProfPrenomNom = new System.Windows.Forms.TextBox();
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
             this.label67 = new System.Windows.Forms.Label();
-            this.dgv_ProviseurAjouter = new System.Windows.Forms.DataGridView();
+            this.dgv_ProviseurAjouterProfMatiere = new System.Windows.Forms.DataGridView();
             this.button10 = new System.Windows.Forms.Button();
             this.btn_ProviseurAjouterProfToDb = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.dgv_ProviseurShowClassesProf = new System.Windows.Forms.DataGridView();
+            this.label47 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tb_modifProfIdentifiant = new System.Windows.Forms.TextBox();
+            this.tb_modifProfMdp = new System.Windows.Forms.TextBox();
+            this.tb_modifProfPrenom = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -190,13 +192,15 @@
             this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.label46 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.tb_modifProfShowMdp = new System.Windows.Forms.TextBox();
+            this.tb_modifProfShowPrenom = new System.Windows.Forms.TextBox();
+            this.tb_modifProfShowIdentifiant = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
-            this.dgv_ProviseurModifier = new System.Windows.Forms.DataGridView();
+            this.dgv_ProviseurShowMatieresProf = new System.Windows.Forms.DataGridView();
             this.button14 = new System.Windows.Forms.Button();
             this.btn_ProviseurModifierProf = new System.Windows.Forms.Button();
+            this.btn_ProviseurModifierMatieresProf = new System.Windows.Forms.Button();
+            this.btn_ProviseurModifierClassesProf = new System.Windows.Forms.Button();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -233,11 +237,12 @@
             this.panel6.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouter)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouterProfMatiere)).BeginInit();
             this.tabPage15.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowClassesProf)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurModifier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowMatieresProf)).BeginInit();
             this.SuspendLayout();
             // 
             // tc_Main
@@ -1787,6 +1792,7 @@
             this.btn_ProviseurModifier.TabIndex = 7;
             this.btn_ProviseurModifier.Text = "Modifier";
             this.btn_ProviseurModifier.UseVisualStyleBackColor = false;
+            this.btn_ProviseurModifier.Click += new System.EventHandler(this.btn_ProviseurModifier_Click);
             // 
             // btn_ProviseurSuprimmer
             // 
@@ -2041,7 +2047,7 @@
             this.tabPage14.Controls.Add(this.label49);
             this.tabPage14.Controls.Add(this.panel12);
             this.tabPage14.Controls.Add(this.label67);
-            this.tabPage14.Controls.Add(this.dgv_ProviseurAjouter);
+            this.tabPage14.Controls.Add(this.dgv_ProviseurAjouterProfMatiere);
             this.tabPage14.Controls.Add(this.button10);
             this.tabPage14.Controls.Add(this.btn_ProviseurAjouterProfToDb);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
@@ -2060,16 +2066,16 @@
             this.label49.Location = new System.Drawing.Point(14, 39);
             this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(426, 31);
+            this.label49.Size = new System.Drawing.Size(304, 31);
             this.label49.TabIndex = 48;
-            this.label49.Text = "Nouvelles données du proffesseur";
+            this.label49.Text = "Données du proffesseur";
             // 
             // panel12
             // 
             this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel12.Controls.Add(this.textBox12);
-            this.panel12.Controls.Add(this.textBox9);
-            this.panel12.Controls.Add(this.textBox11);
+            this.panel12.Controls.Add(this.tb_ProviseurAddProfIdentifiant);
+            this.panel12.Controls.Add(this.tb_ProviseurAddProfMdp);
+            this.panel12.Controls.Add(this.tb_ProviseurAddProfPrenomNom);
             this.panel12.Controls.Add(this.label53);
             this.panel12.Controls.Add(this.label54);
             this.panel12.Controls.Add(this.label68);
@@ -2079,31 +2085,31 @@
             this.panel12.Size = new System.Drawing.Size(740, 644);
             this.panel12.TabIndex = 47;
             // 
-            // textBox12
+            // tb_ProviseurAddProfIdentifiant
             // 
-            this.textBox12.Location = new System.Drawing.Point(384, 98);
-            this.textBox12.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox12.MaxLength = 2;
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(265, 22);
-            this.textBox12.TabIndex = 33;
+            this.tb_ProviseurAddProfIdentifiant.Location = new System.Drawing.Point(384, 98);
+            this.tb_ProviseurAddProfIdentifiant.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_ProviseurAddProfIdentifiant.MaxLength = 2;
+            this.tb_ProviseurAddProfIdentifiant.Name = "tb_ProviseurAddProfIdentifiant";
+            this.tb_ProviseurAddProfIdentifiant.Size = new System.Drawing.Size(265, 22);
+            this.tb_ProviseurAddProfIdentifiant.TabIndex = 33;
             // 
-            // textBox9
+            // tb_ProviseurAddProfMdp
             // 
-            this.textBox9.Location = new System.Drawing.Point(384, 155);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(268, 22);
-            this.textBox9.TabIndex = 31;
+            this.tb_ProviseurAddProfMdp.Location = new System.Drawing.Point(384, 155);
+            this.tb_ProviseurAddProfMdp.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_ProviseurAddProfMdp.Name = "tb_ProviseurAddProfMdp";
+            this.tb_ProviseurAddProfMdp.Size = new System.Drawing.Size(268, 22);
+            this.tb_ProviseurAddProfMdp.TabIndex = 31;
             // 
-            // textBox11
+            // tb_ProviseurAddProfPrenomNom
             // 
-            this.textBox11.Location = new System.Drawing.Point(387, 26);
-            this.textBox11.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox11.MaxLength = 2;
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(265, 22);
-            this.textBox11.TabIndex = 27;
+            this.tb_ProviseurAddProfPrenomNom.Location = new System.Drawing.Point(387, 26);
+            this.tb_ProviseurAddProfPrenomNom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_ProviseurAddProfPrenomNom.MaxLength = 255;
+            this.tb_ProviseurAddProfPrenomNom.Name = "tb_ProviseurAddProfPrenomNom";
+            this.tb_ProviseurAddProfPrenomNom.Size = new System.Drawing.Size(265, 22);
+            this.tb_ProviseurAddProfPrenomNom.TabIndex = 27;
             // 
             // label53
             // 
@@ -2157,24 +2163,24 @@
             this.label67.TabIndex = 22;
             this.label67.Text = "Matières";
             // 
-            // dgv_ProviseurAjouter
+            // dgv_ProviseurAjouterProfMatiere
             // 
-            this.dgv_ProviseurAjouter.AllowUserToAddRows = false;
-            this.dgv_ProviseurAjouter.AllowUserToDeleteRows = false;
-            this.dgv_ProviseurAjouter.AllowUserToOrderColumns = true;
-            this.dgv_ProviseurAjouter.AllowUserToResizeColumns = false;
-            this.dgv_ProviseurAjouter.AllowUserToResizeRows = false;
-            this.dgv_ProviseurAjouter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ProviseurAjouter.Location = new System.Drawing.Point(781, 82);
-            this.dgv_ProviseurAjouter.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ProviseurAjouter.MultiSelect = false;
-            this.dgv_ProviseurAjouter.Name = "dgv_ProviseurAjouter";
-            this.dgv_ProviseurAjouter.ReadOnly = true;
-            this.dgv_ProviseurAjouter.RowHeadersVisible = false;
-            this.dgv_ProviseurAjouter.RowHeadersWidth = 51;
-            this.dgv_ProviseurAjouter.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ProviseurAjouter.Size = new System.Drawing.Size(747, 644);
-            this.dgv_ProviseurAjouter.TabIndex = 21;
+            this.dgv_ProviseurAjouterProfMatiere.AllowUserToAddRows = false;
+            this.dgv_ProviseurAjouterProfMatiere.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurAjouterProfMatiere.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurAjouterProfMatiere.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurAjouterProfMatiere.AllowUserToResizeRows = false;
+            this.dgv_ProviseurAjouterProfMatiere.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurAjouterProfMatiere.Location = new System.Drawing.Point(781, 82);
+            this.dgv_ProviseurAjouterProfMatiere.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurAjouterProfMatiere.MultiSelect = false;
+            this.dgv_ProviseurAjouterProfMatiere.Name = "dgv_ProviseurAjouterProfMatiere";
+            this.dgv_ProviseurAjouterProfMatiere.ReadOnly = true;
+            this.dgv_ProviseurAjouterProfMatiere.RowHeadersVisible = false;
+            this.dgv_ProviseurAjouterProfMatiere.RowHeadersWidth = 51;
+            this.dgv_ProviseurAjouterProfMatiere.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurAjouterProfMatiere.Size = new System.Drawing.Size(747, 644);
+            this.dgv_ProviseurAjouterProfMatiere.TabIndex = 21;
             // 
             // button10
             // 
@@ -2207,12 +2213,16 @@
             // tabPage15
             // 
             this.tabPage15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage15.Controls.Add(this.btn_ProviseurModifierClassesProf);
+            this.tabPage15.Controls.Add(this.btn_ProviseurModifierMatieresProf);
+            this.tabPage15.Controls.Add(this.dgv_ProviseurShowClassesProf);
+            this.tabPage15.Controls.Add(this.label47);
             this.tabPage15.Controls.Add(this.label37);
             this.tabPage15.Controls.Add(this.label38);
             this.tabPage15.Controls.Add(this.panel10);
             this.tabPage15.Controls.Add(this.panel11);
             this.tabPage15.Controls.Add(this.label51);
-            this.tabPage15.Controls.Add(this.dgv_ProviseurModifier);
+            this.tabPage15.Controls.Add(this.dgv_ProviseurShowMatieresProf);
             this.tabPage15.Controls.Add(this.button14);
             this.tabPage15.Controls.Add(this.btn_ProviseurModifierProf);
             this.tabPage15.Location = new System.Drawing.Point(4, 25);
@@ -2222,6 +2232,38 @@
             this.tabPage15.Size = new System.Drawing.Size(1545, 824);
             this.tabPage15.TabIndex = 4;
             this.tabPage15.Text = "Modifier Professeur";
+            // 
+            // dgv_ProviseurShowClassesProf
+            // 
+            this.dgv_ProviseurShowClassesProf.AllowUserToAddRows = false;
+            this.dgv_ProviseurShowClassesProf.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurShowClassesProf.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurShowClassesProf.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurShowClassesProf.AllowUserToResizeRows = false;
+            this.dgv_ProviseurShowClassesProf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurShowClassesProf.Location = new System.Drawing.Point(772, 437);
+            this.dgv_ProviseurShowClassesProf.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurShowClassesProf.MultiSelect = false;
+            this.dgv_ProviseurShowClassesProf.Name = "dgv_ProviseurShowClassesProf";
+            this.dgv_ProviseurShowClassesProf.ReadOnly = true;
+            this.dgv_ProviseurShowClassesProf.RowHeadersVisible = false;
+            this.dgv_ProviseurShowClassesProf.RowHeadersWidth = 51;
+            this.dgv_ProviseurShowClassesProf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurShowClassesProf.Size = new System.Drawing.Size(747, 212);
+            this.dgv_ProviseurShowClassesProf.TabIndex = 48;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.ForeColor = System.Drawing.Color.White;
+            this.label47.Location = new System.Drawing.Point(772, 402);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(112, 31);
+            this.label47.TabIndex = 47;
+            this.label47.Text = "Classes";
             // 
             // label37
             // 
@@ -2252,9 +2294,9 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel10.Controls.Add(this.textBox1);
-            this.panel10.Controls.Add(this.textBox2);
-            this.panel10.Controls.Add(this.textBox3);
+            this.panel10.Controls.Add(this.tb_modifProfIdentifiant);
+            this.panel10.Controls.Add(this.tb_modifProfMdp);
+            this.panel10.Controls.Add(this.tb_modifProfPrenom);
             this.panel10.Controls.Add(this.label40);
             this.panel10.Controls.Add(this.label42);
             this.panel10.Controls.Add(this.label43);
@@ -2264,31 +2306,31 @@
             this.panel10.Size = new System.Drawing.Size(740, 288);
             this.panel10.TabIndex = 44;
             // 
-            // textBox1
+            // tb_modifProfIdentifiant
             // 
-            this.textBox1.Location = new System.Drawing.Point(400, 132);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox1.MaxLength = 2;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(265, 22);
-            this.textBox1.TabIndex = 39;
+            this.tb_modifProfIdentifiant.Location = new System.Drawing.Point(400, 132);
+            this.tb_modifProfIdentifiant.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfIdentifiant.MaxLength = 2;
+            this.tb_modifProfIdentifiant.Name = "tb_modifProfIdentifiant";
+            this.tb_modifProfIdentifiant.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfIdentifiant.TabIndex = 39;
             // 
-            // textBox2
+            // tb_modifProfMdp
             // 
-            this.textBox2.Location = new System.Drawing.Point(400, 181);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(268, 22);
-            this.textBox2.TabIndex = 38;
+            this.tb_modifProfMdp.Location = new System.Drawing.Point(400, 181);
+            this.tb_modifProfMdp.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfMdp.Name = "tb_modifProfMdp";
+            this.tb_modifProfMdp.Size = new System.Drawing.Size(268, 22);
+            this.tb_modifProfMdp.TabIndex = 38;
             // 
-            // textBox3
+            // tb_modifProfPrenom
             // 
-            this.textBox3.Location = new System.Drawing.Point(403, 69);
-            this.textBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox3.MaxLength = 2;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(265, 22);
-            this.textBox3.TabIndex = 35;
+            this.tb_modifProfPrenom.Location = new System.Drawing.Point(403, 69);
+            this.tb_modifProfPrenom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfPrenom.MaxLength = 2;
+            this.tb_modifProfPrenom.Name = "tb_modifProfPrenom";
+            this.tb_modifProfPrenom.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfPrenom.TabIndex = 35;
             // 
             // label40
             // 
@@ -2335,9 +2377,9 @@
             this.panel11.Controls.Add(this.label44);
             this.panel11.Controls.Add(this.label45);
             this.panel11.Controls.Add(this.label46);
-            this.panel11.Controls.Add(this.textBox6);
-            this.panel11.Controls.Add(this.textBox7);
-            this.panel11.Controls.Add(this.textBox8);
+            this.panel11.Controls.Add(this.tb_modifProfShowMdp);
+            this.panel11.Controls.Add(this.tb_modifProfShowPrenom);
+            this.panel11.Controls.Add(this.tb_modifProfShowIdentifiant);
             this.panel11.Location = new System.Drawing.Point(24, 56);
             this.panel11.Margin = new System.Windows.Forms.Padding(4);
             this.panel11.Name = "panel11";
@@ -2383,38 +2425,38 @@
             this.label46.TabIndex = 34;
             this.label46.Text = "Prénom Nom";
             // 
-            // textBox6
+            // tb_modifProfShowMdp
             // 
-            this.textBox6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox6.ForeColor = System.Drawing.Color.White;
-            this.textBox6.Location = new System.Drawing.Point(387, 188);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ReadOnly = true;
-            this.textBox6.Size = new System.Drawing.Size(265, 22);
-            this.textBox6.TabIndex = 28;
+            this.tb_modifProfShowMdp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tb_modifProfShowMdp.ForeColor = System.Drawing.Color.White;
+            this.tb_modifProfShowMdp.Location = new System.Drawing.Point(387, 188);
+            this.tb_modifProfShowMdp.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfShowMdp.Name = "tb_modifProfShowMdp";
+            this.tb_modifProfShowMdp.ReadOnly = true;
+            this.tb_modifProfShowMdp.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfShowMdp.TabIndex = 28;
             // 
-            // textBox7
+            // tb_modifProfShowPrenom
             // 
-            this.textBox7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox7.ForeColor = System.Drawing.Color.White;
-            this.textBox7.Location = new System.Drawing.Point(387, 67);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.ReadOnly = true;
-            this.textBox7.Size = new System.Drawing.Size(265, 22);
-            this.textBox7.TabIndex = 24;
+            this.tb_modifProfShowPrenom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tb_modifProfShowPrenom.ForeColor = System.Drawing.Color.White;
+            this.tb_modifProfShowPrenom.Location = new System.Drawing.Point(387, 67);
+            this.tb_modifProfShowPrenom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfShowPrenom.Name = "tb_modifProfShowPrenom";
+            this.tb_modifProfShowPrenom.ReadOnly = true;
+            this.tb_modifProfShowPrenom.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfShowPrenom.TabIndex = 24;
             // 
-            // textBox8
+            // tb_modifProfShowIdentifiant
             // 
-            this.textBox8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.textBox8.ForeColor = System.Drawing.Color.White;
-            this.textBox8.Location = new System.Drawing.Point(387, 130);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.ReadOnly = true;
-            this.textBox8.Size = new System.Drawing.Size(265, 22);
-            this.textBox8.TabIndex = 26;
+            this.tb_modifProfShowIdentifiant.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.tb_modifProfShowIdentifiant.ForeColor = System.Drawing.Color.White;
+            this.tb_modifProfShowIdentifiant.Location = new System.Drawing.Point(387, 130);
+            this.tb_modifProfShowIdentifiant.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfShowIdentifiant.Name = "tb_modifProfShowIdentifiant";
+            this.tb_modifProfShowIdentifiant.ReadOnly = true;
+            this.tb_modifProfShowIdentifiant.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfShowIdentifiant.TabIndex = 26;
             // 
             // label51
             // 
@@ -2429,24 +2471,24 @@
             this.label51.TabIndex = 42;
             this.label51.Text = "Matières";
             // 
-            // dgv_ProviseurModifier
+            // dgv_ProviseurShowMatieresProf
             // 
-            this.dgv_ProviseurModifier.AllowUserToAddRows = false;
-            this.dgv_ProviseurModifier.AllowUserToDeleteRows = false;
-            this.dgv_ProviseurModifier.AllowUserToOrderColumns = true;
-            this.dgv_ProviseurModifier.AllowUserToResizeColumns = false;
-            this.dgv_ProviseurModifier.AllowUserToResizeRows = false;
-            this.dgv_ProviseurModifier.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ProviseurModifier.Location = new System.Drawing.Point(772, 56);
-            this.dgv_ProviseurModifier.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ProviseurModifier.MultiSelect = false;
-            this.dgv_ProviseurModifier.Name = "dgv_ProviseurModifier";
-            this.dgv_ProviseurModifier.ReadOnly = true;
-            this.dgv_ProviseurModifier.RowHeadersVisible = false;
-            this.dgv_ProviseurModifier.RowHeadersWidth = 51;
-            this.dgv_ProviseurModifier.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ProviseurModifier.Size = new System.Drawing.Size(747, 670);
-            this.dgv_ProviseurModifier.TabIndex = 41;
+            this.dgv_ProviseurShowMatieresProf.AllowUserToAddRows = false;
+            this.dgv_ProviseurShowMatieresProf.AllowUserToDeleteRows = false;
+            this.dgv_ProviseurShowMatieresProf.AllowUserToOrderColumns = true;
+            this.dgv_ProviseurShowMatieresProf.AllowUserToResizeColumns = false;
+            this.dgv_ProviseurShowMatieresProf.AllowUserToResizeRows = false;
+            this.dgv_ProviseurShowMatieresProf.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ProviseurShowMatieresProf.Location = new System.Drawing.Point(772, 56);
+            this.dgv_ProviseurShowMatieresProf.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ProviseurShowMatieresProf.MultiSelect = false;
+            this.dgv_ProviseurShowMatieresProf.Name = "dgv_ProviseurShowMatieresProf";
+            this.dgv_ProviseurShowMatieresProf.ReadOnly = true;
+            this.dgv_ProviseurShowMatieresProf.RowHeadersVisible = false;
+            this.dgv_ProviseurShowMatieresProf.RowHeadersWidth = 51;
+            this.dgv_ProviseurShowMatieresProf.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ProviseurShowMatieresProf.Size = new System.Drawing.Size(747, 210);
+            this.dgv_ProviseurShowMatieresProf.TabIndex = 41;
             // 
             // button14
             // 
@@ -2475,6 +2517,32 @@
             this.btn_ProviseurModifierProf.Text = "Modifier Professeur";
             this.btn_ProviseurModifierProf.UseVisualStyleBackColor = false;
             this.btn_ProviseurModifierProf.Click += new System.EventHandler(this.btn_ProviseurModifierProf_Click);
+            // 
+            // btn_ProviseurModifierMatieresProf
+            // 
+            this.btn_ProviseurModifierMatieresProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierMatieresProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierMatieresProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierMatieresProf.Location = new System.Drawing.Point(772, 276);
+            this.btn_ProviseurModifierMatieresProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierMatieresProf.Name = "btn_ProviseurModifierMatieresProf";
+            this.btn_ProviseurModifierMatieresProf.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierMatieresProf.TabIndex = 49;
+            this.btn_ProviseurModifierMatieresProf.Text = "Modifier matières";
+            this.btn_ProviseurModifierMatieresProf.UseVisualStyleBackColor = false;
+            // 
+            // btn_ProviseurModifierClassesProf
+            // 
+            this.btn_ProviseurModifierClassesProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierClassesProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierClassesProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierClassesProf.Location = new System.Drawing.Point(772, 657);
+            this.btn_ProviseurModifierClassesProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierClassesProf.Name = "btn_ProviseurModifierClassesProf";
+            this.btn_ProviseurModifierClassesProf.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierClassesProf.TabIndex = 50;
+            this.btn_ProviseurModifierClassesProf.Text = "Modifier Classes";
+            this.btn_ProviseurModifierClassesProf.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
@@ -2540,14 +2608,15 @@
             this.tabPage14.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouter)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouterProfMatiere)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.tabPage15.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowClassesProf)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
             this.panel11.ResumeLayout(false);
             this.panel11.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurModifier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowMatieresProf)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2689,23 +2758,23 @@
         private System.Windows.Forms.TabPage tabPage14;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.TextBox textBox12;
-        private System.Windows.Forms.TextBox textBox9;
-        private System.Windows.Forms.TextBox textBox11;
+        private System.Windows.Forms.TextBox tb_ProviseurAddProfIdentifiant;
+        private System.Windows.Forms.TextBox tb_ProviseurAddProfMdp;
+        private System.Windows.Forms.TextBox tb_ProviseurAddProfPrenomNom;
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label68;
         private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.DataGridView dgv_ProviseurAjouter;
+        private System.Windows.Forms.DataGridView dgv_ProviseurAjouterProfMatiere;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btn_ProviseurAjouterProfToDb;
         private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tb_modifProfIdentifiant;
+        private System.Windows.Forms.TextBox tb_modifProfMdp;
+        private System.Windows.Forms.TextBox tb_modifProfPrenom;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
@@ -2713,16 +2782,20 @@
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.Label label46;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox tb_modifProfShowMdp;
+        private System.Windows.Forms.TextBox tb_modifProfShowPrenom;
+        private System.Windows.Forms.TextBox tb_modifProfShowIdentifiant;
         private System.Windows.Forms.Label label51;
-        private System.Windows.Forms.DataGridView dgv_ProviseurModifier;
+        private System.Windows.Forms.DataGridView dgv_ProviseurShowMatieresProf;
         private System.Windows.Forms.Button button14;
         private System.Windows.Forms.Button btn_ProviseurModifierProf;
         private System.Windows.Forms.Button btn_ProvieurAdmin;
         private System.Windows.Forms.Button btn_ProviseurToutsEleves;
         private System.Windows.Forms.Label Professeurs;
+        private System.Windows.Forms.DataGridView dgv_ProviseurShowClassesProf;
+        private System.Windows.Forms.Label label47;
+        private System.Windows.Forms.Button btn_ProviseurModifierClassesProf;
+        private System.Windows.Forms.Button btn_ProviseurModifierMatieresProf;
     }
 }
 
