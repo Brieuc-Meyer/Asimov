@@ -58,16 +58,16 @@ CREATE TABLE `liaison_personnel_classes` (
 )ENGINE=InnoDB;
 
 
-INSERT INTO `classes` (`class_id`, `class_nom`) VALUES
-    (6, 'Sixieme'),
-    (5, 'Cinquieme'),
-    (4, 'Quatrieme'),
-    (3, 'Troisieme');
+INSERT INTO `classes` ( `class_nom`) VALUES
+    ('Sixieme'),
+    ('Cinquieme'),
+    ('Quatrieme'),
+    ('Troisieme');
 
 INSERT INTO `eleves` (`eleve_nom`, `eleve_identifiant`, `eleve_mdp`, `eleve_class_id`) VALUES
-    ('Jean Dupont', 'jean.dupont', 'root', 6),
-    ('Sophie Martin', 'sophie.martin', 'root', 5),
-    ('Pierre Durand', 'pierre.durand', 'root', 4);
+    ('Jean Dupont', 'jean.dupont', 'root', 1),
+    ('Sophie Martin', 'sophie.martin', 'root', 2),
+    ('Pierre Durand', 'pierre.durand', 'root', 3);
 
 INSERT INTO `personnels` (`perso_nom`, `perso_identifiant`, `perso_mdp`, `perso_proviseur_on`) VALUES
     ('Jeanne Dupuis', 'jeanne.dupuis', 'root', 1),
@@ -87,10 +87,10 @@ INSERT INTO `liaison_personnel_matieres` (`perso_id`,`mat_id`) VALUES
     (3,1);
 
 INSERT INTO `liaison_personnel_classes` (`perso_id`,`class_id`) VALUES
-    (2,6),
-    (2,5),
-    (3,4),
-    (3,3);
+    (2,1),
+    (2,2),
+    (3,3),
+    (3,1);
 
 INSERT INTO `notes` (`note_eleve_id`,`note_pourcent`,`note_prof_id`,`note_mat_id`,`note_date_evaluation`,`note_intitule`,`note_description`) VALUES
     (1, 69, 1, 1, '2023-6-25', 'contôle maths juin', "vraiment técla, vraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment téclavraiment técla" ),

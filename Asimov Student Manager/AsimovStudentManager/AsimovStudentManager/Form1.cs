@@ -372,7 +372,6 @@ namespace AsimovStudentManager
             #region style du datagridview
             dgv_modifEleveClass.Columns.Add("class_id", "class_id");
             dgv_modifEleveClass.Columns.Add("Grade de la classe", "Grade de la classe");
-            dgv_modifEleveClass.Columns.Add("Nombre d'�l�ve", "Nombre d'�l�ve");
 
             dgv_modifEleveClass.Columns[0].Visible = false;
 
@@ -391,7 +390,6 @@ namespace AsimovStudentManager
                 int rowIndex = dgv_modifEleveClass.Rows.Add();
                 dgv_modifEleveClass.Rows[rowIndex].Cells[0].Value = jsonObject["class_id"].ToString();
                 dgv_modifEleveClass.Rows[rowIndex].Cells[1].Value = jsonObject["class_nom"].ToString();
-                dgv_modifEleveClass.Rows[rowIndex].Cells[2].Value = jsonObject["Nbr_eleve"].ToString();
             }
         }
         async void fill_dgv_ProfVoirNotesEleves()
@@ -556,6 +554,8 @@ namespace AsimovStudentManager
 
             dgv_ProfEleves.Rows.Clear();
             dgv_ProfEleves.Columns.Clear();
+            ProviseurOn = false;
+
             string res = await GetUrlBody("https://localhost:3000/deconnection");
         }
         private void btn_modifEleve_Click(object sender, EventArgs e)
@@ -1254,6 +1254,9 @@ namespace AsimovStudentManager
         }
         private void btns_retourMatClass_Click(object sender, EventArgs e)
         {
+            fill_dgv_ProviseurShowMatieresProf();
+            fill_dgv_ProviseurShowClassesProf();
+
             tc_Proviseur.SelectedIndex = 4;
 
         }
@@ -1535,6 +1538,59 @@ namespace AsimovStudentManager
             }
 
         }
+        private async void btn_ProviseurAssignerClasse_Click(object sender, EventArgs e)
+        {
+            if (dgv_ClassesDisponibles.SelectedRows.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment assigner la classe : " + dgv_ClassesDisponibles.SelectedRows[0].Cells[1].Value.ToString(), "Ajouter mati�re", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string addRes = await GetUrlBody("https://localhost:3000/proviseur/assignerClasse/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ClassesDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+                    if (addRes == null) { return; }
+                    string res = addRes.Replace("\"", "");
+                    MessageBox.Show(res);
+
+                    fill_dgv_ClassesDisponibles();
+                    fill_dgv_ClassesACharge();
+                    fill_dgv_ProviseurShowClassesProf();
+
+                    tc_Proviseur.SelectedIndex = 7;
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une matière à assigner");
+            }
+
+        }
+        private async void btn_ProviseurAssignerMatiere_Click(object sender, EventArgs e)
+        {
+            if (dgv_MatieresDisponibles.SelectedRows.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment assigner la matière : " + dgv_MatieresDisponibles.SelectedRows[0].Cells[1].Value.ToString(), "Ajouter mati�re", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string addRes = await GetUrlBody("https://localhost:3000/proviseur/assignerMatiere/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_MatieresDisponibles.SelectedRows[0].Cells[0].Value.ToString());
+                    if (addRes == null) { return; }
+                    string res = addRes.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_MatieresDisponibles();
+                    fill_dgv_MatieresACharge();
+                    fill_dgv_ProviseurShowMatieresProf();
+
+                    tc_Proviseur.SelectedIndex = 8;
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez selectionner une classe à assigner");
+            }
+
+        }
         //delete
         private async void btn_ProviseurSuprimmer_Click(object sender, EventArgs e)
         {
@@ -1597,6 +1653,59 @@ namespace AsimovStudentManager
             }
         }
 
+        private async void btn_SuppAssignationMatieres_Click(object sender, EventArgs e)
+        {
+            if (dgv_MatieresACharge.SelectedRows.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment lui supprimer cette matière ? : \n" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[1].Value.ToString(), "Supprimer matière", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string delResult = await GetUrlBody("https://localhost:3000/proviseur/suprimmerAsignationMatiere/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_MatieresACharge.SelectedRows[0].Cells[0].Value.ToString());
+                    if (delResult == null) { return; }
+                    string res = delResult.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_MatieresACharge();
+                    fill_dgv_MatieresDisponibles();
+                    tc_Proviseur.SelectedIndex = 8;
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une matière à désasigner");
+            }
+
+        }
+        private async void btn_SuppAssignationClasse_Click(object sender, EventArgs e)
+        {
+            if (dgv_ClassesACharge.SelectedRows.Count != 0)
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment lui supprimer cette classe ? : \n" + dgv_ClassesACharge.SelectedRows[0].Cells[1].Value.ToString(), "Supprimer classe", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string delResult = await GetUrlBody("https://localhost:3000/proviseur/suprimmerAsignationClasse/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ClassesACharge.SelectedRows[0].Cells[0].Value.ToString());
+                    if (delResult == null) { return; }
+                    string res = delResult.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_ClassesACharge();
+                    fill_dgv_ClassesDisponibles();
+                    tc_Proviseur.SelectedIndex = 7;
+
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Veuillez sélectionner une classe à désasigner");
+            }
+        }
+
+
+
+
         //Cont�les de saisie
 
         private void dgv_ProviseurMatieres_Click(object sender, EventArgs e)
@@ -1614,6 +1723,16 @@ namespace AsimovStudentManager
         {
             dgv_ProviseurProfesseurs.ClearSelection();
             dgv_ProviseurMatieres.ClearSelection();
+        }
+        private void dgv_ClassesACharge_Click(object sender, EventArgs e)
+
+        {
+            dgv_ClassesDisponibles.ClearSelection();
+        }
+        private void dgv_MatieresACharge_Click(object sender, EventArgs e)
+
+        {
+            dgv_MatieresDisponibles.ClearSelection();
         }
 
 

@@ -217,19 +217,21 @@
             this.button3 = new System.Windows.Forms.Button();
             this.btn_ProviseurAjouterToDbClasse = new System.Windows.Forms.Button();
             this.tabPage18 = new System.Windows.Forms.TabPage();
+            this.label58 = new System.Windows.Forms.Label();
+            this.dgv_ClassesACharge = new System.Windows.Forms.DataGridView();
             this.btns_retourMatClass = new System.Windows.Forms.Button();
             this.label57 = new System.Windows.Forms.Label();
             this.btn_ProviseurAssignerClasse = new System.Windows.Forms.Button();
             this.dgv_ClassesDisponibles = new System.Windows.Forms.DataGridView();
             this.tabPage19 = new System.Windows.Forms.TabPage();
-            this.dgv_ClassesACharge = new System.Windows.Forms.DataGridView();
-            this.label58 = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.dgv_MatieresACharge = new System.Windows.Forms.DataGridView();
             this.button4 = new System.Windows.Forms.Button();
             this.label60 = new System.Windows.Forms.Label();
             this.btn_ProviseurAssignerMatiere = new System.Windows.Forms.Button();
             this.dgv_MatieresDisponibles = new System.Windows.Forms.DataGridView();
+            this.btn_SuppAssignationClasse = new System.Windows.Forms.Button();
+            this.btn_SuppAssignationMatieres = new System.Windows.Forms.Button();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -277,9 +279,9 @@
             this.tabPage17.SuspendLayout();
             this.panel9.SuspendLayout();
             this.tabPage18.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesACharge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesDisponibles)).BeginInit();
             this.tabPage19.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesACharge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_MatieresACharge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_MatieresDisponibles)).BeginInit();
             this.SuspendLayout();
@@ -2779,6 +2781,7 @@
             // tabPage18
             // 
             this.tabPage18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage18.Controls.Add(this.btn_SuppAssignationClasse);
             this.tabPage18.Controls.Add(this.label58);
             this.tabPage18.Controls.Add(this.dgv_ClassesACharge);
             this.tabPage18.Controls.Add(this.btns_retourMatClass);
@@ -2791,15 +2794,48 @@
             this.tabPage18.TabIndex = 7;
             this.tabPage18.Text = "Modifier Classes Enseignées";
             // 
+            // label58
+            // 
+            this.label58.AutoSize = true;
+            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label58.ForeColor = System.Drawing.Color.White;
+            this.label58.Location = new System.Drawing.Point(787, 13);
+            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label58.Name = "label58";
+            this.label58.Size = new System.Drawing.Size(437, 54);
+            this.label58.TabIndex = 20;
+            this.label58.Text = "Classes disponibles";
+            // 
+            // dgv_ClassesACharge
+            // 
+            this.dgv_ClassesACharge.AllowUserToAddRows = false;
+            this.dgv_ClassesACharge.AllowUserToDeleteRows = false;
+            this.dgv_ClassesACharge.AllowUserToResizeColumns = false;
+            this.dgv_ClassesACharge.AllowUserToResizeRows = false;
+            this.dgv_ClassesACharge.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
+            this.dgv_ClassesACharge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_ClassesACharge.Location = new System.Drawing.Point(25, 71);
+            this.dgv_ClassesACharge.Margin = new System.Windows.Forms.Padding(4);
+            this.dgv_ClassesACharge.MultiSelect = false;
+            this.dgv_ClassesACharge.Name = "dgv_ClassesACharge";
+            this.dgv_ClassesACharge.ReadOnly = true;
+            this.dgv_ClassesACharge.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgv_ClassesACharge.RowHeadersVisible = false;
+            this.dgv_ClassesACharge.RowHeadersWidth = 51;
+            this.dgv_ClassesACharge.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgv_ClassesACharge.Size = new System.Drawing.Size(743, 666);
+            this.dgv_ClassesACharge.TabIndex = 19;
+            this.dgv_ClassesACharge.Click += new System.EventHandler(this.dgv_ClassesACharge_Click);
+            // 
             // btns_retourMatClass
             // 
             this.btns_retourMatClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.btns_retourMatClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.btns_retourMatClass.ForeColor = System.Drawing.Color.White;
-            this.btns_retourMatClass.Location = new System.Drawing.Point(786, 745);
+            this.btns_retourMatClass.Location = new System.Drawing.Point(1017, 745);
             this.btns_retourMatClass.Margin = new System.Windows.Forms.Padding(4);
             this.btns_retourMatClass.Name = "btns_retourMatClass";
-            this.btns_retourMatClass.Size = new System.Drawing.Size(743, 64);
+            this.btns_retourMatClass.Size = new System.Drawing.Size(512, 64);
             this.btns_retourMatClass.TabIndex = 18;
             this.btns_retourMatClass.Text = "Retour";
             this.btns_retourMatClass.UseVisualStyleBackColor = false;
@@ -2813,22 +2849,23 @@
             this.label57.Location = new System.Drawing.Point(16, 16);
             this.label57.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(539, 54);
+            this.label57.Size = new System.Drawing.Size(347, 54);
             this.label57.TabIndex = 17;
-            this.label57.Text = "Classes à charge de toto";
+            this.label57.Text = "Classes suivies";
             // 
             // btn_ProviseurAssignerClasse
             // 
             this.btn_ProviseurAssignerClasse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
             this.btn_ProviseurAssignerClasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ProviseurAssignerClasse.ForeColor = System.Drawing.Color.White;
-            this.btn_ProviseurAssignerClasse.Location = new System.Drawing.Point(25, 745);
+            this.btn_ProviseurAssignerClasse.Location = new System.Drawing.Point(565, 745);
             this.btn_ProviseurAssignerClasse.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ProviseurAssignerClasse.Name = "btn_ProviseurAssignerClasse";
-            this.btn_ProviseurAssignerClasse.Size = new System.Drawing.Size(743, 64);
+            this.btn_ProviseurAssignerClasse.Size = new System.Drawing.Size(444, 64);
             this.btn_ProviseurAssignerClasse.TabIndex = 16;
             this.btn_ProviseurAssignerClasse.Text = "Assigner Classe";
             this.btn_ProviseurAssignerClasse.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAssignerClasse.Click += new System.EventHandler(this.btn_ProviseurAssignerClasse_Click);
             // 
             // dgv_ClassesDisponibles
             // 
@@ -2853,6 +2890,7 @@
             // tabPage19
             // 
             this.tabPage19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
+            this.tabPage19.Controls.Add(this.btn_SuppAssignationMatieres);
             this.tabPage19.Controls.Add(this.label59);
             this.tabPage19.Controls.Add(this.dgv_MatieresACharge);
             this.tabPage19.Controls.Add(this.button4);
@@ -2864,38 +2902,6 @@
             this.tabPage19.Size = new System.Drawing.Size(1545, 824);
             this.tabPage19.TabIndex = 8;
             this.tabPage19.Text = "Mofifier Matières Enseignées";
-            // 
-            // dgv_ClassesACharge
-            // 
-            this.dgv_ClassesACharge.AllowUserToAddRows = false;
-            this.dgv_ClassesACharge.AllowUserToDeleteRows = false;
-            this.dgv_ClassesACharge.AllowUserToResizeColumns = false;
-            this.dgv_ClassesACharge.AllowUserToResizeRows = false;
-            this.dgv_ClassesACharge.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.dgv_ClassesACharge.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ClassesACharge.Location = new System.Drawing.Point(25, 71);
-            this.dgv_ClassesACharge.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ClassesACharge.MultiSelect = false;
-            this.dgv_ClassesACharge.Name = "dgv_ClassesACharge";
-            this.dgv_ClassesACharge.ReadOnly = true;
-            this.dgv_ClassesACharge.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgv_ClassesACharge.RowHeadersVisible = false;
-            this.dgv_ClassesACharge.RowHeadersWidth = 51;
-            this.dgv_ClassesACharge.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ClassesACharge.Size = new System.Drawing.Size(743, 666);
-            this.dgv_ClassesACharge.TabIndex = 19;
-            // 
-            // label58
-            // 
-            this.label58.AutoSize = true;
-            this.label58.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label58.ForeColor = System.Drawing.Color.White;
-            this.label58.Location = new System.Drawing.Point(787, 13);
-            this.label58.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(437, 54);
-            this.label58.TabIndex = 20;
-            this.label58.Text = "Classes disponibles";
             // 
             // label59
             // 
@@ -2928,16 +2934,17 @@
             this.dgv_MatieresACharge.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_MatieresACharge.Size = new System.Drawing.Size(743, 666);
             this.dgv_MatieresACharge.TabIndex = 25;
+            this.dgv_MatieresACharge.Click += new System.EventHandler(this.dgv_MatieresACharge_Click);
             // 
             // button4
             // 
             this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
             this.button4.ForeColor = System.Drawing.Color.White;
-            this.button4.Location = new System.Drawing.Point(786, 746);
+            this.button4.Location = new System.Drawing.Point(1067, 746);
             this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(743, 64);
+            this.button4.Size = new System.Drawing.Size(462, 64);
             this.button4.TabIndex = 24;
             this.button4.Text = "Retour";
             this.button4.UseVisualStyleBackColor = false;
@@ -2951,22 +2958,23 @@
             this.label60.Location = new System.Drawing.Point(16, 17);
             this.label60.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(625, 54);
+            this.label60.Size = new System.Drawing.Size(455, 54);
             this.label60.TabIndex = 23;
-            this.label60.Text = "Matieres enseignées par toto";
+            this.label60.Text = "Matieres enseignées";
             // 
             // btn_ProviseurAssignerMatiere
             // 
             this.btn_ProviseurAssignerMatiere.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
             this.btn_ProviseurAssignerMatiere.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_ProviseurAssignerMatiere.ForeColor = System.Drawing.Color.White;
-            this.btn_ProviseurAssignerMatiere.Location = new System.Drawing.Point(25, 746);
+            this.btn_ProviseurAssignerMatiere.Location = new System.Drawing.Point(547, 746);
             this.btn_ProviseurAssignerMatiere.Margin = new System.Windows.Forms.Padding(4);
             this.btn_ProviseurAssignerMatiere.Name = "btn_ProviseurAssignerMatiere";
-            this.btn_ProviseurAssignerMatiere.Size = new System.Drawing.Size(743, 64);
+            this.btn_ProviseurAssignerMatiere.Size = new System.Drawing.Size(512, 64);
             this.btn_ProviseurAssignerMatiere.TabIndex = 22;
             this.btn_ProviseurAssignerMatiere.Text = "Assigner Matière";
             this.btn_ProviseurAssignerMatiere.UseVisualStyleBackColor = false;
+            this.btn_ProviseurAssignerMatiere.Click += new System.EventHandler(this.btn_ProviseurAssignerMatiere_Click);
             // 
             // dgv_MatieresDisponibles
             // 
@@ -2987,6 +2995,34 @@
             this.dgv_MatieresDisponibles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgv_MatieresDisponibles.Size = new System.Drawing.Size(743, 666);
             this.dgv_MatieresDisponibles.TabIndex = 21;
+            // 
+            // btn_SuppAssignationClasse
+            // 
+            this.btn_SuppAssignationClasse.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(0)))), ((int)(((byte)(11)))));
+            this.btn_SuppAssignationClasse.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_SuppAssignationClasse.ForeColor = System.Drawing.Color.White;
+            this.btn_SuppAssignationClasse.Location = new System.Drawing.Point(25, 745);
+            this.btn_SuppAssignationClasse.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_SuppAssignationClasse.Name = "btn_SuppAssignationClasse";
+            this.btn_SuppAssignationClasse.Size = new System.Drawing.Size(532, 64);
+            this.btn_SuppAssignationClasse.TabIndex = 21;
+            this.btn_SuppAssignationClasse.Text = "Supprimer Assignation";
+            this.btn_SuppAssignationClasse.UseVisualStyleBackColor = false;
+            this.btn_SuppAssignationClasse.Click += new System.EventHandler(this.btn_SuppAssignationClasse_Click);
+            // 
+            // btn_SuppAssignationMatieres
+            // 
+            this.btn_SuppAssignationMatieres.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(115)))), ((int)(((byte)(0)))), ((int)(((byte)(11)))));
+            this.btn_SuppAssignationMatieres.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btn_SuppAssignationMatieres.ForeColor = System.Drawing.Color.White;
+            this.btn_SuppAssignationMatieres.Location = new System.Drawing.Point(25, 746);
+            this.btn_SuppAssignationMatieres.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_SuppAssignationMatieres.Name = "btn_SuppAssignationMatieres";
+            this.btn_SuppAssignationMatieres.Size = new System.Drawing.Size(514, 64);
+            this.btn_SuppAssignationMatieres.TabIndex = 27;
+            this.btn_SuppAssignationMatieres.Text = "Supprimer Assignation";
+            this.btn_SuppAssignationMatieres.UseVisualStyleBackColor = false;
+            this.btn_SuppAssignationMatieres.Click += new System.EventHandler(this.btn_SuppAssignationMatieres_Click);
             // 
             // Form1
             // 
@@ -3069,10 +3105,10 @@
             this.panel9.PerformLayout();
             this.tabPage18.ResumeLayout(false);
             this.tabPage18.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesACharge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesDisponibles)).EndInit();
             this.tabPage19.ResumeLayout(false);
             this.tabPage19.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ClassesACharge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_MatieresACharge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_MatieresDisponibles)).EndInit();
             this.ResumeLayout(false);
@@ -3283,6 +3319,8 @@
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Button btn_ProviseurAssignerMatiere;
         private System.Windows.Forms.DataGridView dgv_MatieresDisponibles;
+        private System.Windows.Forms.Button btn_SuppAssignationClasse;
+        private System.Windows.Forms.Button btn_SuppAssignationMatieres;
     }
 }
 

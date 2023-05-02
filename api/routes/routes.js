@@ -61,6 +61,11 @@ routeur.get('/proviseur/ajouterPersonnel/:perso_nom/:perso_identifiant/:perso_md
 routeur.get('/proviseur/modifPersonnel/:perso_nom/:perso_identifiant/:perso_mdp/:perso_proviseur_on/:perso_id', ctrlConnexion.testAuthentification, ctrlProviseurs.modifPersonnel)
 routeur.get('/proviseur/supprimerPersonnel/:perso_id', ctrlConnexion.testAuthentification, ctrlProviseurs.supprimerPersonnel)
 
+routeur.get('/proviseur/assignerClasse/:perso_id/:class_id', ctrlConnexion.testAuthentification, ctrlProviseurs.assignerClasse)
+routeur.get('/proviseur/suprimmerAsignationClasse/:perso_id/:class_id', ctrlConnexion.testAuthentification, ctrlProviseurs.suprimmerAsignationClasse)
+
+routeur.get('/proviseur/assignerMatiere/:perso_id/:mat_id', ctrlConnexion.testAuthentification, ctrlProviseurs.assignerMatiere)
+routeur.get('/proviseur/suprimmerAsignationMatiere/:perso_id/:mat_id', ctrlConnexion.testAuthentification, ctrlProviseurs.suprimmerAsignationMatiere)
 
 
 module.exports = routeur;

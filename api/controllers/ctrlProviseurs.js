@@ -267,6 +267,86 @@ module.exports = {
         }
 
 
-    }
+    },
+
+    async assignerClasse(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelAssignerClasse(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Classe asignée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async suprimmerAsignationClasse(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelSuprimmerAssignationClasse(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Classe désasignée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async assignerMatiere(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelAssignerMatiere(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Matière asignée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    
+    async suprimmerAsignationMatiere(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelSuprimmerAssignationMatiere(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Matière désasignée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
 }

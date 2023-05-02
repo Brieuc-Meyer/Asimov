@@ -126,11 +126,11 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
 
-            let requeteSQL = `SELECT matieres.mat_id, matieres.mat_nom
+            let requeteSQL = `SELECT matieres.*
             FROM  matieres, liaison_personnel_matieres, personnels 
             WHERE liaison_personnel_matieres.perso_id = ?
-            AND matieres.mat_id = personnels.perso_id 
-            AND liaison_personnel_matieres.mat_id = matieres.mat_id;`
+            AND matieres.mat_id = liaison_personnel_matieres.mat_id 
+            AND liaison_personnel_matieres.perso_id = personnels.perso_id;`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
@@ -151,12 +151,10 @@ module.exports = {
 
             let requeteSQL = `SELECT * 
                 FROM matieres
-                WHERE mat_id NOT IN(
-                    SELECT matieres.mat_id
-                    FROM  matieres, liaison_personnel_matieres, personnels 
-                    WHERE liaison_personnel_matieres.perso_id = ?
-                    AND matieres.mat_id = personnels.perso_id 
-                    AND liaison_personnel_matieres.mat_id = matieres.mat_id);`
+                WHERE matieres.mat_id NOT IN(
+                    SELECT liaison_personnel_matieres.mat_id
+                    FROM  liaison_personnel_matieres 
+                    WHERE liaison_personnel_matieres.perso_id = ?);`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
@@ -176,12 +174,10 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
 
-            let requeteSQL = `SELECT classes.class_id, class_nom, COUNT(*) Nbr_eleve
-            FROM eleves, classes, liaison_personnel_classes
-            WHERE eleves.eleve_class_id = classes.class_id
-            AND liaison_personnel_classes.perso_id = ?
-            AND liaison_personnel_classes.class_id = classes.class_id
-            GROUP BY class_nom;`
+            let requeteSQL = `SELECT classes.class_id, classes.class_nom
+            FROM classes, liaison_personnel_classes
+            WHERE liaison_personnel_classes.perso_id = ?
+            AND liaison_personnel_classes.class_id = classes.class_id`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
@@ -202,10 +198,9 @@ module.exports = {
 
             let requeteSQL = `SELECT * 
                 FROM classes
-                WHERE class_id NOT IN(SELECT classes.class_id
-                    FROM  classes, liaison_personnel_classes, personnels 
-                    WHERE liaison_personnel_classes.perso_id = ?
-                    AND liaison_personnel_classes.class_id = classes.class_id);`
+                WHERE class_id NOT IN(SELECT liaison_personnel_classes.class_id
+                    FROM  liaison_personnel_classes 
+                    WHERE liaison_personnel_classes.perso_id = ?);`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 

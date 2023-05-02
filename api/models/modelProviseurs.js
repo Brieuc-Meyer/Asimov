@@ -259,7 +259,7 @@ module.exports = {
 
 
         return new Promise((resolve, reject) => {
-            
+
 
             let perso_nom = req.params.perso_nom
             let perso_identifiant = req.params.perso_identifiant
@@ -293,6 +293,98 @@ module.exports = {
 
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    async modelAssignerClasse(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let perso_id = req.params.perso_id
+            let class_id = req.params.class_id
+
+
+            let requeteSQL = "INSERT INTO liaison_personnel_classes (perso_id, class_id) VALUES (?, ?)"
+
+
+            mysqlConnexion.query(requeteSQL, [perso_id, class_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelSuprimmerAssignationClasse(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let perso_id = req.params.perso_id
+            let class_id = req.params.class_id
+
+
+            let requeteSQL = "DELETE FROM liaison_personnel_classes WHERE perso_id = ? AND class_id= ?"
+
+
+            mysqlConnexion.query(requeteSQL, [perso_id, class_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAssignerMatiere(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let perso_id = req.params.perso_id
+            let mat_id = req.params.mat_id
+
+            let requeteSQL = "INSERT INTO liaison_personnel_matieres (perso_id, mat_id) VALUES (?, ?)"
+
+
+            mysqlConnexion.query(requeteSQL, [perso_id, mat_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    async modelSuprimmerAssignationMatiere(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let perso_id = req.params.perso_id
+            let mat_id = req.params.mat_id
+
+            let requeteSQL = "DELETE FROM liaison_personnel_matieres WHERE perso_id = ? AND mat_id= ?"
+
+
+            mysqlConnexion.query(requeteSQL, [perso_id, mat_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
