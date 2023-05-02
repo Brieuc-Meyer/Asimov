@@ -172,8 +172,6 @@
             this.label53 = new System.Windows.Forms.Label();
             this.label54 = new System.Windows.Forms.Label();
             this.label68 = new System.Windows.Forms.Label();
-            this.label67 = new System.Windows.Forms.Label();
-            this.dgv_ProviseurAjouterProfMatiere = new System.Windows.Forms.DataGridView();
             this.button10 = new System.Windows.Forms.Button();
             this.btn_ProviseurAjouterProfToDb = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
@@ -237,7 +235,6 @@
             this.panel6.SuspendLayout();
             this.tabPage14.SuspendLayout();
             this.panel12.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouterProfMatiere)).BeginInit();
             this.tabPage15.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowClassesProf)).BeginInit();
             this.panel10.SuspendLayout();
@@ -2047,8 +2044,6 @@
             this.tabPage14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(70)))), ((int)(((byte)(70)))));
             this.tabPage14.Controls.Add(this.label49);
             this.tabPage14.Controls.Add(this.panel12);
-            this.tabPage14.Controls.Add(this.label67);
-            this.tabPage14.Controls.Add(this.dgv_ProviseurAjouterProfMatiere);
             this.tabPage14.Controls.Add(this.button10);
             this.tabPage14.Controls.Add(this.btn_ProviseurAjouterProfToDb);
             this.tabPage14.Location = new System.Drawing.Point(4, 25);
@@ -2083,12 +2078,12 @@
             this.panel12.Location = new System.Drawing.Point(14, 82);
             this.panel12.Margin = new System.Windows.Forms.Padding(4);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(740, 644);
+            this.panel12.Size = new System.Drawing.Size(1510, 644);
             this.panel12.TabIndex = 47;
             // 
             // tb_ProviseurAddProfIdentifiant
             // 
-            this.tb_ProviseurAddProfIdentifiant.Location = new System.Drawing.Point(384, 98);
+            this.tb_ProviseurAddProfIdentifiant.Location = new System.Drawing.Point(717, 329);
             this.tb_ProviseurAddProfIdentifiant.Margin = new System.Windows.Forms.Padding(4);
             this.tb_ProviseurAddProfIdentifiant.MaxLength = 2;
             this.tb_ProviseurAddProfIdentifiant.Name = "tb_ProviseurAddProfIdentifiant";
@@ -2097,7 +2092,7 @@
             // 
             // tb_ProviseurAddProfMdp
             // 
-            this.tb_ProviseurAddProfMdp.Location = new System.Drawing.Point(384, 155);
+            this.tb_ProviseurAddProfMdp.Location = new System.Drawing.Point(717, 386);
             this.tb_ProviseurAddProfMdp.Margin = new System.Windows.Forms.Padding(4);
             this.tb_ProviseurAddProfMdp.Name = "tb_ProviseurAddProfMdp";
             this.tb_ProviseurAddProfMdp.Size = new System.Drawing.Size(268, 22);
@@ -2105,7 +2100,7 @@
             // 
             // tb_ProviseurAddProfPrenomNom
             // 
-            this.tb_ProviseurAddProfPrenomNom.Location = new System.Drawing.Point(387, 26);
+            this.tb_ProviseurAddProfPrenomNom.Location = new System.Drawing.Point(720, 257);
             this.tb_ProviseurAddProfPrenomNom.Margin = new System.Windows.Forms.Padding(4);
             this.tb_ProviseurAddProfPrenomNom.MaxLength = 255;
             this.tb_ProviseurAddProfPrenomNom.Name = "tb_ProviseurAddProfPrenomNom";
@@ -2118,7 +2113,7 @@
             this.label53.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.label53.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label53.ForeColor = System.Drawing.Color.White;
-            this.label53.Location = new System.Drawing.Point(63, 138);
+            this.label53.Location = new System.Drawing.Point(396, 369);
             this.label53.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label53.Name = "label53";
             this.label53.Size = new System.Drawing.Size(176, 31);
@@ -2131,7 +2126,7 @@
             this.label54.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.label54.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label54.ForeColor = System.Drawing.Color.White;
-            this.label54.Location = new System.Drawing.Point(63, 89);
+            this.label54.Location = new System.Drawing.Point(396, 320);
             this.label54.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label54.Name = "label54";
             this.label54.Size = new System.Drawing.Size(133, 31);
@@ -2144,44 +2139,12 @@
             this.label68.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.label68.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label68.ForeColor = System.Drawing.Color.White;
-            this.label68.Location = new System.Drawing.Point(63, 26);
+            this.label68.Location = new System.Drawing.Point(396, 257);
             this.label68.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label68.Name = "label68";
             this.label68.Size = new System.Drawing.Size(172, 31);
             this.label68.TabIndex = 26;
             this.label68.Text = "Prénom Nom";
-            // 
-            // label67
-            // 
-            this.label67.AutoSize = true;
-            this.label67.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.label67.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label67.ForeColor = System.Drawing.Color.White;
-            this.label67.Location = new System.Drawing.Point(785, 47);
-            this.label67.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(118, 31);
-            this.label67.TabIndex = 22;
-            this.label67.Text = "Matières";
-            // 
-            // dgv_ProviseurAjouterProfMatiere
-            // 
-            this.dgv_ProviseurAjouterProfMatiere.AllowUserToAddRows = false;
-            this.dgv_ProviseurAjouterProfMatiere.AllowUserToDeleteRows = false;
-            this.dgv_ProviseurAjouterProfMatiere.AllowUserToOrderColumns = true;
-            this.dgv_ProviseurAjouterProfMatiere.AllowUserToResizeColumns = false;
-            this.dgv_ProviseurAjouterProfMatiere.AllowUserToResizeRows = false;
-            this.dgv_ProviseurAjouterProfMatiere.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_ProviseurAjouterProfMatiere.Location = new System.Drawing.Point(781, 82);
-            this.dgv_ProviseurAjouterProfMatiere.Margin = new System.Windows.Forms.Padding(4);
-            this.dgv_ProviseurAjouterProfMatiere.MultiSelect = false;
-            this.dgv_ProviseurAjouterProfMatiere.Name = "dgv_ProviseurAjouterProfMatiere";
-            this.dgv_ProviseurAjouterProfMatiere.ReadOnly = true;
-            this.dgv_ProviseurAjouterProfMatiere.RowHeadersVisible = false;
-            this.dgv_ProviseurAjouterProfMatiere.RowHeadersWidth = 51;
-            this.dgv_ProviseurAjouterProfMatiere.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv_ProviseurAjouterProfMatiere.Size = new System.Drawing.Size(747, 644);
-            this.dgv_ProviseurAjouterProfMatiere.TabIndex = 21;
             // 
             // button10
             // 
@@ -2607,7 +2570,6 @@
             this.tabPage14.PerformLayout();
             this.panel12.ResumeLayout(false);
             this.panel12.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurAjouterProfMatiere)).EndInit();
             this.tabPage15.ResumeLayout(false);
             this.tabPage15.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgv_ProviseurShowClassesProf)).EndInit();
@@ -2763,8 +2725,6 @@
         private System.Windows.Forms.Label label53;
         private System.Windows.Forms.Label label54;
         private System.Windows.Forms.Label label68;
-        private System.Windows.Forms.Label label67;
-        private System.Windows.Forms.DataGridView dgv_ProviseurAjouterProfMatiere;
         private System.Windows.Forms.Button button10;
         private System.Windows.Forms.Button btn_ProviseurAjouterProfToDb;
         private System.Windows.Forms.TabPage tabPage15;

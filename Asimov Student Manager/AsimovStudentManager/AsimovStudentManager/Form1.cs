@@ -1189,7 +1189,7 @@ namespace AsimovStudentManager
                             fill_dgv_ProviseurMatieres();
                             fill_dgv_ProviseurProfesseurs();
 
-                            tc_Prof.SelectedIndex = 0;
+                            tc_Proviseur.SelectedIndex = 0;
                             tb_ProviseurAddProfPrenomNom.Text = "";
                             tb_ProviseurAddProfIdentifiant.Text = "";
                             tb_ProviseurAddProfMdp.Text = "";
@@ -1229,8 +1229,9 @@ namespace AsimovStudentManager
                             if (modifRes == null) { return; }
                             string res = modifRes.Replace("\"", "");
                             MessageBox.Show(res);
-                            fill_dgv_ProfEleves();
-                            tc_Prof.SelectedIndex = 0;
+                            fill_dgv_ProviseurMatieres();
+                            fill_dgv_ProviseurProfesseurs();
+                            tc_Proviseur.SelectedIndex = 0;
                             tb_modifEleveShowPrenom.Text = "";
                             tb_modifEleveShowIdentifiant.Text = "";
                             tb_modifEleveShowMdp.Text = "";
@@ -1257,10 +1258,33 @@ namespace AsimovStudentManager
             }
 
         }
-        private  void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
+        private async void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
         {
+            if (tb_ModifMatiereNom.Text != "")
+            {
+                DialogResult result = MessageBox.Show("Voulez vous vraiment modifier la matière : " + tb_ModifMatiereNom.Text, "Modifier matière", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string modifRes = await GetUrlBody("https://localhost:3000/proviseur/modifMatiere/" + tb_ModifMatiereNom.Text.Trim() + "/" +  dgv_ProviseurMatieres.SelectedRows[0].Cells[0].Value.ToString());
+                    if (modifRes == null) { return; }
+                    string res = modifRes.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_ProviseurMatieres();
+                    fill_dgv_ProviseurProfesseurs();
+                    tc_Proviseur.SelectedIndex = 0;
+
+                    tb_ModifMatiereNom.Text = "";
+
+                }
+            }
+            else
+            {
+                MessageBox.Show("Veuillez entrer un nouveau nom pour votre matière");
+            }
 
         }
+        //delete
         private async void btn_ProviseurSuprimmer_Click(object sender, EventArgs e)
         {
             if (dgv_ProviseurProfesseurs.SelectedRows.Count != 0)
