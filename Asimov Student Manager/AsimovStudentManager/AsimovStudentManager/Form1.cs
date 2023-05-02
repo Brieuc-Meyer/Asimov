@@ -1114,11 +1114,20 @@ namespace AsimovStudentManager
             {
                 fill_dgv_ProviseurShowClassesProf();
                 fill_dgv_ProviseurShowMatieresProf();
+                tb_modifProfShowPrenom.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[1].Value.ToString();
+                tb_modifProfShowIdentifiant.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[2].Value.ToString();
+                tb_modifProfShowMdp.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[3].Value.ToString();
+
+                tb_modifProfPrenom.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[1].Value.ToString();
+                tb_modifProfIdentifiant.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[2].Value.ToString();
+                tb_modifProfMdp.Text = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[3].Value.ToString();
+
                 tc_Proviseur.SelectedIndex = 4;
 
             }
             if (dgv_ProviseurMatieres.SelectedRows.Count != 0)
             {
+                tb_ModifMatiereNom.Text = dgv_ProviseurMatieres.SelectedRows[0].Cells[1].Value.ToString();
                 tc_Proviseur.SelectedIndex = 2;
             }
 
@@ -1206,52 +1215,45 @@ namespace AsimovStudentManager
         //Update
         private async void btn_ProviseurModifierProf_Click(object sender, EventArgs e)
         {
-            if (dgv_ProviseurAjouterProfMatiere.SelectedRows.Count != 0)
+            if (tb_modifProfPrenom.Text != "")
             {
-                if (tb_modifProfPrenom.Text != "")
+                if (tb_modifProfIdentifiant.Text != "")
                 {
-                    if (tb_modifProfIdentifiant.Text != "")
+                    if (tb_modifProfMdp.Text != "")
                     {
-                        if (tb_modifProfMdp.Text != "")
-                        {
-                            DialogResult result = MessageBox.Show("Voulez vous vraiment modifier le professeur : " + tb_modifProfPrenom.Text, "Modifier professeur", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult result = MessageBox.Show("Voulez vous vraiment modifier le professeur : " + tb_modifProfPrenom.Text, "Modifier professeur", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                            if (result == DialogResult.Yes)
-                            {
-                                string modifRes = await GetUrlBody("https://localhost:3000/proviseur/ajouterPersonnel/" + tb_modifProfPrenom.Text.Trim() + "/" + tb_modifProfIdentifiant.Text.Trim() + "/" + tb_modifProfMdp.Text.Trim() + "/0/" + dgv_ProviseurAjouterProfMatiere.SelectedRows[0].Cells[0].Value.ToString() + "/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString());
-                                if (modifRes == null) { return; }
-                                string res = modifRes.Replace("\"", "");
-                                MessageBox.Show(res);
-                                fill_dgv_ProfEleves();
-                                tc_Prof.SelectedIndex = 0;
-                                tb_modifEleveShowPrenom.Text = "";
-                                tb_modifEleveShowIdentifiant.Text = "";
-                                tb_modifEleveShowMdp.Text = "";
-                                tb_modifEleveShowClass.Text = "";
-
-                                tb_modifElevePrenom.Text = "";
-                                tb_modifEleveIdentifiant.Text = "";
-                                tb_modifEleveMdp.Text = "";
-                            }
-                        }
-                        else
+                        if (result == DialogResult.Yes)
                         {
-                            MessageBox.Show("Veuillez entrer un nouveau mot de passe pour le professeur");
+                            string modifRes = await GetUrlBody("https://localhost:3000/proviseur/modifPersonnel/" + tb_modifProfPrenom.Text.Trim() + "/" + tb_modifProfIdentifiant.Text.Trim() + "/" + tb_modifProfMdp.Text.Trim() + "/0/" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString());
+                            if (modifRes == null) { return; }
+                            string res = modifRes.Replace("\"", "");
+                            MessageBox.Show(res);
+                            fill_dgv_ProfEleves();
+                            tc_Prof.SelectedIndex = 0;
+                            tb_modifEleveShowPrenom.Text = "";
+                            tb_modifEleveShowIdentifiant.Text = "";
+                            tb_modifEleveShowMdp.Text = "";
+                            tb_modifEleveShowClass.Text = "";
+
+                            tb_modifElevePrenom.Text = "";
+                            tb_modifEleveIdentifiant.Text = "";
+                            tb_modifEleveMdp.Text = "";
                         }
                     }
                     else
                     {
-                        MessageBox.Show("Veuillez entrer un nouveau identifiant pour le professeur");
+                        MessageBox.Show("Veuillez entrer un nouveau mot de passe pour le professeur");
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Veuillez entrer un nouveau nom prénom pour le professeur");
+                    MessageBox.Show("Veuillez entrer un nouveau identifiant pour le professeur");
                 }
             }
             else
             {
-                MessageBox.Show("Veuillez choisir une nouvelle matière pour le professeur");
+                MessageBox.Show("Veuillez entrer un nouveau nom prénom pour le professeur");
             }
 
         }

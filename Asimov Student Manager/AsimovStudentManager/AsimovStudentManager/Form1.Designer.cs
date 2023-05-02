@@ -184,9 +184,6 @@
             this.label37 = new System.Windows.Forms.Label();
             this.label38 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.tb_modifProfIdentifiant = new System.Windows.Forms.TextBox();
-            this.tb_modifProfMdp = new System.Windows.Forms.TextBox();
-            this.tb_modifProfPrenom = new System.Windows.Forms.TextBox();
             this.label40 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
@@ -201,6 +198,9 @@
             this.dgv_ProviseurShowMatieresProf = new System.Windows.Forms.DataGridView();
             this.button14 = new System.Windows.Forms.Button();
             this.btn_ProviseurModifierProf = new System.Windows.Forms.Button();
+            this.tb_modifProfPrenom = new System.Windows.Forms.TextBox();
+            this.tb_modifProfIdentifiant = new System.Windows.Forms.TextBox();
+            this.tb_modifProfMdp = new System.Windows.Forms.TextBox();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -2321,8 +2321,8 @@
             // panel10
             // 
             this.panel10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(90)))), ((int)(((byte)(90)))), ((int)(((byte)(90)))));
-            this.panel10.Controls.Add(this.tb_modifProfIdentifiant);
             this.panel10.Controls.Add(this.tb_modifProfMdp);
+            this.panel10.Controls.Add(this.tb_modifProfIdentifiant);
             this.panel10.Controls.Add(this.tb_modifProfPrenom);
             this.panel10.Controls.Add(this.label40);
             this.panel10.Controls.Add(this.label42);
@@ -2332,32 +2332,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(740, 288);
             this.panel10.TabIndex = 44;
-            // 
-            // tb_modifProfIdentifiant
-            // 
-            this.tb_modifProfIdentifiant.Location = new System.Drawing.Point(400, 132);
-            this.tb_modifProfIdentifiant.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_modifProfIdentifiant.MaxLength = 2;
-            this.tb_modifProfIdentifiant.Name = "tb_modifProfIdentifiant";
-            this.tb_modifProfIdentifiant.Size = new System.Drawing.Size(265, 22);
-            this.tb_modifProfIdentifiant.TabIndex = 39;
-            // 
-            // tb_modifProfMdp
-            // 
-            this.tb_modifProfMdp.Location = new System.Drawing.Point(400, 181);
-            this.tb_modifProfMdp.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_modifProfMdp.Name = "tb_modifProfMdp";
-            this.tb_modifProfMdp.Size = new System.Drawing.Size(268, 22);
-            this.tb_modifProfMdp.TabIndex = 38;
-            // 
-            // tb_modifProfPrenom
-            // 
-            this.tb_modifProfPrenom.Location = new System.Drawing.Point(403, 69);
-            this.tb_modifProfPrenom.Margin = new System.Windows.Forms.Padding(4);
-            this.tb_modifProfPrenom.MaxLength = 2;
-            this.tb_modifProfPrenom.Name = "tb_modifProfPrenom";
-            this.tb_modifProfPrenom.Size = new System.Drawing.Size(265, 22);
-            this.tb_modifProfPrenom.TabIndex = 35;
             // 
             // label40
             // 
@@ -2544,6 +2518,30 @@
             this.btn_ProviseurModifierProf.Text = "Modifier Professeur";
             this.btn_ProviseurModifierProf.UseVisualStyleBackColor = false;
             this.btn_ProviseurModifierProf.Click += new System.EventHandler(this.btn_ProviseurModifierProf_Click);
+            // 
+            // tb_modifProfPrenom
+            // 
+            this.tb_modifProfPrenom.Location = new System.Drawing.Point(387, 69);
+            this.tb_modifProfPrenom.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfPrenom.Name = "tb_modifProfPrenom";
+            this.tb_modifProfPrenom.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfPrenom.TabIndex = 40;
+            // 
+            // tb_modifProfIdentifiant
+            // 
+            this.tb_modifProfIdentifiant.Location = new System.Drawing.Point(387, 141);
+            this.tb_modifProfIdentifiant.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfIdentifiant.Name = "tb_modifProfIdentifiant";
+            this.tb_modifProfIdentifiant.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfIdentifiant.TabIndex = 41;
+            // 
+            // tb_modifProfMdp
+            // 
+            this.tb_modifProfMdp.Location = new System.Drawing.Point(387, 190);
+            this.tb_modifProfMdp.Margin = new System.Windows.Forms.Padding(4);
+            this.tb_modifProfMdp.Name = "tb_modifProfMdp";
+            this.tb_modifProfMdp.Size = new System.Drawing.Size(265, 22);
+            this.tb_modifProfMdp.TabIndex = 42;
             // 
             // Form1
             // 
@@ -2773,9 +2771,6 @@
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.TextBox tb_modifProfIdentifiant;
-        private System.Windows.Forms.TextBox tb_modifProfMdp;
-        private System.Windows.Forms.TextBox tb_modifProfPrenom;
         private System.Windows.Forms.Label label40;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label43;
@@ -2797,6 +2792,9 @@
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Button btn_ProviseurModifierClassesProf;
         private System.Windows.Forms.Button btn_ProviseurModifierMatieresProf;
+        private System.Windows.Forms.TextBox tb_modifProfMdp;
+        private System.Windows.Forms.TextBox tb_modifProfIdentifiant;
+        private System.Windows.Forms.TextBox tb_modifProfPrenom;
     }
 }
 
