@@ -177,6 +177,8 @@
             this.button10 = new System.Windows.Forms.Button();
             this.btn_ProviseurAjouterProfToDb = new System.Windows.Forms.Button();
             this.tabPage15 = new System.Windows.Forms.TabPage();
+            this.btn_ProviseurModifierClassesProf = new System.Windows.Forms.Button();
+            this.btn_ProviseurModifierMatieresProf = new System.Windows.Forms.Button();
             this.dgv_ProviseurShowClassesProf = new System.Windows.Forms.DataGridView();
             this.label47 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -199,8 +201,6 @@
             this.dgv_ProviseurShowMatieresProf = new System.Windows.Forms.DataGridView();
             this.button14 = new System.Windows.Forms.Button();
             this.btn_ProviseurModifierProf = new System.Windows.Forms.Button();
-            this.btn_ProviseurModifierMatieresProf = new System.Windows.Forms.Button();
-            this.btn_ProviseurModifierClassesProf = new System.Windows.Forms.Button();
             this.tc_Main.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -1806,6 +1806,7 @@
             this.btn_ProviseurSuprimmer.TabIndex = 6;
             this.btn_ProviseurSuprimmer.Text = "Supprimer";
             this.btn_ProviseurSuprimmer.UseVisualStyleBackColor = false;
+            this.btn_ProviseurSuprimmer.Click += new System.EventHandler(this.btn_ProviseurSuprimmer_Click);
             // 
             // btn_ProviseurAjouterProf
             // 
@@ -2233,6 +2234,32 @@
             this.tabPage15.TabIndex = 4;
             this.tabPage15.Text = "Modifier Professeur";
             // 
+            // btn_ProviseurModifierClassesProf
+            // 
+            this.btn_ProviseurModifierClassesProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierClassesProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierClassesProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierClassesProf.Location = new System.Drawing.Point(772, 657);
+            this.btn_ProviseurModifierClassesProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierClassesProf.Name = "btn_ProviseurModifierClassesProf";
+            this.btn_ProviseurModifierClassesProf.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierClassesProf.TabIndex = 50;
+            this.btn_ProviseurModifierClassesProf.Text = "Modifier Classes";
+            this.btn_ProviseurModifierClassesProf.UseVisualStyleBackColor = false;
+            // 
+            // btn_ProviseurModifierMatieresProf
+            // 
+            this.btn_ProviseurModifierMatieresProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
+            this.btn_ProviseurModifierMatieresProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_ProviseurModifierMatieresProf.ForeColor = System.Drawing.Color.White;
+            this.btn_ProviseurModifierMatieresProf.Location = new System.Drawing.Point(772, 276);
+            this.btn_ProviseurModifierMatieresProf.Margin = new System.Windows.Forms.Padding(4);
+            this.btn_ProviseurModifierMatieresProf.Name = "btn_ProviseurModifierMatieresProf";
+            this.btn_ProviseurModifierMatieresProf.Size = new System.Drawing.Size(740, 64);
+            this.btn_ProviseurModifierMatieresProf.TabIndex = 49;
+            this.btn_ProviseurModifierMatieresProf.Text = "Modifier matières";
+            this.btn_ProviseurModifierMatieresProf.UseVisualStyleBackColor = false;
+            // 
             // dgv_ProviseurShowClassesProf
             // 
             this.dgv_ProviseurShowClassesProf.AllowUserToAddRows = false;
@@ -2517,32 +2544,6 @@
             this.btn_ProviseurModifierProf.Text = "Modifier Professeur";
             this.btn_ProviseurModifierProf.UseVisualStyleBackColor = false;
             this.btn_ProviseurModifierProf.Click += new System.EventHandler(this.btn_ProviseurModifierProf_Click);
-            // 
-            // btn_ProviseurModifierMatieresProf
-            // 
-            this.btn_ProviseurModifierMatieresProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.btn_ProviseurModifierMatieresProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ProviseurModifierMatieresProf.ForeColor = System.Drawing.Color.White;
-            this.btn_ProviseurModifierMatieresProf.Location = new System.Drawing.Point(772, 276);
-            this.btn_ProviseurModifierMatieresProf.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_ProviseurModifierMatieresProf.Name = "btn_ProviseurModifierMatieresProf";
-            this.btn_ProviseurModifierMatieresProf.Size = new System.Drawing.Size(740, 64);
-            this.btn_ProviseurModifierMatieresProf.TabIndex = 49;
-            this.btn_ProviseurModifierMatieresProf.Text = "Modifier matières";
-            this.btn_ProviseurModifierMatieresProf.UseVisualStyleBackColor = false;
-            // 
-            // btn_ProviseurModifierClassesProf
-            // 
-            this.btn_ProviseurModifierClassesProf.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(115)))), ((int)(((byte)(23)))));
-            this.btn_ProviseurModifierClassesProf.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_ProviseurModifierClassesProf.ForeColor = System.Drawing.Color.White;
-            this.btn_ProviseurModifierClassesProf.Location = new System.Drawing.Point(772, 657);
-            this.btn_ProviseurModifierClassesProf.Margin = new System.Windows.Forms.Padding(4);
-            this.btn_ProviseurModifierClassesProf.Name = "btn_ProviseurModifierClassesProf";
-            this.btn_ProviseurModifierClassesProf.Size = new System.Drawing.Size(740, 64);
-            this.btn_ProviseurModifierClassesProf.TabIndex = 50;
-            this.btn_ProviseurModifierClassesProf.Text = "Modifier Classes";
-            this.btn_ProviseurModifierClassesProf.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 

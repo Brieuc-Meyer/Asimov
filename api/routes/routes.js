@@ -45,8 +45,11 @@ routeur.get('/proviseur/afficherProfesseurs', ctrlConnexion.testAuthentification
 routeur.get('/proviseur/afficherTousLesEleves', ctrlConnexion.testAuthentification, ctrlProviseurs.afficherTousLesEleves)
 routeur.get('/proviseur/ajouterMatiere/:mat_nom', ctrlConnexion.testAuthentification, ctrlProviseurs.ajouterMatiere)
 routeur.get('/proviseur/modifMatiere/:mat_nom/:mat_id', ctrlConnexion.testAuthentification, ctrlProviseurs.modifMatiere)
+routeur.get('/proviseur/supprimerMatiere/:mat_id', ctrlConnexion.testAuthentification, ctrlProviseurs.supprimerMatiere)
+
 routeur.get('/proviseur/ajouterPersonnel/:perso_nom/:perso_identifiant/:perso_mdp/:perso_proviseur_on', ctrlConnexion.testAuthentification, ctrlProviseurs.ajouterPersonnel)
 routeur.get('/proviseur/modifPersonnel/:perso_nom/:perso_identifiant/:perso_mdp/:perso_proviseur_on/:perso_id', ctrlConnexion.testAuthentification, ctrlProviseurs.modifPersonnel)
+routeur.get('/proviseur/supprimerPersonnel/:perso_id', ctrlConnexion.testAuthentification, ctrlProviseurs.supprimerPersonnel)
 
 
 

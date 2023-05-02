@@ -1128,6 +1128,7 @@ namespace AsimovStudentManager
 
 
 
+
         //CRUD
         //Insert
         private async void btn_ProviseurAjouterMatiereToDb_Click(object sender, EventArgs e)
@@ -1257,6 +1258,46 @@ namespace AsimovStudentManager
         private  void btn_ProviseurModifierMatiere_Click(object sender, EventArgs e)
         {
 
+        }
+        private async void btn_ProviseurSuprimmer_Click(object sender, EventArgs e)
+        {
+            if (dgv_ProviseurProfesseurs.SelectedRows.Count != 0)
+            {
+                string profID = dgv_ProviseurProfesseurs.SelectedRows[0].Cells[0].Value.ToString();
+                DialogResult result = MessageBox.Show("Voulez vous vraiment supprimer ce professeur  ? : \n" + dgv_ProviseurProfesseurs.SelectedRows[0].Cells[1].Value.ToString(), "Supprimer prof", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string delResult = await GetUrlBody("https://localhost:3000/proviseur/supprimerPersonnel/" + profID);
+                    if (delResult == null) { return; }
+                    string res = delResult.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_ProviseurMatieres();
+                    fill_dgv_ProviseurProfesseurs();
+                }
+                else
+                {
+                }
+
+            }
+            if (dgv_ProviseurMatieres.SelectedRows.Count != 0)
+            {
+                string matID = dgv_ProviseurMatieres.SelectedRows[0].Cells[0].Value.ToString();
+                DialogResult result = MessageBox.Show("Voulez vous vraiment supprimer cette matière  ? : \n" + dgv_ProviseurMatieres.SelectedRows[0].Cells[1].Value.ToString(), "Supprimer matière", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    string delResult = await GetUrlBody("https://localhost:3000/proviseur/supprimerMatiere/" + matID);
+                    if (delResult == null) { return; }
+                    string res = delResult.Replace("\"", "");
+                    MessageBox.Show(res);
+                    fill_dgv_ProviseurMatieres();
+                    fill_dgv_ProviseurProfesseurs();
+                }
+                else
+                {
+                }
+            }
         }
 
         //Contôles de saisie
