@@ -114,6 +114,24 @@ module.exports = {
 
 
     },
+    async afficherMatieresLibresProf(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAfficherMatieresLibresProf(req)
+            if (data) {
+                //console.log(data)
+                res.json(data)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
     async afficherClassesProf(req, res) {
 
@@ -122,6 +140,24 @@ module.exports = {
              * @param req envoie à la BDD les data du medicament a modifier
              */
             let data = await modelProfesseurs.modelAfficherClassesProf(req)
+            if (data) {
+                //console.log(data)
+                res.json(data)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    async afficherClassesLibresProf(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data du medicament a modifier
+             */
+            let data = await modelProfesseurs.modelAfficherClassesLibresProf(req)
             if (data) {
                 //console.log(data)
                 res.json(data)

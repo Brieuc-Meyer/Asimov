@@ -108,6 +108,84 @@ module.exports = {
 
 
     },
+    
+    async afficherClasses(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelAfficherClasses(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json(data)
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+    async ajouterClasse(req, res) {
+
+        try {
+        /**
+         * @param req contient le param id a suprimmer
+         */
+            let data = await modelProviseurs.modelAjouterClasse(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Classe ajoutée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+
+    async supprimerClasse(req, res) {
+
+        try {
+            /**
+             * @param req contient les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelSupprimerClasse(req)
+            if (data ) {
+                //console.log(data)
+                res.json("Classe supprimée avec succès")
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
+
+    async modifClasse(req, res) {
+
+        try {
+            /**
+             * @param req envoie à la BDD les data de la mutuelle a modifier
+             */
+            let data = await modelProviseurs.modelModifClasse(req)
+            
+            if (data) {
+                //console.log(data)
+                res.json("Classe modifiée avec succès")
+            }
+
+        } catch (error) {
+            console.log(error)
+        }
+
+
+    },
 
     async afficherProfesseurs(req, res) {
 

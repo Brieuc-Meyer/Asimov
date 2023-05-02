@@ -24,12 +24,12 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
             //obligé de trier par classe car GROUP BY ne récupére pas certanis eleves
-            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_grade
+            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_id
             FROM  eleves, liaison_personnel_classes, classes 
             WHERE liaison_personnel_classes.perso_id = ?
-            AND eleves.eleve_class_grade = classes.class_grade 
-            AND liaison_personnel_classes.class_grade = eleves.eleve_class_grade 
-            ORDER BY eleve_class_grade;`
+            AND eleves.eleve_class_id = classes.class_id 
+            AND liaison_personnel_classes.class_id = eleves.eleve_class_id 
+            ORDER BY eleve_class_id;`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 
@@ -52,12 +52,12 @@ module.exports = {
             let eleve_nom = req.params.eleve_nom
             let eleve_identifiant = req.params.eleve_identifiant
             let eleve_mdp = req.params.eleve_mdp
-            let eleve_class_grade = req.params.eleve_class_grade
+            let eleve_class_id = req.params.eleve_class_id
 
-            let requeteSQL = "INSERT INTO eleves (eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade) VALUES (?, ?, ?, ?)"
+            let requeteSQL = "INSERT INTO eleves (eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_id) VALUES (?, ?, ?, ?)"
 
 
-            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade], (err, data) => {
+            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -103,12 +103,12 @@ module.exports = {
             let eleve_nom = req.params.eleve_nom
             let eleve_identifiant = req.params.eleve_identifiant
             let eleve_mdp = req.params.eleve_mdp
-            let eleve_class_grade = req.params.eleve_class_grade
+            let eleve_class_id = req.params.eleve_class_id
             let eleve_id = req.params.eleve_id
 
 
-            let requeteSQL = 'UPDATE eleves SET eleve_nom = ?, eleve_identifiant = ?, eleve_mdp = ?, eleve_class_grade = ?  WHERE eleve_id = ?'
-            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_grade, eleve_id], (err, data) => {
+            let requeteSQL = 'UPDATE eleves SET eleve_nom = ?, eleve_identifiant = ?, eleve_mdp = ?, eleve_class_id = ?  WHERE eleve_id = ?'
+            mysqlConnexion.query(requeteSQL, [eleve_nom, eleve_identifiant, eleve_mdp, eleve_class_id, eleve_id], (err, data) => {
 
                 if (err) {
                     return reject(err)
@@ -143,6 +143,32 @@ module.exports = {
         }
         )
     },
+    async modelAfficherMatieresLibresProf(req) {
+
+
+        return new Promise((resolve, reject) => {
+            let perso_id = req.params.perso_id
+
+            let requeteSQL = `SELECT * 
+                FROM matieres
+                WHERE mat_id NOT IN(
+                    SELECT matieres.mat_id
+                    FROM  matieres, liaison_personnel_matieres, personnels 
+                    WHERE liaison_personnel_matieres.perso_id = ?
+                    AND matieres.mat_id = personnels.perso_id 
+                    AND liaison_personnel_matieres.mat_id = matieres.mat_id);`
+
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
 
     async modelAfficherClassesProf(req) {
 
@@ -150,12 +176,36 @@ module.exports = {
         return new Promise((resolve, reject) => {
             let perso_id = req.params.perso_id
 
-            let requeteSQL = `SELECT classes.class_grade, class_nom, COUNT(*) Nbr_eleve
+            let requeteSQL = `SELECT classes.class_id, class_nom, COUNT(*) Nbr_eleve
             FROM eleves, classes, liaison_personnel_classes
-            WHERE eleves.eleve_class_grade = classes.class_grade
-            AND liaison_personnel_classes.perso_id = 2
-            AND liaison_personnel_classes.class_grade = classes.class_grade
+            WHERE eleves.eleve_class_id = classes.class_id
+            AND liaison_personnel_classes.perso_id = ?
+            AND liaison_personnel_classes.class_id = classes.class_id
             GROUP BY class_nom;`
+
+            mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    async modelAfficherClassesLibresProf(req) {
+
+
+        return new Promise((resolve, reject) => {
+            let perso_id = req.params.perso_id
+
+            let requeteSQL = `SELECT * 
+                FROM classes
+                WHERE class_id NOT IN(SELECT classes.class_id
+                    FROM  classes, liaison_personnel_classes, personnels 
+                    WHERE liaison_personnel_classes.perso_id = ?
+                    AND liaison_personnel_classes.class_id = classes.class_id);`
 
             mysqlConnexion.query(requeteSQL, [perso_id], (err, data) => {
 

@@ -22,9 +22,9 @@ module.exports = {
     async modelAfficherTousLesEleves(req) {
 
         return new Promise((resolve, reject) => {
-            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_grade
+            let requeteSQL = `SELECT eleves.eleve_id, eleves.eleve_identifiant, eleves.eleve_mdp ,eleves.eleve_nom, classes.class_nom, classes.class_id
             FROM  eleves, classes 
-            WHERE eleve_class_grade = class_grade`
+            WHERE eleve_class_id = class_id`
 
             mysqlConnexion.query(requeteSQL, (err, data) => {
 
@@ -131,6 +131,92 @@ module.exports = {
             let requeteSQL = `SELECT * FROM personnels WHERE perso_proviseur_on = 0 `
 
             mysqlConnexion.query(requeteSQL, (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+    async modelAfficherClasses() {
+
+        return new Promise((resolve, reject) => {
+
+            let requeteSQL = `SELECT * FROM classes `
+
+            mysqlConnexion.query(requeteSQL, (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelAjouterClasse(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let class_nom = req.params.class_nom
+
+            let requeteSQL = "INSERT INTO classes (class_nom) VALUES (?)"
+
+
+            mysqlConnexion.query(requeteSQL, [class_nom], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+    async modelSupprimerClasse(req) {
+
+
+        return new Promise((resolve, reject) => {
+
+            let class_id = req.params.class_id
+
+            let requeteSQL = "DELETE FROM classes WHERE class_id = ?;"
+
+
+            mysqlConnexion.query(requeteSQL, [class_id], (err, data) => {
+
+                if (err) {
+                    return reject(err)
+
+                }
+                return resolve(data)
+            })
+        }
+        )
+    },
+
+
+
+    async modelModifClasse(req) {
+
+
+
+        return new Promise((resolve, reject) => {
+
+            let class_nom = req.params.class_nom
+            let class_id = req.params.class_id
+
+
+            let requeteSQL = 'UPDATE classes SET class_nom = ? WHERE class_id = ?'
+            mysqlConnexion.query(requeteSQL, [class_nom, class_id], (err, data) => {
 
                 if (err) {
                     return reject(err)

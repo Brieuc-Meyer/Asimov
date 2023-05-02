@@ -3,9 +3,8 @@ CREATE DATABASE asimov;
 USE  asimov;
 
 CREATE TABLE `classes` (
-    `class_grade` BIGINT NOT NULL,
-    `class_nom` VARCHAR(30) NOT NULL,
-    PRIMARY KEY (`class_grade`)
+    `class_id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `class_nom` VARCHAR(30) NOT NULL
 )ENGINE=InnoDB;
 
 CREATE TABLE `eleves` (
@@ -13,8 +12,8 @@ CREATE TABLE `eleves` (
     `eleve_nom` VARCHAR(50) NOT NULL,
     `eleve_identifiant` VARCHAR(50) NOT NULL,
     `eleve_mdp` VARCHAR(10) NOT NULL,
-    `eleve_class_grade` BIGINT NOT NULL,
-    CONSTRAINT `fk_eleve_class` FOREIGN KEY (`eleve_class_grade`) REFERENCES `classes` (`class_grade`)
+    `eleve_class_id` BIGINT NOT NULL,
+    CONSTRAINT `fk_eleve_class` FOREIGN KEY (`eleve_class_id`) REFERENCES `classes` (`class_id`)
 )ENGINE=InnoDB;
 
 CREATE TABLE `personnels` (
@@ -53,19 +52,19 @@ CREATE TABLE `liaison_personnel_matieres` (
 
 CREATE TABLE `liaison_personnel_classes` (
     `perso_id` BIGINT NOT NULL,
-    `class_grade` BIGINT NOT NULL,
+    `class_id` BIGINT NOT NULL,
     CONSTRAINT `fk_liaison_personnel_classes_perso` FOREIGN KEY (`perso_id`) REFERENCES `personnels` (`perso_id`),
-    CONSTRAINT `fk_liaison_personnel_classes_class` FOREIGN KEY (`class_grade`) REFERENCES `classes` (`class_grade`)
+    CONSTRAINT `fk_liaison_personnel_classes_class` FOREIGN KEY (`class_id`) REFERENCES `classes` (`class_id`)
 )ENGINE=InnoDB;
 
 
-INSERT INTO `classes` (`class_grade`, `class_nom`) VALUES
+INSERT INTO `classes` (`class_id`, `class_nom`) VALUES
     (6, 'Sixieme'),
     (5, 'Cinquieme'),
     (4, 'Quatrieme'),
     (3, 'Troisieme');
 
-INSERT INTO `eleves` (`eleve_nom`, `eleve_identifiant`, `eleve_mdp`, `eleve_class_grade`) VALUES
+INSERT INTO `eleves` (`eleve_nom`, `eleve_identifiant`, `eleve_mdp`, `eleve_class_id`) VALUES
     ('Jean Dupont', 'jean.dupont', 'root', 6),
     ('Sophie Martin', 'sophie.martin', 'root', 5),
     ('Pierre Durand', 'pierre.durand', 'root', 4);
@@ -87,7 +86,7 @@ INSERT INTO `liaison_personnel_matieres` (`perso_id`,`mat_id`) VALUES
     (3,3),
     (3,1);
 
-INSERT INTO `liaison_personnel_classes` (`perso_id`,`class_grade`) VALUES
+INSERT INTO `liaison_personnel_classes` (`perso_id`,`class_id`) VALUES
     (2,6),
     (2,5),
     (3,4),
